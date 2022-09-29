@@ -64,7 +64,7 @@
             background-color: white;
             position: absolute;
             top:130px;
-            left:200px;
+            left:230px;
         }
         table{
             width:90%;
@@ -72,7 +72,7 @@
             overflow: scroll;
             margin:0 auto;
             position: relative;
-            top:80px;
+            top:30px;
             border-color: #ececec;
         }
         tr{
@@ -80,6 +80,10 @@
         }
         td{
             text-align: center;
+        }
+        .search{
+            float: right;
+            margin:30px 5% 0 0;
         }
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
@@ -124,11 +128,11 @@
             <span id="card"></span>
         </div>
     </div>
-    <div style="float: right">
-        <input type="text" name="keyword">
-        <button>查询</button>
-    </div>
     <div class="result">
+        <div class="search">
+            <input type="text" name="keyword" placeholder="根据时间查询">
+            <button>查询</button>
+        </div>
         <table border="1" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>

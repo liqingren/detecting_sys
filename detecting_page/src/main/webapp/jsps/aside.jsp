@@ -26,7 +26,7 @@
         .aside{
 
             width:160px;
-            height:500px;
+            height:600px;
             background-color: lightblue;
         }
         .list{

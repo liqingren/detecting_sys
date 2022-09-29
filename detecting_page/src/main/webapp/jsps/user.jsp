@@ -14,7 +14,7 @@
     <style type="text/css">
         .user{
             width:70%;
-            height:500px;
+            height:600px;
             background-color: white;
             position: absolute;
             top:130px;
