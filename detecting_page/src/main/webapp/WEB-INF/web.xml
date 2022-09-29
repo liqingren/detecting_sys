@@ -60,7 +60,7 @@
 <!--  &lt;!&ndash;end 数据库性能监控 &ndash;&gt;-->
 
   <welcome-file-list>
-    <welcome-file>/WEB-INF/jsps/login.jsp</welcome-file>
+    <welcome-file>/jsps/login.jsp</welcome-file>
   </welcome-file-list>
 
 

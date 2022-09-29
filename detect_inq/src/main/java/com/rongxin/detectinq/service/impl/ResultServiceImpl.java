@@ -4,7 +4,10 @@ import com.rongxin.detectinq.entity.Result;
 import com.rongxin.detectinq.mapper.ResultMapper;
 import com.rongxin.detectinq.service.ResultService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> implements ResultService {
-
+    @Autowired
+    ResultMapper resultMapper;
+    public List<Result> getResultByCard(String card) {
+        return resultMapper.getResultByCard(card);
+    }
 }

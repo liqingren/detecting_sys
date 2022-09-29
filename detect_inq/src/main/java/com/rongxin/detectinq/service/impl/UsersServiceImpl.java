@@ -4,6 +4,7 @@ import com.rongxin.detectinq.entity.Users;
 import com.rongxin.detectinq.mapper.UsersMapper;
 import com.rongxin.detectinq.service.UsersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements UsersService {
+    @Autowired
+    UsersMapper usersMapper;
+    public int login(Users user) {
+        return usersMapper.login(user);
+    }
 
+    public Users getByCard(String card) {
+        return usersMapper.getByCard(card);
+    }
 }
