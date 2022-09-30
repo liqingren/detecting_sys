@@ -63,7 +63,7 @@ public class QRCodeUtils {
         String filePath = file.getCanonicalPath();
         System.out.println(filePath);
         //将生成的二维码放在/src/webapp/img/的文件夹下
-        String path=filePath+"\\detecting_page\\src\\main\\webapp\\image\\"+content+".jpg";
+        String path=filePath+"\\detecting_page\\src\\main\\webapp\\image\\code\\"+content+".jpg";
         mkdirs(path);
         ImageIO.write(image, FORMAT, new File(path));
         String codePath=content+".jpg";
@@ -115,16 +115,16 @@ public class QRCodeUtils {
         return resultStr;
     }
 
-//    /**
-//     * 解析二维码
-//     *
-//     * @param path 二维码图片地址
-//     * @return
-//     * @throws Exception
-//     */
-//    public static String decode(String path) throws Exception {
-//        return decode(new File(path));
-//    }
+    /**
+     * 解析二维码
+     *
+     * @param path 二维码图片地址
+     * @return
+     * @throws Exception
+     */
+    public static String decode(String path) throws Exception {
+        return decode(new File(path));
+    }
 
 
 }

@@ -15,9 +15,10 @@ import java.util.List;
  */
 public interface ResultService extends IService<Result> {
     /**
-     * 根据card获取核酸结果
-     * @param card
+     * 根据id获取核酸结果
+     * @param id
      * @return
      */
-    List<Result> getResultByCard(String card);
+    List<Result> getResultByCard(int id);
+
 }

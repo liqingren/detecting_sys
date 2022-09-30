@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -70,11 +71,29 @@ public class UsersController {
         }
     }
 
+    /**
+     * 根据身份证号查询用户信息
+     * @param code
+     * @return
+     */
+    @RequestMapping("/getuser")
+    public R getUser(@RequestParam("code") String code){
+        Users user = usersService.getByCard(code);
+        return R.ok().data("userCard",user);
+    }
+
+    /**
+     * 查询所有核酸结果
+     * @param id
+     * @return
+     */
     @RequestMapping("/getuserresult")
-    public R GetUserResult(@RequestParam("card") String card){
+    public R GetUserResult(@RequestParam("id") int id){
         //根据身份证号查询核酸结果
-        List<Result> result = resultService.getResultByCard(card);
+        List<Result> result = resultService.getResultByCard(id);
         return R.ok().data("result",result);
     }
+
+
 }
 

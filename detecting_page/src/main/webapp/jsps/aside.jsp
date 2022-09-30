@@ -25,33 +25,61 @@
         }
         .aside{
 
-            width:160px;
+            width:200px;
             height:600px;
             background-color: lightblue;
         }
         .list{
-            width:120px;
+            width:170px;
             line-height: 30px;
             font-size: 20px;
             text-align: left;
             padding-left:10px;
             color:white ;
             position: relative;
-            top:70px;
-            left:15px;
+            top:50px;
+            left:7px;
             margin-bottom: 2px;
             background-color: skyblue;
+            text-align: center;
         }
         label{
             cursor: pointer;
         }
+        .list-user{
+            width:170px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: left;
+            padding-left:10px;
+            color:white ;
+            position: relative;
+            top:50px;
+            left:7px;
+            margin-bottom: 2px;
+            background-color: skyblue;
+        }
     </style>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/jump.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            init();
+        })
+    </script>
 </head>
 <body bgcolor="#f5f5f5">
     <div class="header">
         <h2>核酸检测系统</h2>
     </div>
     <div class="aside">
+        <div class="list-user">
+            <span>用户名：</span>
+            <span id="username"></span>
+            <br/>
+            <span>身份证号：</span>
+            <span id="card"></span>
+        </div>
         <div class="list">
             <label>健康码</label>
         </div>

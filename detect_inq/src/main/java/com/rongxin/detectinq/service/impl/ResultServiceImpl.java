@@ -21,7 +21,8 @@ import java.util.List;
 public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> implements ResultService {
     @Autowired
     ResultMapper resultMapper;
-    public List<Result> getResultByCard(String card) {
-        return resultMapper.getResultByCard(card);
+    public List<Result> getResultByCard(int id) {
+        return resultMapper.getResultByCard(id);
     }
+
 }

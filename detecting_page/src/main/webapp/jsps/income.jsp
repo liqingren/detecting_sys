@@ -2,16 +2,16 @@
   Created by IntelliJ IDEA.
   User: 86158
   Date: 2022/9/29
-  Time: 15:16
+  Time: 16:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>管理员查询</title>
+    <title>录入结果</title>
     <meta charset="utf-8">
     <style type="text/css">
-        .admin{
+        .income{
             width:70%;
             height:600px;
             background-color: white;
@@ -43,34 +43,32 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //当前选择label字体颜色变蓝
-            $("label:last").css("color","steelblue");
+            $("label:eq(2)").css("color","steelblue");
         });
     </script>
 </head>
 <body bgcolor="#f5f5f5">
-<jsp:include page="aside.jsp"></jsp:include>
-<div class="admin">
-    <div class="search">
-        <input type="text" name="keyword">
-        <button>查询</button>
-    </div>
-    <table border="1" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <th style="width:50px;"></th>
-            <th>姓名</th>
-            <th>身份证号</th>
-            <th>性别</th>
-            <th>采集时间</th>
-            <th>检测时间</th>
-            <th>状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
+    <jsp:include page="aside.jsp"></jsp:include>
+    <div class="income">
+        <div class="search">
+            <input type="text" name="keyword">
+            <button>查询</button>
+        </div>
+        <table border="1" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th style="width:50px;"></th>
+                <th>姓名</th>
+                <th>身份证号</th>
+                <th>性别</th>
+                <th>采集时间</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

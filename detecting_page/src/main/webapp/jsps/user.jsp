@@ -12,13 +12,61 @@
     <title>用户界面</title>
     <meta charset="utf-8">
     <style type="text/css">
+        .header{
+            width:100%;
+            height:120px;
+        }
+        h2{
+            font-size: 100px;
+            font-family: 华文彩云;
+            color: skyblue;
+            position: relative;
+            top:10px;
+            text-align: center;
+        }
+        .aside{
+
+            width:200px;
+            height:600px;
+            background-color: lightblue;
+        }
+        .list{
+            width:170px;
+            line-height: 30px;
+            font-size: 20px;
+            text-align: left;
+            padding-left:10px;
+            color:white ;
+            position: relative;
+            top:50px;
+            left:7px;
+            margin-bottom: 2px;
+            background-color: skyblue;
+            text-align: center;
+        }
+        label{
+            cursor: pointer;
+        }
+        .list-user{
+            width:170px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: left;
+            padding-left:10px;
+            color:white ;
+            position: relative;
+            top:50px;
+            left:7px;
+            margin-bottom: 2px;
+            background-color: skyblue;
+        }
         .user{
             width:70%;
             height:600px;
             background-color: white;
             position: absolute;
             top:130px;
-            left:200px;
+            left:230px;
         }
         img{
             width:350px;
@@ -39,16 +87,6 @@
             color:white;
             cursor: pointer;
         }
-        .result{
-            width:500px;
-            height:410px;
-            background-color: #f5f5f5;
-            border:1px solid #ececec;
-            position: absolute;
-            top:50px;
-            left:260px;
-            display: none;
-        }
         table{
             margin:0 auto;
             position: relative;
@@ -65,38 +103,37 @@
             border:none;
             background-color:#f5f5f5 ;
         }
-        #re{
-            width:100px;
-            height:100px;
-            border: none;
-            text-align: center;
-            border-radius: 50%;
-            background-color: darkseagreen;
-            color:darkgreen;
+        #datediv{
+            width:300px;
+           position: relative;
+            top:20px;
+            margin:0 auto;
         }
-        .msg{
-            width:500px;
-            height:80px;
-            padding-left:20px;
-        }
-        #quit{
-            float: right;
-            width:20px;
-            height:20px;
-            line-height: 20px;
-            position: relative;
-            top:-15px;
-            left:-25px;
-            font-size: 20px;
-            background-color: skyblue;
+        .date{
+            font-size:24px;
+            font-weight: bold;
+            color:dodgerblue;
+            margin-right:30px;
         }
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+        function initDate(){
+            var date = new Date();
+            var html="<span class='date'>"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+
+                "</span><span class='date'>"+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"</span>";
+            $("#datediv").html(html);
+        }
         $(document).ready(function(){
+            //当前选择label字体颜色变蓝
+            $("label:eq(0)").css("color","steelblue");
+            //刷新时间
+            setInterval(initDate,1000);
             var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
             //显示本人健康码
-            var str="../image/"+user.codePath;
+            var str="../image/code/"+user.codePath;
             $(".imgcode").attr("src",str);
             //点击核酸结果按钮跳转页面
             $("#result ").bind("click",function(){
@@ -108,39 +145,13 @@
 <body bgcolor="#f5f5f5">
     <jsp:include page="aside.jsp"></jsp:include>
     <div class="user">
+        <div id="datediv">
+
+        </div>
         <div class="code">
             <img class="imgcode">
         </div>
         <button id="result">核酸结果</button>
-        <h3>${card}</h3>
-        <div class="result">
-            <div class="msg">
-                <button id="quit">×</button>
-                <p style="font-size: 20px;">查询人员：</p>
-                <span style="font-size: 20px;margin-right:20px;">张三</span>
-                <span style="font-size: 20px;">511602200039348976</span>
-            </div>
-            <hr color="#ececec">
-            <table>
-                <tr>
-                    <td colspan="2" align="center">
-                        <input id="re" type="text" name="resultstate" value="阴性">
-                    </td>
-                </tr>
-                <tr>
-                    <td>采样时间：</td>
-                    <td>
-                        <input type="text" name="createTime" value="2022-09-29 09时">
-                    </td>
-                </tr>
-                <tr>
-                    <td>检测时间：</td>
-                    <td>
-                        <input type="text" name="resultTime">
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
 </body>
 </html>

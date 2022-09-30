@@ -41,6 +41,7 @@
             left:7px;
             margin-bottom: 2px;
             background-color: skyblue;
+            text-align: center;
         }
         label{
             cursor: pointer;
@@ -89,13 +90,18 @@
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $(".return").bind("click",function(){
+                window.location.href="user.jsp";
+            });
+        });
+        $(document).ready(function(){
             var user=JSON.parse(sessionStorage.getItem("user"));
-            var card=user.card;
+            var id=user.id;
             $.ajax({
                 url:"http://localhost:8001/detectinq/users/getuserresult",
                 type:"post",
                 data:{
-                    "card":card
+                    "id":id
                 },
                 success:function(data){
                     var user=JSON.parse(sessionStorage.getItem("user"));
@@ -108,8 +114,8 @@
                         $("#tbody").append(str);
                     }
                 }
-            })
-        })
+            });
+        });
     </script>
 </head>
 <body bgcolor="#f5f5f5">
@@ -117,15 +123,18 @@
         <h2>核酸检测系统</h2>
     </div>
     <div class="aside">
-        <div class="list">
-            <label>核酸结果</label>
-        </div>
         <div class="list-user">
-            <span>用户：</span>
+            <span>用户名：</span>
             <span id="username"></span>
             <br/>
             <span>身份证号：</span>
             <span id="card"></span>
+        </div>
+        <div class="list">
+            <label>核酸结果</label>
+        </div>
+        <div class="list">
+            <label class="return">返回</label>
         </div>
     </div>
     <div class="result">

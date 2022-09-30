@@ -17,9 +17,10 @@ import java.util.List;
 @Mapper
 public interface ResultMapper extends BaseMapper<Result> {
     /**
-     * 根据card获取核酸结果
-     * @param card
+     * 根据id获取核酸结果
+     * @param id
      * @return
      */
-    List<Result> getResultByCard(String card);
+    List<Result> getResultByCard(int id);
+
 }
