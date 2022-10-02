@@ -4,4 +4,21 @@
     <select id="selectAll" resultType="com.rongxin.detectacl.entity.RoleUser">
         select * from role_user
     </select>
+    <select id="selectRoleByUserId" resultType="com.rongxin.detectacl.entity.Roles">
+        select roles.* from roles inner join role_user
+        on roles.id=role_user.roleId
+        where role_user.userid=#{userId} and role_user.isDelete=1
+    </select>
+    <update id="updateByRId" parameterType="com.rongxin.detectacl.entity.RoleUser">
+        update role_user set isdelete=#{isDelete} where roleid=#{roleId}
+    </update>
+    <update id="updateByUId" parameterType="com.rongxin.detectacl.entity.RoleUser">
+        update role_user set isdelete=#{isDelete} where userid=#{roleId}
+    </update>
+    <update id="updateByUserIds" parameterType="list">
+        update role_user set isdelete=0 where userid in
+        <foreach collection="userIds" item="userId" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </update>
 </mapper>

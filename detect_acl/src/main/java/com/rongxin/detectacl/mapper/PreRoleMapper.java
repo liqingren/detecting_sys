@@ -3,8 +3,10 @@ package com.rongxin.detectacl.mapper;
 import com.rongxin.detectacl.entity.PreRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,4 +24,13 @@ public interface PreRoleMapper extends BaseMapper<PreRole> {
     List<PreRole> selectAll();
 
     boolean updateByPId(PreRole preRole);
+
+    boolean updateByRId(PreRole preRole);
+
+    List<PreRole> selectByRoleId(Integer roleId);
+
+
+    boolean deleteByPRId(Map<String, Object> map);
+
+    List<PreRole> selectIds(Map<String, Object> map);
 }

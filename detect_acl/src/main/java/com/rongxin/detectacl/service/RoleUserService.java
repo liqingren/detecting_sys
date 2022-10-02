@@ -2,6 +2,7 @@ package com.rongxin.detectacl.service;
 
 import com.rongxin.detectacl.entity.RoleUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.rongxin.detectacl.entity.Roles;
 
 import java.util.List;
 
@@ -16,4 +17,13 @@ import java.util.List;
 public interface RoleUserService extends IService<RoleUser> {
 
     List<RoleUser> getAllRoleUser();
+
+
+    Roles getRoleByUserId(Integer userId);
+
+    void updateByRId(RoleUser roleUser);
+
+    void updateByUId(RoleUser roleUser);
+
+    boolean updateByUserIds(List<Integer> userIds);
 }

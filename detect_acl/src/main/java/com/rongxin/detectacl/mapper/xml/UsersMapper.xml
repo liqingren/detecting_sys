@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rongxin.detectacl.mapper.UsersMapper">
+    <select id="selectByCondition" resultType="com.rongxin.detectacl.entity.Users">
+        select * from users where isdeleted=1
+        <if test="condition != null">
+        and name like concat("%",#{condition},"%") or card like concat("%",#{condition},"%")
+        </if>
+        limit #{pageNum},8
+    </select>
+</mapper>

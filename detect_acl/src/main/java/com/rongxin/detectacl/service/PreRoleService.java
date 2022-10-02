@@ -20,4 +20,10 @@ public interface PreRoleService extends IService<PreRole> {
     List<PreRole> getAllPerRole();
 
     boolean updateByPId(PreRole preRole);
+
+    boolean updateByRId(PreRole preRole);
+
+    List<PreRole> getAllPerRoleByRId(Integer rId);
+
+    List<PreRole> selectIds(List<Integer> deleteId, Integer roleId);
 }

@@ -1,6 +1,7 @@
 package com.rongxin.detectacl.service.impl;
 
 import com.rongxin.detectacl.entity.RoleUser;
+import com.rongxin.detectacl.entity.Roles;
 import com.rongxin.detectacl.mapper.RoleUserMapper;
 import com.rongxin.detectacl.service.RoleUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -23,4 +24,26 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
     public List<RoleUser> getAllRoleUser() {
         return baseMapper.selectAll();
     }
+
+    @Override
+    public Roles getRoleByUserId(Integer userId) {
+        return baseMapper.selectRoleByUserId(userId);
+    }
+
+    @Override
+    public void updateByRId(RoleUser roleUser) {
+        baseMapper.updateByRId(roleUser);
+    }
+
+    @Override
+    public void updateByUId(RoleUser roleUser) {
+        baseMapper.updateByUId(roleUser);
+    }
+
+    @Override
+    public boolean updateByUserIds(List<Integer> userIds) {
+        return baseMapper.updateByUserIds(userIds);
+    }
+
+
 }

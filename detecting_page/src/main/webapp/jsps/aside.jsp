@@ -46,6 +46,19 @@
             cursor: pointer;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#perClick").bind("click",function (){
+                var hidden=$("#showList").attr("hidden");
+                if(hidden=='undefine'||hidden==null){
+                    $("#showList").attr("hidden","hidden");
+                }else {
+                    $("#showList").removeAttr("hidden");
+                }
+            })
+        })
+    </script>
 </head>
 <body bgcolor="#f5f5f5">
     <div class="header">
@@ -62,7 +75,12 @@
             <label>录入结果</label>
         </div>
         <div class="list">
-            <label>权限管理</label>
+            <label id="perClick">权限管理</label>
+            <div hidden="hidden" id="showList">
+                <li>用户管理</li>
+                <li>角色管理</li>
+                <li>权限分配</li>
+            </div>
         </div>
         <div class="list">
             <label>核酸记录</label>

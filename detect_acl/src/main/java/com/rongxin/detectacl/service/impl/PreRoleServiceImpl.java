@@ -6,7 +6,9 @@ import com.rongxin.detectacl.service.PreRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -35,5 +37,23 @@ public class PreRoleServiceImpl extends ServiceImpl<PreRoleMapper, PreRole> impl
             return false;
         }
         return baseMapper.updateByPId(preRole);
+    }
+
+    @Override
+    public boolean updateByRId(PreRole preRole) {
+        return baseMapper.updateByRId(preRole);
+    }
+
+    @Override
+    public List<PreRole> getAllPerRoleByRId(Integer rId) {
+        return baseMapper.selectByRoleId(rId);
+    }
+
+    @Override
+    public List<PreRole> selectIds(List<Integer> deleteId, Integer roleId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("perIds",deleteId);
+        map.put("roleId",roleId);
+        return baseMapper.selectIds(map);
     }
 }

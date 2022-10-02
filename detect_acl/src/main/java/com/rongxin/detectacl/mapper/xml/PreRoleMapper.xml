@@ -5,9 +5,21 @@
         update pre_role set isdeleted=0 where id=#{id}
     </update>
     <select id="selectAll" resultType="com.rongxin.detectacl.entity.PreRole">
-        select * from pre_role
+        select * from pre_role where isDeleted=1
+    </select>
+    <select id="selectByRoleId" resultType="com.rongxin.detectacl.entity.PreRole">
+        select * from pre_role where isDeleted=1 and roleId=#{roleId}
     </select>
     <update id="updateByPId" parameterType="com.rongxin.detectacl.entity.PreRole">
-        update pre_role set isdeleted=#{isDeleted} where id=#{preId}
+        update pre_role set isdeleted=#{isDeleted} where preid=#{preId}
     </update>
+    <update id="updateByRId" parameterType="com.rongxin.detectacl.entity.PreRole">
+        update pre_role set isdeleted=#{isDeleted} where roleid=#{roleId}
+    </update>
+    <select id="selectIds" resultType="com.rongxin.detectacl.entity.PreRole">
+        select * from pre_role where roleId=1 and preid in
+        <foreach collection="perIds" item="perId" open="(" separator="," close=")" index="index">
+             #{perId}
+        </foreach>
+    </select>
 </mapper>

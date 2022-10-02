@@ -5,6 +5,6 @@
         update permission set isdeleted=0 where id=#{id}
     </update>
     <select id="selectAll" resultType="com.rongxin.detectacl.entity.Permission">
-        select * from permission
+        select * from permission where isdeleted=1
     </select>
 </mapper>
