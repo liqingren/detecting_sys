@@ -3,6 +3,7 @@ package com.rongxin.detectinq.mapper;
 import com.rongxin.detectinq.entity.Result;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface ResultMapper extends BaseMapper<Result> {
      * @param id
      * @return
      */
-    List<Result> getResultByPage(Integer id);
+    List<Result> getResultByPage(@Param("id") Integer id, @Param("keyword") String keyword);
 
     /**
      * 根据userId获取最近一次的核酸记录

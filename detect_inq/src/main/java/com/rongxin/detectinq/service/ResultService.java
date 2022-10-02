@@ -30,5 +30,5 @@ public interface ResultService extends IService<Result> {
      * @param id
      * @return
      */
-    PageInfo<Result> getResultByPage(Integer pageNum,Integer pageSize,Integer id);
+    PageInfo<Result> getResultByPage(Integer pageNum,Integer pageSize,Integer id,String keyword);
 }

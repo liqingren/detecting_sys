@@ -9,6 +9,7 @@ import com.rongxin.detectinq.service.impl.ResultServiceImpl;
 import com.rongxin.detectinq.service.impl.UsersServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
 import com.rongxin.detectinq.utils.finalClass;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,9 @@ public class UsersController {
         }
         return R.error();
     }
+
+
+    @IOLogRecorder
     @RequestMapping("/login")
     public R login(@RequestParam("card") String card, @RequestParam("password") String password, HttpServletRequest request) {
         Users user = new Users();
@@ -173,9 +177,10 @@ public class UsersController {
     @RequestMapping("/getuserresult")
     public R GetUserResult(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                            @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
-                           @RequestParam("id") Integer id){
+                           @RequestParam("id") Integer id,
+                           @RequestParam(value="keyword",required = false) String keyword){
         //根据身份证号分页查询核酸结果
-        PageInfo<Result> result = resultService.getResultByPage(pageNum,pageSize,id);
+        PageInfo<Result> result = resultService.getResultByPage(pageNum,pageSize,id,keyword);
         return R.ok().data("result",result);
     }
 

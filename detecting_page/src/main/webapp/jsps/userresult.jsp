@@ -68,13 +68,17 @@
             top:130px;
             left:230px;
         }
+        .search{
+            float: right;
+            margin:30px 5% 0 0;
+        }
         table{
             width:90%;
             /*height:500px;*/
             overflow: scroll;
             margin:0 auto;
             position: relative;
-            top:50px;
+            top:40px;
             border-color: #ececec;
         }
         tr{
@@ -85,7 +89,7 @@
         }
         .page{
             position: relative;
-            top:30px;
+            top:40px;
             left:20px;
         }
         .page .current{
@@ -121,11 +125,21 @@
             margin: 10px;
             border-radius: 10px;
         }
-        .active{
-            background-color: orange;
-            border-radius: 10px;
+        #search{
+            width:200px;
+            height:30px;
+            font-size: 16px;
         }
-
+        #bt{
+            width:60px;
+            height:30px;
+            font-size: 16px;
+            border:none;
+            background-color: skyblue;
+            color:white;
+            margin-left:-4.5px;
+            border-radius: 5px;
+        }
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
@@ -140,6 +154,15 @@
         }
         //获取当前页数
         var pageNum=getUrlParam("pageNum");
+        //获取搜索关键字
+        var result=getUrlParam("keyword");
+        var keyword = null;
+        if(result!=null){
+            var urlinfo = window.location.href;//获取url
+            var resultstate = urlinfo.split("?")[1].split("=")[1];//拆分url得到"="后面的参数
+            //解码
+            keyword = decodeURI(resultstate);
+        }
         //点击返回，跳转用户页面
         $(document).ready(function(){
             $(".return").bind("click",function(){
@@ -149,13 +172,13 @@
         $(document).ready(function(){
             var user=JSON.parse(sessionStorage.getItem("user"));
             var id=user.id;
-            // console.log(pageNum);
             $.ajax({
                 url: "http://localhost:8001/detectinq/users/getuserresult",
                 type: "post",
                 data: {
                     "id": id,
-                    "pageNum":pageNum
+                    "pageNum":pageNum,
+                    "keyword":keyword
                 },
                 success: function (data) {
                     var user = JSON.parse(sessionStorage.getItem("user"));
@@ -188,6 +211,12 @@
                     $("#pageNum").text(pageNum);
                     $("#totalPages").text(totalPages);
                     $("#total").text(total);
+                    //显示页号
+                    for(var i=0;i<pageNums.length;i++){
+                        var hrefNum='userresult.jsp?pageNum='+pageNums[i];
+                        var str="<li><a href='userresult.jsp?pageNum="+pageNums[i]+"'>"+pageNums[i]+"</a></a></li>";
+                        $(".pdiv").append(str);
+                    }
                     //如果没有上一页，则不显示首页和上一页
                     if(preflag){
                         $(".first").show();
@@ -207,13 +236,17 @@
                         $(".last").hide();
                         $(".next").hide();
                     }
-                    //显示页号
-                    for(var i=0;i<pageNums.length;i++){
-                        var hrefNum='userresult.jsp?pageNum='+pageNums[i];
-                        var str="<li><a href='userresult.jsp?pageNum="+pageNums[i]+"'>"+pageNums[i]+"</a></a></li>";
-                        $(".pdiv").append(str);
+                    if(pageNums.length<=1){
+                        $("#page_ul").hide();
                     }
                 }
+            });
+        });
+        $(document).ready(function(){
+            $("#bt").bind("click",function(){
+                var result=$("[name='keyword']").val();
+                //转编码跳转页面
+                window.location.href=encodeURI("userresult.jsp?keyword="+result);
             });
         });
     </script>
@@ -239,10 +272,10 @@
         </div>
     </div>
     <div class="result">
-<%--        <div class="search">--%>
-<%--            <input type="text" name="keyword" placeholder="根据时间查询">--%>
-<%--            <button>查询</button>--%>
-<%--        </div>--%>
+        <div class="search">
+            <input type="text" name="keyword" id="search" placeholder="根据结果查询">
+            <button id="bt">查询</button>
+        </div>
         <table border="1" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
@@ -263,7 +296,7 @@
                 共<span id="totalPages"></span> 页，
                 <span id="total"></span>条记录
             </div>
-            <ul class="page current" style="list-style: none">
+            <ul class="page current" id="page_ul" style="list-style: none">
                 <li class="previous"}><!--hasPreviousPage默认值为false， 如果有上一页，则不显示首页-->
                     <a class="first" href="userresult.jsp?pageNum=1">首页</a>
                 </li>

@@ -3,6 +3,9 @@
 <mapper namespace="com.rongxin.detectinq.mapper.ResultMapper">
     <select id="getResultByPage" resultType="com.rongxin.detectinq.entity.Result">
         select * from result where userId=#{id} and resultstate is not null
+        <if test="keyword != null and keyword != ''">
+            and resultstate like "%"#{keyword}"%"
+        </if>
         order by resultTime desc
     </select>
     <select id="getResultByUserId" resultType="com.rongxin.detectinq.entity.Result">

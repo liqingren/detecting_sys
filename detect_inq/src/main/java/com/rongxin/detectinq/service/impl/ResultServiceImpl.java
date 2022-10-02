@@ -28,9 +28,9 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
         return resultMapper.getResultByUserId(id);
     }
 
-    public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id) {
+    public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id,String keyword) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Result> list = resultMapper.getResultByPage(id);
+        List<Result> list = resultMapper.getResultByPage(id,keyword);
         PageInfo<Result> pageInfo = new PageInfo<Result>(list);
         return pageInfo;
     }
