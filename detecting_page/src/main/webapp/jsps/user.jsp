@@ -130,8 +130,8 @@
             //刷新时间
             setInterval(initDate,1000);
             var user=JSON.parse(sessionStorage.getItem("user"));
-            $("#username").text(user.name);
-            $("#card").text(user.card);
+            // $("#username").text(user.name);
+            // $("#card").text(user.card);
             //显示本人健康码
             var str="../image/code/"+user.codePath;
             $(".imgcode").attr("src",str);

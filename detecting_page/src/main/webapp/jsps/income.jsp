@@ -17,7 +17,7 @@
             background-color: white;
             position: absolute;
             top:130px;
-            left:200px;
+            left:230px;
         }
         table{
             width:95%;

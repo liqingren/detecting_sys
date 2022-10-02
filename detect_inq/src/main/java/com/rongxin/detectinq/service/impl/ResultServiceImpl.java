@@ -1,5 +1,7 @@
 package com.rongxin.detectinq.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.rongxin.detectinq.entity.Result;
 import com.rongxin.detectinq.mapper.ResultMapper;
 import com.rongxin.detectinq.service.ResultService;
@@ -21,8 +23,16 @@ import java.util.List;
 public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> implements ResultService {
     @Autowired
     ResultMapper resultMapper;
-    public List<Result> getResultByCard(int id) {
-        return resultMapper.getResultByCard(id);
+
+    public Result getResultByUserId(int id) {
+        return resultMapper.getResultByUserId(id);
+    }
+
+    public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Result> list = resultMapper.getResultByPage(id);
+        PageInfo<Result> pageInfo = new PageInfo<Result>(list);
+        return pageInfo;
     }
 
 }

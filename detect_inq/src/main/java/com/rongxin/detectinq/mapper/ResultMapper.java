@@ -17,10 +17,17 @@ import java.util.List;
 @Mapper
 public interface ResultMapper extends BaseMapper<Result> {
     /**
-     * 根据id获取核酸结果
+     * 分页获取核酸结果
      * @param id
      * @return
      */
-    List<Result> getResultByCard(int id);
+    List<Result> getResultByPage(Integer id);
+
+    /**
+     * 根据userId获取最近一次的核酸记录
+     * @param id
+     * @return
+     */
+    Result getResultByUserId(int id);
 
 }

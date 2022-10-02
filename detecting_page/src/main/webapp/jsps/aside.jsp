@@ -65,6 +65,10 @@
     <script type="text/javascript">
         $(document).ready(function(){
             init();
+            //用户登录之后获取用户名和身份证号
+            var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
         })
     </script>
 </head>
@@ -94,6 +98,9 @@
         </div>
         <div class="list">
             <label>核酸记录</label>
+        </div>
+        <div class="list">
+            <label>生产药品</label>
         </div>
     </div>
 </body>

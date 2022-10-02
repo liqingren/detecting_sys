@@ -17,7 +17,7 @@
             background-color: white;
             position: absolute;
             top:130px;
-            left:200px;
+            left:230px;
         }
         table{
             width:95%;
@@ -43,7 +43,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //当前选择label字体颜色变蓝
-            $("label:last").css("color","steelblue");
+            $("label:eq(4)").css("color","steelblue");
         });
     </script>
 </head>

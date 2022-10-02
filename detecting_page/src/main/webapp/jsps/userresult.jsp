@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <title>核酸结果</title>
@@ -73,7 +74,7 @@
             overflow: scroll;
             margin:0 auto;
             position: relative;
-            top:30px;
+            top:50px;
             border-color: #ececec;
         }
         tr{
@@ -82,13 +83,64 @@
         td{
             text-align: center;
         }
-        .search{
-            float: right;
-            margin:30px 5% 0 0;
+        .page{
+            position: relative;
+            top:30px;
+            left:20px;
         }
+        .page .current{
+            width: 600px;
+            text-align: center;
+        }
+        ul::after{
+            content:"";
+            display:block;
+            height:0;
+            clear:both;
+            visibility:hidden;
+        }
+        ul{
+            margin-left: -35px;
+        }
+        .one{
+            margin-left: 15px;
+        }
+        ul a{
+            text-decoration: none;
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+
+        }
+        ul li{
+            float: left;
+            background: #ffc0cb;
+            list-style: none;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .active{
+            background-color: orange;
+            border-radius: 10px;
+        }
+
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+        //获取地址栏参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r!=null) {
+                return unescape(r[2]);
+            }
+            return null; //返回参数值
+        }
+        //获取当前页数
+        var pageNum=getUrlParam("pageNum");
+        //点击返回，跳转用户页面
         $(document).ready(function(){
             $(".return").bind("click",function(){
                 window.location.href="user.jsp";
@@ -97,21 +149,69 @@
         $(document).ready(function(){
             var user=JSON.parse(sessionStorage.getItem("user"));
             var id=user.id;
+            // console.log(pageNum);
             $.ajax({
-                url:"http://localhost:8001/detectinq/users/getuserresult",
-                type:"post",
-                data:{
-                    "id":id
+                url: "http://localhost:8001/detectinq/users/getuserresult",
+                type: "post",
+                data: {
+                    "id": id,
+                    "pageNum":pageNum
                 },
-                success:function(data){
-                    var user=JSON.parse(sessionStorage.getItem("user"));
-                    console.log(data.data.result);
+                success: function (data) {
+                    var user = JSON.parse(sessionStorage.getItem("user"));
+                    var result=data.data.result;
+                    var list = result.list;
                     $("#username").text(user.name);
                     $("#card").text(user.card);
-                    for(var i=0;i<data.data.result.length;i++){
-                        var str="<tr><td>"+data.data.result[i].createTime+"</td><td>"+data.data.result[i].resultTime+"</td><td>"+
-                            data.data.result[i].resultstate+"</td><tr>";
+                    for (var i = 0; i < list.length; i++) {
+                        var str = "<tr><td>" + list[i].createTime + "</td><td>" + list[i].resultTime + "</td><td>" +
+                            list[i].resultstate + "</td><tr>";
                         $("#tbody").append(str);
+                    }
+                    //当前页数
+                    var pageNum=result.pageNum;
+                    //总页数
+                    var totalPages=result.pages;
+                    //总记录数
+                    var total=result.total;
+                    //判断是否有上一页
+                    var preflag=result.hasPreviousPage;
+                    //上一页
+                    var prePgae=result.prePage;
+                    //下一页
+                    var nextPage=result.nextPage;
+                    //页号数组
+                    var pageNums=result.navigatepageNums
+                    //判断是否有下一页
+                    var nextflag=result.hasNextPage;
+                    //赋值
+                    $("#pageNum").text(pageNum);
+                    $("#totalPages").text(totalPages);
+                    $("#total").text(total);
+                    //如果没有上一页，则不显示首页和上一页
+                    if(preflag){
+                        $(".first").show();
+                        $(".prePage").show();
+                        $(".prePage").attr("href","userresult.jsp?pageNum="+prePgae);
+                    }else{
+                        $(".first").hide();
+                        $(".prePage").hide();
+                    }
+                    //如果没有下一页，则不显示尾页和下一页
+                    if(nextflag){
+                        $(".last").show();
+                        $(".last").attr("href","userresult.jsp?pageNum="+totalPages);
+                        $(".next").show();
+                        $(".next").attr("href","userresult.jsp?pageNum="+nextPage);
+                    }else{
+                        $(".last").hide();
+                        $(".next").hide();
+                    }
+                    //显示页号
+                    for(var i=0;i<pageNums.length;i++){
+                        var hrefNum='userresult.jsp?pageNum='+pageNums[i];
+                        var str="<li><a href='userresult.jsp?pageNum="+pageNums[i]+"'>"+pageNums[i]+"</a></a></li>";
+                        $(".pdiv").append(str);
                     }
                 }
             });
@@ -123,6 +223,7 @@
         <h2>核酸检测系统</h2>
     </div>
     <div class="aside">
+
         <div class="list-user">
             <span>用户名：</span>
             <span id="username"></span>
@@ -131,17 +232,17 @@
             <span id="card"></span>
         </div>
         <div class="list">
-            <label>核酸结果</label>
+            <label style="color:steelblue">核酸结果</label>
         </div>
         <div class="list">
             <label class="return">返回</label>
         </div>
     </div>
     <div class="result">
-        <div class="search">
-            <input type="text" name="keyword" placeholder="根据时间查询">
-            <button>查询</button>
-        </div>
+<%--        <div class="search">--%>
+<%--            <input type="text" name="keyword" placeholder="根据时间查询">--%>
+<%--            <button>查询</button>--%>
+<%--        </div>--%>
         <table border="1" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
@@ -154,6 +255,32 @@
 
             </tbody>
         </table>
+
+        <!--分页-->
+        <div class="page">
+            <div class="page one">
+                当前第<span id="pageNum"></span> 页，
+                共<span id="totalPages"></span> 页，
+                <span id="total"></span>条记录
+            </div>
+            <ul class="page current" style="list-style: none">
+                <li class="previous"}><!--hasPreviousPage默认值为false， 如果有上一页，则不显示首页-->
+                    <a class="first" href="userresult.jsp?pageNum=1">首页</a>
+                </li>
+                <li class="previous"><!--hasPreviousPage默认值为false， 如果有上一页，则不显示-->
+                    <a class="prePage">上一页</a>
+                </li>
+                <div class="pdiv">
+
+                </div>
+                <li class="nextPage"><!--hasNextPage默认值为false， 如果没有下一页，则不显示-->
+                    <a class="next">下一页</a>
+                </li>
+                <li class="lastPage"><!--如果当前页小于总页数则不显示尾页 -->
+                    <a class="last">尾页</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </body>

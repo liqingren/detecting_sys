@@ -11,7 +11,10 @@ function init(){
     $("label:eq(3)").bind("click",function(){
         window.location.href="permission.jsp";
     });
-    $("label:last").bind("click",function(){
+    $("label:eq(4)").bind("click",function(){
         window.location.href="admin.jsp";
+    });
+    $("label:last").bind("click",function(){
+        window.location.href="factory.jsp";
     });
 }

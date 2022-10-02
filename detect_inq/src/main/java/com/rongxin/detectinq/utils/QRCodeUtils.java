@@ -32,7 +32,7 @@ public class QRCodeUtils {
      * @return 图片
      * @throws Exception
      */
-    public static BufferedImage createImage(String content) throws Exception {
+    public static BufferedImage createImage(String content,int color) throws Exception {
         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         hints.put(EncodeHintType.CHARACTER_SET, CHARSET);
@@ -44,7 +44,7 @@ public class QRCodeUtils {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                image.setRGB(x, y, bitMatrix.get(x, y) ? 0xFF215E21 : 0xFFFFFFFF);
+                image.setRGB(x, y, bitMatrix.get(x, y) ? color : 0xFFFFFFFF);
             }
         }
         return image;
@@ -56,14 +56,20 @@ public class QRCodeUtils {
      * @param content 内容
      * @throws Exception
      */
-    public static String encode(String content) throws Exception {
-        BufferedImage image = createImage(content);
+    public static String encode(String content,int color) throws Exception {
+        BufferedImage image = createImage(content,color);
         //获取当前项目路径
         File file = new File("");
         String filePath = file.getCanonicalPath();
         System.out.println(filePath);
-        //将生成的二维码放在/src/webapp/img/的文件夹下
-        String path=filePath+"\\detecting_page\\src\\main\\webapp\\image\\code\\"+content+".jpg";
+        String path="";
+        if(content.length()==18){
+            //如果是身份证号，则将生成的二维码放在/src/webapp/image/code的文件夹下
+            path=filePath+"\\detecting_page\\src\\main\\webapp\\image\\code\\"+content+".jpg";
+        }else{
+            //如果是药品编号，则将生成的二维码放在/src/webapp/image/mecode/的文件夹下
+            path=filePath+"\\detecting_page\\src\\main\\webapp\\image\\mecode\\"+content+".jpg";
+        }
         mkdirs(path);
         ImageIO.write(image, FORMAT, new File(path));
         String codePath=content+".jpg";

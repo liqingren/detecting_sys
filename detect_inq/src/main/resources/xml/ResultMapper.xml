@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rongxin.detectinq.mapper.ResultMapper">
-    <select id="getResultByCard" resultType="com.rongxin.detectinq.entity.Result">
-        select * from result where userId=#{id}
+    <select id="getResultByPage" resultType="com.rongxin.detectinq.entity.Result">
+        select * from result where userId=#{id} and resultstate is not null
+        order by resultTime desc
+    </select>
+    <select id="getResultByUserId" resultType="com.rongxin.detectinq.entity.Result">
+        select * from result where userId=#{id} order by  resultTime desc limit 1
     </select>
 </mapper>
