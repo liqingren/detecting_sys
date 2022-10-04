@@ -32,6 +32,13 @@ public class UsersController {
     UsersServiceImpl usersService;
     @Autowired
     ResultServiceImpl resultService;
+
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
+    @IOLogRecorder
     @RequestMapping("/register")
     public R register(@RequestBody Users user){
         Date date = new Date();
@@ -60,9 +67,15 @@ public class UsersController {
     }
 
 
+    /**
+     * 登录
+     * @param card
+     * @param password
+     * @return
+     */
     @IOLogRecorder
     @RequestMapping("/login")
-    public R login(@RequestParam("card") String card, @RequestParam("password") String password, HttpServletRequest request) {
+    public R login(@RequestParam("card") String card, @RequestParam("password") String password) {
         Users user = new Users();
         if(card!=null&&password!=null){
             user.setCard(card);
@@ -77,11 +90,13 @@ public class UsersController {
             Result result = resultService.getResultByUserId(userCard.getId());
             if(result.getResultstate().equals(finalClass.RESULT_ERROR)){
                 //如果最近一次核酸结果是阳性，健康码状态变为2，健康码变红
-                userCard.setState(finalClass.STATE_RED);
-                //最后修改时间
-                Date updatedTime = new Date();
-                userCard.setUpdateTime(updatedTime);
-                usersService.updateById(userCard);
+                if(userCard.getState()!=finalClass.STATE_RED) {
+                    userCard.setState(finalClass.STATE_RED);
+                    //最后修改时间
+                    Date updatedTime = new Date();
+                    userCard.setUpdateTime(updatedTime);
+                    usersService.updateById(userCard);
+                }
             }else if(result.getResultstate().equals(finalClass.RESULT_OK)){
                 //获取最近一次核酸的检测时间(单位毫秒)
                 long resultTime=result.getResultTime().getTime();
@@ -91,27 +106,33 @@ public class UsersController {
                 long timeDiff=(nowTime-resultTime)%(1000*60*60*24)/(1000*60*60)+(nowTime-resultTime)/(1000*60*60*24)*24;
                 if(timeDiff<finalClass.DATE_YELLOW){
                     //如果小于48小时没做核酸，健康码状态变为0，健康码变绿
-                    userCard.setState(finalClass.STATE_GREEN);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
+                    if(userCard.getState()!=finalClass.STATE_GREEN) {
+                        userCard.setState(finalClass.STATE_GREEN);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
                 }
                 else if(timeDiff>finalClass.DATE_YELLOW&&timeDiff<finalClass.DATE_RED){
                     //如果48~72小时没做核酸，健康码状态变为1，健康码变黄
-                    userCard.setState(finalClass.STATE_YELLOW);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
+                    if(userCard.getState()!=finalClass.STATE_YELLOW) {
+                        userCard.setState(finalClass.STATE_YELLOW);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
                 }
                 else if(timeDiff>finalClass.DATE_RED){
                     //如果72小时以上没做核酸，健康码状态变为2，健康码变红
-                    userCard.setState(finalClass.STATE_RED);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
+                    if(userCard.getState()!=finalClass.STATE_RED) {
+                        userCard.setState(finalClass.STATE_RED);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
                 }
             }
             try {

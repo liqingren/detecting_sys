@@ -3,9 +3,11 @@ package com.rongxin.detectinq.controller;
 
 import com.rongxin.common.R;
 import com.rongxin.detectinq.entity.Medicine;
+import com.rongxin.detectinq.service.MedicineService;
 import com.rongxin.detectinq.service.impl.MedicineServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 

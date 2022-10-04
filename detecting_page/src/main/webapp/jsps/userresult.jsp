@@ -139,6 +139,7 @@
             color:white;
             margin-left:-4.5px;
             border-radius: 5px;
+            cursor: pointer;
         }
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
@@ -171,6 +172,8 @@
         });
         $(document).ready(function(){
             var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
             var id=user.id;
             $.ajax({
                 url: "http://localhost:8001/detectinq/users/getuserresult",
@@ -181,11 +184,8 @@
                     "keyword":keyword
                 },
                 success: function (data) {
-                    var user = JSON.parse(sessionStorage.getItem("user"));
                     var result=data.data.result;
                     var list = result.list;
-                    $("#username").text(user.name);
-                    $("#card").text(user.card);
                     for (var i = 0; i < list.length; i++) {
                         var str = "<tr><td>" + list[i].createTime + "</td><td>" + list[i].resultTime + "</td><td>" +
                             list[i].resultstate + "</td><tr>";
@@ -242,6 +242,7 @@
                 }
             });
         });
+        //搜索
         $(document).ready(function(){
             $("#bt").bind("click",function(){
                 var result=$("[name='keyword']").val();

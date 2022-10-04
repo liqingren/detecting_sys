@@ -104,7 +104,7 @@
             }
         }
         .result{
-            width:500px;
+            width:520px;
             height:310px;
             margin:0 auto;
             background-color: #ececec;
@@ -221,7 +221,7 @@
                 <tr>
                     <td>药品编号：</td>
                     <td>
-                        <input type="text" name="me_code" id="me_code">
+                        <input type="text" name="me_code" id="me_code" size="40" style="font-size:18px">
                     </td>
                 </tr>
                 <tr>

@@ -14,7 +14,8 @@ import java.util.Date;
 public class DetectLog implements Serializable {
     @Id
     private String id;
-    private Date logTime;
+    private String logTime;
+    private String ip;
     private String method;
     private String url;
     private String contentType;
@@ -25,10 +26,10 @@ public class DetectLog implements Serializable {
 
     public DetectLog() {
     }
-
-    public DetectLog(String id, Date logTime, String method, String url, String contentType, String args, Object response, String keyword, String description) {
+    public DetectLog(String id, String logTime, String ip, String method, String url, String contentType, String args, Object response, String keyword, String description) {
         this.id = id;
         this.logTime = logTime;
+        this.ip = ip;
         this.method = method;
         this.url = url;
         this.contentType = contentType;
@@ -37,4 +38,6 @@ public class DetectLog implements Serializable {
         this.keyword = keyword;
         this.description = description;
     }
+
 }
+
