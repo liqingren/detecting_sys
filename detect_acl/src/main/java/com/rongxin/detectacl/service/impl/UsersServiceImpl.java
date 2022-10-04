@@ -1,5 +1,6 @@
 package com.rongxin.detectacl.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rongxin.detectacl.entity.Roles;
 import com.rongxin.detectacl.entity.Users;
 import com.rongxin.detectacl.entity.vo.UserVo;
@@ -50,5 +51,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
             userVoList.add(userVo);
         }
         return userVoList;
+    }
+
+    @Override
+    public Integer selectCount(String condition) {
+        return baseMapper.selectCountPage(condition);
     }
 }

@@ -6,6 +6,7 @@ import com.rongxin.detectacl.entity.Roles;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,5 +27,5 @@ public interface RoleUserMapper extends BaseMapper<RoleUser> {
 
     void updateByUId(RoleUser roleUser);
 
-    boolean updateByUserIds(List<Integer> userIds);
+    boolean updateByUserIds(Map<String,Object> map);
 }

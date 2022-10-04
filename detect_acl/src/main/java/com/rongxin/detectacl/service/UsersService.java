@@ -17,4 +17,6 @@ import java.util.List;
 public interface UsersService extends IService<Users> {
 
     List<UserVo> getByCondition(Integer pageNum, String condition);
+
+    Integer selectCount(String condition);
 }

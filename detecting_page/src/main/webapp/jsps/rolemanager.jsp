@@ -93,7 +93,7 @@
                         }else {
                             alert("删除失败");
                         }
-                        window.location.href="/jsps/rolemanager.jsp"
+                        window.location.href="rolemanager.jsp"
                     }
                 })
             })

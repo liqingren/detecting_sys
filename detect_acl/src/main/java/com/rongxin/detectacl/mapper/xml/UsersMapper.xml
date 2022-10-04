@@ -8,4 +8,10 @@
         </if>
         limit #{pageNum},8
     </select>
+    <select id="selectCountPage" resultType="int">
+        select count(1) from users where isdeleted=1
+        <if test="condition != null">
+        and name like concat("%",#{condition},"%") or card like concat("%",#{condition},"%")
+        </if>
+    </select>
 </mapper>

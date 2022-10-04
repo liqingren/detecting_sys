@@ -19,4 +19,6 @@ import java.util.List;
 public interface UsersMapper extends BaseMapper<Users> {
 
     List<Users> selectByCondition(@Param("pageNum") Integer pageNum, @Param("condition") String condition);
+
+    Integer selectCountPage(@Param("condition") String condition);
 }

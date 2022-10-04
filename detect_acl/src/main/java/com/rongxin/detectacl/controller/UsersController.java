@@ -60,7 +60,8 @@ public class UsersController {
     public R getUserVoPage(@RequestParam(required = false,defaultValue = "1") Integer pageNum,
                     @RequestParam(required = false,defaultValue = "")String condition){
         List<UserVo> userList=service.getByCondition(pageNum,condition);
-        return R.ok().data("userList",userList);
+        Integer count=service.selectCount(condition);
+        return R.ok().data("userList",userList).data("pageNum",pageNum).data("count",count).data("totalPage",count/8+1);
     }
 }
 

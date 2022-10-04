@@ -68,6 +68,7 @@ public class RoleUserController {
             return R.error();
         }
         List<RoleUser> saveList=new ArrayList<>();
+        List<Integer> userIds=new ArrayList<>();
         String[] split = addStr.split(",");
         for (String s : split) {
             RoleUser roleUser=new RoleUser();
@@ -77,9 +78,12 @@ public class RoleUserController {
             roleUser.setCreateTime(new Date());
             roleUser.setUpdateTime(new Date());
 
+            userIds.add(roleUser.getUserId());
             saveList.add(roleUser);
         }
+        service.updateByUserIds(userIds);
         boolean b = service.saveBatch(saveList);
+        System.out.println("!!!!!!!!!!!!!!"+b);
         return b==true?R.ok():R.error();
     }
 }

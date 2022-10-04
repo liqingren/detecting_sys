@@ -7,7 +7,9 @@ import com.rongxin.detectacl.service.RoleUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -42,7 +44,9 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
 
     @Override
     public boolean updateByUserIds(List<Integer> userIds) {
-        return baseMapper.updateByUserIds(userIds);
+        Map<String,Object> map=new HashMap<>();
+        map.put("userIds",userIds);
+        return baseMapper.updateByUserIds(map);
     }
 
 

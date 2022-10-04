@@ -92,6 +92,42 @@
                             "<tr>";
                         $("#userBody").append(str);
                     }
+                    var pageNum=data.data.pageNum;
+                    var pages=data.data.totalPage;
+                    var count=data.data.count;
+                    $("#hiden2").text(pageNum-1);
+                    $("#hiden1").text(pageNum-2);
+                    $("#hiden3").text(pageNum+1);
+                    $("#hiden4").text(pageNum+2);
+                    $("#hiden").text(pageNum);
+                    $("#count").text(count);
+                    $("#pages").text(pages);
+                    $("#pageNum").text(pageNum);
+                    if(pageNum>0){
+                        $("#pageList").removeAttr("hidden");
+                    }
+                    if(pageNum==1){
+                        $("#hiden1").attr("hidden","hidden");
+                        $("#hiden2").attr("hidden","hidden");
+                    }
+                    if(pageNum==2){
+                        $("#hiden1").attr("hidden","hidden");
+                    }
+                    if(pageNum==pages){
+                        $("#hiden3").attr("hidden","hidden");
+                        $("#hiden4").attr("hidden","hidden");
+                        $("#hiden5").attr("hidden","hidden");
+                    }
+                    if(pageNum==(pages-1)){
+                        $("#hiden4").attr("hidden","hidden");
+                        $("#hiden5").attr("hidden","hidden");
+                    }
+                    if(pageNum==1){
+                        $("#pre").attr("hidden","hidden");
+                    }
+                    if(pageNum==pages){
+                        $("#next").attr("hidden","hidden");
+                    }
                 }
             });
         });
@@ -99,7 +135,6 @@
             $("body").on("click","input[name=userChoose]",function (){
                 var nodeUser = $(this).parent().parent().find("td[name=userId]");
                 var id=parseInt(nodeUser.text());
-                alert(id);
                 if($(this).prop("checked")){
                     if(deleteOrAddRole.indexOf(id)<0){
                         deleteOrAddRole.push(id);
@@ -115,7 +150,6 @@
             $("body").on("click","input[name=role]",function (){
                 var node=$(this).parent().find("span[name=roleId]");
                 roleUserId=parseInt(node.text());
-                alert(roleUserId);
             })
         })
         $(document).ready(function (){
@@ -127,16 +161,18 @@
                         "deleteUsers":deleteOrAddRole.toString()
                     },
                     success:function (data){
-                        if(data.data.success()){
+                        if(data.success){
                             alert("删除成功");
                         }else {
                             alert("删除失败");
                         }
-                        window.location.href="/jsps/usermanager.jsp"
+                        deleteOrAddRole=[];
+                        window.location.href="usermanager.jsp";
                     }
                 })
             })
             $("#saveRole").bind("click",function (){
+                alert(deleteOrAddRole);
                 if(roleUserId==-1){
                     alert("请选中角色")
                 }else{
@@ -146,21 +182,185 @@
                         $.ajax({
                             url:"http://localhost:8004/detectacl/roleuser/saveRoleUser",
                             type:"post",
-                            date:{
+                            data:{
                                 "addUsers":deleteOrAddRole.toString(),
                                 "roleId":roleUserId
                             },
                             success:function (data){
-                                if(data.data.success()){
-                                    alert("删除成功");
+                                if(data.success){
+                                    alert("保存成功");
                                 }else {
-                                    alert("删除失败");
+                                    alert("保存失败");
                                 }
-                                window.location.href="/jsps/usermanager.jsp"
+                                deleteOrAddRole=[];
+                                window.location.href="usermanager.jsp"
                             }
                         })
                     }
                 }
+            })
+        });
+        $(document).ready(function (){
+            $("body").on("click","span[name=pageShow]",function (){
+                var page=$(this).text();
+                if(page=="上一页"){
+                    var page1=$("#hiden").text();
+                    page=parseInt(page1)-1;
+                }else if(page=="下一页"){
+                    var page1=$("#hiden").text();
+                    page=parseInt(page1)+1;
+                }else{
+                    page=parseInt(page);
+                }
+                var condition=$("input[name=keyword]").val();
+                $.ajax({
+                    url: "http://localhost:8004/detectacl/users/getUserVoPage",
+                    type: "post",
+                    data:{
+                      "pageNum":page,
+                      "condition":condition
+                    },
+                    success: function (data) {
+                        var users=data.data.userList;
+                        $("#userBody").empty();
+                        for(var i=0;i<users.length;i++){
+                            var str="<tr>" +
+                                "<td><input type='checkbox' name='userChoose'></td>" +
+                                "<td name='userId'>"+users[i].id+"</td>" +
+                                "<td>"+users[i].card+"</td>" +
+                                "<td>"+users[i].name+"</td>" +
+                                "<td name='role'>"+"<span style='display: none' name='roleId'>"+users[i].roleId+"</span>"+
+                                users[i].roleName+"</td>" +
+                                "<td>"+users[i].updateTime+"</td>" +
+                                "<tr>";
+                            $("#userBody").append(str);
+                        }
+                        var pageNum=data.data.pageNum;
+                        var pages=data.data.totalPage;
+                        var count=data.data.count;
+                        $("#hiden2").text(pageNum-1);
+                        $("#hiden1").text(pageNum-2);
+                        $("#hiden3").text(pageNum+1);
+                        $("#hiden4").text(pageNum+2);
+                        $("#hiden").text(pageNum);
+                        $("#count").text(count);
+                        $("#pages").text(pages);
+                        $("#pageNum").text(pageNum);
+                        if(pageNum>0){
+                            $("#pageList").removeAttr("hidden");
+                        }
+                        if(pageNum==1){
+                            $("#hiden1").attr("hidden","hidden");
+                            $("#hiden2").attr("hidden","hidden");
+                        }else{
+                            $("#hiden1").removeAttr("hidden");
+                            $("#hiden2").removeAttr("hidden");
+                        }
+                        if(pageNum==2){
+                            $("#hiden1").attr("hidden","hidden");
+                        }
+                        if(pageNum==pages){
+                            $("#hiden3").attr("hidden","hidden");
+                            $("#hiden4").attr("hidden","hidden");
+                            $("#hiden5").attr("hidden","hidden");
+                        }else{
+                            $("#hiden3").removeAttr("hidden");
+                            $("#hiden4").removeAttr("hidden");
+                            $("#hiden5").removeAttr("hidden");
+                        }
+                        if(pageNum==(pages-1)){
+                            $("#hiden4").attr("hidden","hidden");
+                            $("#hiden5").attr("hidden","hidden");
+                        }
+                        if(pageNum==1){
+                            $("#pre").attr("hidden","hidden");
+                        }else{
+                            $("#pre").removeAttr("hidden");
+                        }
+                        if(pageNum==pages){
+                            $("#next").attr("hidden","hidden");
+                        }else{
+                            $("#next").removeAttr("hidden");
+                        }
+                    }
+                });
+            })
+        });
+        $(document).ready(function (){
+            $("#condition").bind("click",function (){
+                var page=1;
+                var condition=$("input[name=keyword]").val();
+                $.ajax({
+                    url: "http://localhost:8004/detectacl/users/getUserVoPage",
+                    type: "post",
+                    data:{
+                      "pageNum":page,
+                      "condition":condition
+                    },
+                    success: function (data) {
+                        var users=data.data.userList;
+                        $("#userBody").empty();
+                        for(var i=0;i<users.length;i++){
+                            var str="<tr>" +
+                                "<td><input type='checkbox' name='userChoose'></td>" +
+                                "<td name='userId'>"+users[i].id+"</td>" +
+                                "<td>"+users[i].card+"</td>" +
+                                "<td>"+users[i].name+"</td>" +
+                                "<td name='role'>"+"<span style='display: none' name='roleId'>"+users[i].roleId+"</span>"+
+                                users[i].roleName+"</td>" +
+                                "<td>"+users[i].updateTime+"</td>" +
+                                "<tr>";
+                            $("#userBody").append(str);
+                        }
+                        var pageNum=data.data.pageNum;
+                        var pages=data.data.totalPage;
+                        var count=data.data.count;
+                        $("#hiden2").text(pageNum-1);
+                        $("#hiden1").text(pageNum-2);
+                        $("#hiden3").text(pageNum+1);
+                        $("#hiden4").text(pageNum+2);
+                        $("#hiden").text(pageNum);
+                        $("#count").text(count);
+                        $("#pages").text(pages);
+                        $("#pageNum").text(pageNum);
+                        if(pageNum>0){
+                            $("#pageList").removeAttr("hidden");
+                        }
+                        if(pageNum==1){
+                            $("#hiden1").attr("hidden","hidden");
+                            $("#hiden2").attr("hidden","hidden");
+                        }else{
+                            $("#hiden1").removeAttr("hidden");
+                            $("#hiden2").removeAttr("hidden");
+                        }
+                        if(pageNum==2){
+                            $("#hiden1").attr("hidden","hidden");
+                        }
+                        if(pageNum==pages){
+                            $("#hiden3").attr("hidden","hidden");
+                            $("#hiden4").attr("hidden","hidden");
+                            $("#hiden5").attr("hidden","hidden");
+                        }else{
+                            $("#hiden3").removeAttr("hidden");
+                            $("#hiden4").removeAttr("hidden");
+                            $("#hiden5").removeAttr("hidden");
+                        }
+                        if(pageNum==(pages-1)){
+                            $("#hiden4").attr("hidden","hidden");
+                            $("#hiden5").attr("hidden","hidden");
+                        }
+                        if(pageNum==1){
+                            $("#pre").attr("hidden","hidden");
+                        }else{
+                            $("#pre").removeAttr("hidden");
+                        }
+                        if(pageNum==pages){
+                            $("#next").attr("hidden","hidden");
+                        }else{
+                            $("#next").removeAttr("hidden");
+                        }
+                    }
+                });
             })
         });
     </script>
@@ -179,8 +379,8 @@
     </div>
     <button class="delete">删除角色</button>
     <div class="search">
-        <input type="text" name="keyword">
-        <button>查询</button>
+        <input type="text" name="keyword" >
+        <button id="condition">查询</button>
     </div>
     <div>
     <table border="1" cellpadding="0" cellspacing="0" style="border-color: skyblue;width: 100%">
@@ -199,20 +399,20 @@
         </tbody>
     </table>
         <table id="pageList" style="table-layout: fixed;width: 100%;" align="center" hidden="hidden"><tr><td width="100%" align="center">
-            <a href="allComServlet?pageNum=${sessionScope.pageNum-1}" id="pre">上一页</a>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum-2}" id="hiden1">${sessionScope.pageNum-2}</a>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum-1}" id="hiden2">${sessionScope.pageNum-1}</a>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum}" style="color: crimson">${sessionScope.pageNum}</a>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum+1}" id="hiden3">${sessionScope.pageNum+1}</a>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum+2}" id="hiden4">${sessionScope.pageNum+2}</a>
-            <span id="hiden5">...</span>
-            <a href="allComServlet?pageNum=${sessionScope.pageNum+1}" id="next">下一页</a>
-            <form>
+            <span  id="pre" name="pageShow">上一页</span>
+            <span  id="hiden1" name="pageShow"></span>
+            <span  id="hiden2" name="pageShow"></span>
+            <span  id="hiden"  style="color: crimson"></span>
+            <span  id="hiden3" name="pageShow"></span>
+            <span  id="hiden4" name="pageShow"></span>
+            <span  id="hiden5" >...</span>
+            <span  id="next" name="pageShow">下一页</span>
+            <form action="http://localhost:8004/detectacl/users/getUserVoPage" method="post">
                 转到：<input name="pageNum" type="text" style="width: 30px"/>页
             </form>
-            总共${sessionScope.total}条,&nbsp;&nbsp;
-            <span id="jspPages">${sessionScope.pages}</span>页,&nbsp;&nbsp;
-            当前第<span id="jspPageNum">${sessionScope.pageNum}</span>页&nbsp;&nbsp;
+            总共<span id="count"></span>条,&nbsp;&nbsp;
+            <span id="pages"></span>页,&nbsp;&nbsp;
+            当前第<span id="pageNum"></span>页&nbsp;&nbsp;
         </td></tr></table>
     </div>
 </div>
