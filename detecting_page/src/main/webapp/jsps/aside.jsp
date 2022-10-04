@@ -45,9 +45,30 @@
         label{
             cursor: pointer;
         }
+        .list-user{
+            width:170px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: left;
+            padding-left:10px;
+            color:white ;
+            position: relative;
+            top:50px;
+            left:7px;
+            margin-bottom: 2px;
+            background-color: skyblue;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
+        $(document).ready(function(){
+            init();
+            //用户登录之后获取用户名和身份证号
+            var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
+        })
         $(document).ready(function (){
             $("#perClick").bind("click",function (){
                 var hidden=$("#showList").attr("hidden");
@@ -84,6 +105,9 @@
         </div>
         <div class="list">
             <label>核酸记录</label>
+        </div>
+        <div class="list">
+            <label>生产药品</label>
         </div>
     </div>
 </body>

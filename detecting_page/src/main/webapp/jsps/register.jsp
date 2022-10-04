@@ -26,7 +26,7 @@
             border-style: solid;
             margin:0 auto;
             position:relative;
-            top:20px;
+            top:10px;
             background-color: white;
         }
         td{
@@ -45,6 +45,59 @@
     <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            //判断身份证号是否合法
+            $("[name='card']").bind("blur",function(){
+                var card = $("[name='card']").val();
+                if(card==null){
+                    $("#msg1").text("身份证号不能为空");
+                    $("#msg1").show();
+                }
+                else if(card.length!=18){
+                    $("#msg1").text("身份证号不足18位");
+                    $("#msg1").show();
+                }
+                else {
+                    $("#msg1").hide();
+                    //验证身份证号唯一性
+                    $.ajax({
+                        url: "http://localhost:8001/detectinq/users/judge",
+                        type: "post",
+                        data: {
+                            "card": card
+                        },
+                        success: function (data) {
+                            if (!data.success) {
+                                $("#msg1").text("身份证号已被注册");
+                                $("#msg1").show();
+                            }else{
+                                $("#msg1").hide();
+
+                            }
+                        }
+                    });
+                }
+            });
+            //判断密码是否为空
+            $("[name='password']").bind("blur",function() {
+                var password=$("[name='password']").val();
+                if(password===""){
+                    $("#msg2").text("密码不能为空");
+                    $("#msg2").show();
+                }else{
+                    $("#msg2").hide();
+                }
+            });
+            //判断姓名是否为空
+            $("[name='name']").bind("blur",function() {
+                var name=$("[name='name']").val();
+                if(name===""){
+                    $("#msg3").text("姓名不能为空");
+                    $("#msg3").show();
+                }else{
+                    $("#msg3").hide();
+                }
+            });
+            //保存数据
             $("#bt").bind("click",function(){
                 var card=$("[name='card']").val();
                 var password=$("[name='password']").val();
@@ -52,10 +105,8 @@
                 var sex=$("[name='sex']").prop("checked");
                 var email=$("[name='email']").val();
                 var address=$("[name='address']").val();
-                // var createTime=new Date();
                 var user={"card":card,"password":password,"name":name,"sex":sex,"email":email,"address":address};
-                // var user={"id":null,"card":card,"password":password,"name":name,"sex":sex,"email":email,"address":address,"createTime":createTime};
-                $.ajax({
+               $.ajax({
                     url:"http://localhost:8001/detectinq/users/register",
                     type:"post",
                     data:JSON.stringify(user),
@@ -88,18 +139,24 @@
                     <td align="right">用户名：</td>
                     <td>
                         <input type="text" name="card" placeholder="用户名为身份证号">
+                        <br/>
+                        <span id="msg1" style="color:red;font-size: 16px;"></span>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">密码：</td>
                     <td>
                         <input type="password" name="password">
+                        <br/>
+                        <span id="msg2" style="color:red;font-size: 16px;"></span>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">真实姓名：</td>
                     <td>
                         <input type="text" name="name">
+                        <br/>
+                        <span id="msg3" style="color:red;font-size: 16px;"></span>
                     </td>
                 </tr>
                 <tr>
