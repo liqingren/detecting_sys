@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,4 +50,5 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
+
 }

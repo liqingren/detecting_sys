@@ -4,7 +4,9 @@ import com.rongxin.detecthos.pojo.Result;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rongxin.detecthos.pojo.vo.UserResult;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**

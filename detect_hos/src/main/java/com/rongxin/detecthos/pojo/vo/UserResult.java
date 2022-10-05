@@ -18,10 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 public class UserResult implements Serializable {
-//    private static final long serialVersionUID = 1L;
-//
-//    @TableId(value = "id", type = IdType.AUTO)
-//    private Integer id;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 身份证号
@@ -47,6 +44,10 @@ public class UserResult implements Serializable {
      * 地址
      */
     private String address;
+
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 药品编号

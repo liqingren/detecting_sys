@@ -136,7 +136,7 @@ function read(code){
 }
 function insert() {
     $.ajax({
-        url:"http://127.0.0.1:8006/detecthos/result/test",
+        url:"http://127.0.0.1:8006/detecthos/result/insert",
         type:"post",
         data:{
             "medicineCode":medicineCode,

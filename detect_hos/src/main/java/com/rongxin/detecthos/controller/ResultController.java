@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Wrapper;
+import java.util.*;
 
 /**
  * <p>
@@ -33,35 +32,13 @@ public class ResultController {
     ResultServiceImpl resultService;
 
     /**
-     * 获取未出结果的核酸记录
+     * 扫码录入数据
+     * @param medicineCode
+     * @param cardArray
      * @return
      */
-    @RequestMapping("/getresults")
-    public R getResults(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                        @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
-                        @RequestParam(value="keyword",required = false) String keyword){
-        PageInfo<UserResult> userResult = resultService.getUserResultByPage(pageNum, pageSize, keyword);
-        return R.ok().data("userresult",userResult);
-    }
-
-    @RequestMapping("/getsex")
-    public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                        @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
-                        @RequestParam(value="keyword",required = false) Boolean keyword){
-        PageInfo<UserResult> userResult = resultService.getUserResultBySex(pageNum, pageSize, keyword);
-        return R.ok().data("userresult",userResult);
-    }
-
-    @RequestMapping("/getcard")
-    public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                        @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
-                        @RequestParam(value="keyword",required = false) String keyword){
-        PageInfo<UserResult> userResult = resultService.getUserResultByCard(pageNum, pageSize, keyword);
-        return R.ok().data("userresult",userResult);
-    }
-
-    @RequestMapping("/test")
-    public R test(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
+    @RequestMapping("/insert")
+    public R insertResult(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);
         String[] userIds = cardArray.split(",");
         List<Result> list = new ArrayList<Result>();
@@ -80,5 +57,106 @@ public class ResultController {
         }
         return R.error();
     }
+
+    /**
+     * 获取未出结果的核酸记录（根据姓名查询）
+     * @return
+     */
+    @RequestMapping("/getresults")
+    public R getResults(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                        @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
+                        @RequestParam(value="keyword",required = false) String keyword){
+        PageInfo<UserResult> userResult = resultService.getUserResultByPage(pageNum, pageSize, keyword);
+        return R.ok().data("userresult",userResult);
+    }
+
+    /**
+     * 根据性别查询
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("/getsex")
+    public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                        @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
+                        @RequestParam(value="keyword",required = false) Boolean keyword){
+        PageInfo<UserResult> userResult = resultService.getUserResultBySex(pageNum, pageSize, keyword);
+        return R.ok().data("sexResults",userResult);
+    }
+
+    /**
+     * 根据card查询
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("/getcard")
+    public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                        @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
+                        @RequestParam(value="keyword",required = false) String keyword){
+        PageInfo<UserResult> userResult = resultService.getUserResultByCard(pageNum, pageSize, keyword);
+        return R.ok().data("cardResults",userResult);
+    }
+
+    /**
+     * 录入单个用户的核酸结果
+     * @param id
+     * @param resultstate
+     * @return
+     */
+    @RequestMapping("/modify")
+    public R mpdifyResultByOne(@RequestParam(value="id",required = false) Integer id,
+                               @RequestParam(value="resultstate",required = false) String resultstate){
+        //根据id获取result对象
+        Result result = resultService.getById(id);
+        //修改核酸结果和检测时间
+        result.setResultstate(resultstate);
+        Date date = new Date();
+        result.setResultTime(date);
+        boolean flag = resultService.updateById(result);
+        if(flag){
+            return R.ok();
+        }else{
+            return R.error();
+        }
+    }
+
+    /**
+     * 批量录入用户的核酸结果
+     * @param idArray
+     * @param resultstate
+     * @return
+     */
+    @RequestMapping("/modifyAll")
+    public R mpdifyResult(@RequestParam(value="idArray",required = false) String idArray,
+                          @RequestParam(value="resultstate",required = false) String resultstate){
+        //将id放进list集合中
+        List<Integer> idList = new ArrayList<Integer>();
+        String[] IdArray = idArray.split(",");
+        for(int i=0;i<IdArray.length;i++){
+            idList.add(Integer.parseInt(IdArray[i]));
+        }
+        //根据id集合查询result对象集合
+        Collection<Result> results = resultService.listByIds(idList);
+        Iterator<Result> it = results.iterator();
+        List<Result> list = new ArrayList<Result>();
+        //将核酸结果已经检测时间修改
+        while(it.hasNext()){
+            Result result = it.next();
+            result.setResultstate(resultstate);
+            Date date = new Date();
+            result.setResultTime(date);
+            list.add(result);
+        }
+        boolean flag = resultService.updateBatchById(list);
+        if(flag){
+            return R.ok();
+        }else{
+            return R.error();
+        }
+    }
+
 }
 
