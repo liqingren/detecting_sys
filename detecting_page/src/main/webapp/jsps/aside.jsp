@@ -25,23 +25,22 @@
         }
         .aside{
 
-            width:200px;
+            width:160px;
             height:600px;
             background-color: lightblue;
         }
         .list{
-            width:170px;
+            width:120px;
             line-height: 30px;
             font-size: 20px;
             text-align: left;
             padding-left:10px;
             color:white ;
             position: relative;
-            top:50px;
-            left:7px;
+            top:70px;
+            left:15px;
             margin-bottom: 2px;
             background-color: skyblue;
-            text-align: center;
         }
         label{
             cursor: pointer;
@@ -60,7 +59,7 @@
             background-color: skyblue;
         }
     </style>
-    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -70,6 +69,16 @@
             $("#username").text(user.name);
             $("#card").text(user.card);
         })
+        $(document).ready(function (){
+            $("#perClick").bind("click",function (){
+                var hidden=$("#showList").attr("hidden");
+                if(hidden=='undefine'||hidden==null){
+                    $("#showList").attr("hidden","hidden");
+                }else {
+                    $("#showList").removeAttr("hidden");
+                }
+            })
+        })
     </script>
 </head>
 <body bgcolor="#f5f5f5">
@@ -77,13 +86,6 @@
         <h2>核酸检测系统</h2>
     </div>
     <div class="aside">
-        <div class="list-user">
-            <span>用户名：</span>
-            <span id="username"></span>
-            <br/>
-            <span>身份证号：</span>
-            <span id="card"></span>
-        </div>
         <div class="list">
             <label>健康码</label>
         </div>
@@ -94,7 +96,12 @@
             <label>录入结果</label>
         </div>
         <div class="list">
-            <label>权限管理</label>
+            <label id="perClick">权限管理</label>
+            <div hidden="hidden" id="showList">
+                <li>用户管理</li>
+                <li>角色管理</li>
+                <li>权限分配</li>
+            </div>
         </div>
         <div class="list">
             <label>核酸记录</label>
