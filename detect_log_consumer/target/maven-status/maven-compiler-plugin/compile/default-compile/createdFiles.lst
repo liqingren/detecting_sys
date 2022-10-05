@@ -1,0 +1,5 @@
+com\rongxin\log\consumer\IOLogConsumer.class
+com\rongxin\log\LogConsumerApplication.class
+com\rongxin\log\pojo\DetectLog$DetectLogBuilder.class
+com\rongxin\log\dao\DetectLogMapper.class
+com\rongxin\log\pojo\DetectLog.class

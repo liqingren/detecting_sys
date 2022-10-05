@@ -130,8 +130,6 @@
             //刷新时间
             setInterval(initDate,1000);
             var user=JSON.parse(sessionStorage.getItem("user"));
-            // $("#username").text(user.name);
-            // $("#card").text(user.card);
             //显示本人健康码
             var str="../image/code/"+user.codePath;
             $(".imgcode").attr("src",str);
@@ -139,7 +137,28 @@
             $("#result ").bind("click",function(){
                 window.location.href="/jsps/userresult.jsp";
             });
-        })
+        });
+        // $(document).ready(function(){
+        //     var user=JSON.parse(sessionStorage.getItem("user"));
+        //     var id = user.id;
+        //     $.ajax({
+        //         url:"http://localhost:8001/detectinq/mouser/getcode",
+        //         type:"post",
+        //         data:{
+        //             "id":id
+        //         },
+        //         success:function(data){
+        //             var user=JSON.parse(sessionStorage.getItem("user"));
+        //             //显示本人健康码
+        //             var str="../image/code/"+user.codePath;
+        //             $(".imgcode").attr("src",str);
+        //             //点击核酸结果按钮跳转页面
+        //             $("#result ").bind("click",function(){
+        //                 window.location.href="/jsps/userresult.jsp";
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 </head>
 <body bgcolor="#f5f5f5">

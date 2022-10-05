@@ -5,6 +5,7 @@ import com.rongxin.detectinq.mapper.MedicineMapper;
 import com.rongxin.detectinq.service.MedicineService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Service;
 public class MedicineServiceImpl extends ServiceImpl<MedicineMapper, Medicine> implements MedicineService {
     @Autowired
     MedicineMapper medicineMapper;
+
+    @Cacheable(value="getByMedicineCode")
     public Medicine getByMedicineCode(String medicineCode) {
         return medicineMapper.getByMedicineCode(medicineCode);
     }

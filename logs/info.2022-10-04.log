@@ -1,0 +1,415 @@
+2022-10-04 13:17:24.522 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:17:25.241 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:17:25.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:17:25.759 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:17:25.978 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:17:25.993 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:17:25.997 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:17:26.001 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:17:26.030 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$7cc42c68] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.043 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.046 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.052 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.056 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.064 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.065 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:17:26.381 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:17:26.391 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:17:26.391 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:17:26.391 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:17:26.575 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:17:26.575 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1320 ms
+2022-10-04 13:17:26.731 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:17:26.772 [cluster-ClusterId{value='633bc1e6e82fc77cd19deafc', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:41}] to localhost:27017
+2022-10-04 13:17:26.776 [cluster-ClusterId{value='633bc1e6e82fc77cd19deafc', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2529900}
+2022-10-04 13:17:26.989 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:17:26.989 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:17:26.993 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:17:26.993 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:17:27.172 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:17:27.603 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:17:28.247 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:17:28.259 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:17:29.813 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:17:29.813 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:17:29.913 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:17:29.932 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:17:30.005 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:17:30.036 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:17:30.037 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:17:30.037 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:17:30.081 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:17:30.081 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:17:30.979 [ConsumeMessageThread_consumer_group_1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:42}] to localhost:27017
+2022-10-04 13:17:31.201 [ConsumeMessageThread_consumer_group_1] ERROR c.rongxin.log.consumer.IOLogConsumer - ----------DetectLog(id=633bc1eae82fc77cd19deafd, logTime=2022-10-04 13:15:45, ip=192.168.253.1, method=GET, url=/test1, contentType=null, args=[], response=log, keyword=, description=)----------
+2022-10-04 13:17:31.982 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:17:31.996 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:17:32.016 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:17:32.317 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 8.483 seconds (JVM running for 9.885)
+2022-10-04 13:18:19.089 [Thread-20] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:18:19.089 [Thread-20] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:18:19.089 [Thread-23] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:18:19.090 [Thread-23] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:18:19.332 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:18:19.336 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:18:19.337 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:18:19.337 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:18:19.337 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:18:19.338 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:18:19.339 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:18:19.343 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:18:19.701 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:18:19.709 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:2, serverValue:42}] to localhost:27017 because the pool has been closed.
+2022-10-04 13:18:19.711 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:18:19.711 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:18:19.711 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'
+2022-10-04 13:18:38.510 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:18:39.204 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:18:39.669 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:18:39.725 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:18:39.949 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:18:39.955 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:18:39.959 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:18:39.962 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:18:39.990 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$f50a7868] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.004 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.007 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.013 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.017 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.027 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.028 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:18:40.274 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:18:40.281 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:18:40.282 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:18:40.282 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:18:40.489 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:18:40.489 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1272 ms
+2022-10-04 13:18:40.613 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:18:40.653 [cluster-ClusterId{value='633bc23067777116eeb6dd7c', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:43}] to localhost:27017
+2022-10-04 13:18:40.657 [cluster-ClusterId{value='633bc23067777116eeb6dd7c', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2347600}
+2022-10-04 13:18:40.889 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:18:40.890 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:18:40.894 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:18:40.894 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:18:41.118 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:18:41.956 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:18:43.313 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:18:43.336 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:18:45.649 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:18:45.649 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:18:45.778 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:18:45.883 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:18:45.901 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:18:45.935 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:18:45.935 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:18:45.935 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:18:45.982 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:18:45.982 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:18:46.475 [Thread-27] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:18:46.475 [Thread-24] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:18:46.475 [Thread-24] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:18:46.476 [Thread-27] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:18:48.306 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:18:48.317 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:18:49.026 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 11.251 seconds (JVM running for 12.844)
+2022-10-04 13:18:49.433 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:18:49.438 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:18:49.438 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:18:49.438 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:18:49.439 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:18:49.441 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:18:49.442 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:18:49.446 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:18:50.105 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:18:50.110 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:18:50.110 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:18:50.110 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'
+2022-10-04 13:22:18.795 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:22:19.516 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:22:20.006 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:22:20.061 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:22:20.280 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:22:20.285 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:22:20.290 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:22:20.293 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:22:20.323 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$b60bfece] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.336 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.339 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.345 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.349 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.358 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.358 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:22:20.609 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:22:20.618 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:22:20.619 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:22:20.619 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:22:20.758 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:22:20.758 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1229 ms
+2022-10-04 13:22:20.968 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:22:21.027 [cluster-ClusterId{value='633bc30cc7f120757a839426', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:47}] to localhost:27017
+2022-10-04 13:22:21.032 [cluster-ClusterId{value='633bc30cc7f120757a839426', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3450600}
+2022-10-04 13:22:21.260 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:22:21.260 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:22:21.264 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:22:21.264 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:22:21.423 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:22:21.832 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:22:22.472 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:22:22.484 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:22:24.054 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:22:24.055 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:22:24.155 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:22:24.174 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:22:24.246 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:22:24.278 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:22:24.278 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:22:24.278 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:22:24.317 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:22:24.317 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:22:26.057 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:22:26.071 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:22:26.080 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:22:26.369 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 8.278 seconds (JVM running for 9.862)
+2022-10-04 13:22:59.858 [Thread-20] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:22:59.858 [Thread-23] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:22:59.858 [Thread-20] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:22:59.859 [Thread-23] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:23:00.106 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:23:00.110 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:23:00.110 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:23:00.110 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:23:00.110 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:23:00.112 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:23:00.112 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:23:00.116 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:23:00.466 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:23:00.471 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:23:00.471 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:23:00.471 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'
+2022-10-04 13:27:47.884 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:27:48.648 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:27:49.269 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:27:49.334 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:27:49.584 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:27:49.593 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:27:49.600 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:27:49.606 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:27:49.646 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$86a106b3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.664 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.668 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.678 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.683 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.694 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:49.695 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:27:50.004 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:27:50.015 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:27:50.016 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:27:50.016 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:27:50.162 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:27:50.162 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1497 ms
+2022-10-04 13:27:50.390 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:27:50.446 [cluster-ClusterId{value='633bc4566a4efc05ef4e96f3', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:48}] to localhost:27017
+2022-10-04 13:27:50.451 [cluster-ClusterId{value='633bc4566a4efc05ef4e96f3', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3407500}
+2022-10-04 13:27:50.735 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:27:50.735 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:27:50.742 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:27:50.742 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:27:50.939 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:27:51.388 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:27:52.112 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:27:52.124 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:27:53.851 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:27:53.851 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:27:53.958 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:27:53.980 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:27:54.071 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:27:54.104 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:27:54.104 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:27:54.104 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:27:54.171 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:27:54.171 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:27:56.119 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:27:56.134 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:27:56.144 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:27:56.449 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 9.265 seconds (JVM running for 10.842)
+2022-10-04 13:29:32.589 [cluster-ClusterId{value='633bc4566a4efc05ef4e96f3', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 3 common frames omitted
+2022-10-04 13:29:55.963 [Thread-21] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:29:55.963 [Thread-24] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:29:55.963 [Thread-21] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:29:55.964 [Thread-24] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:29:56.257 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:29:56.262 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:29:56.262 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:29:56.263 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:29:56.263 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:29:56.265 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:29:56.266 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:29:56.270 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:29:56.606 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:29:56.610 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:29:56.610 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:29:56.610 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'
+2022-10-04 13:38:10.531 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:38:11.590 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:38:12.269 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:38:12.347 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 74ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:38:12.666 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:38:12.673 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:38:12.682 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:38:12.688 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:38:12.729 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$393cd7c3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.749 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.754 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.765 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.771 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.787 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:12.787 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:38:13.226 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:38:13.240 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:38:13.240 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:38:13.241 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:38:13.417 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:38:13.417 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1805 ms
+2022-10-04 13:38:13.672 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:38:14.048 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:38:14.048 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:38:14.054 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:38:14.055 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:38:14.295 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:38:14.902 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:38:15.762 [cluster-ClusterId{value='633bc6c53e2ad2014688a5bc', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server localhost:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 3 common frames omitted
+2022-10-04 13:38:16.045 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:38:16.075 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:38:19.464 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:38:19.464 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:38:19.603 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:38:19.634 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:38:19.764 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:38:19.810 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:38:19.810 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:38:19.810 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:38:19.890 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:38:19.890 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:38:22.726 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:38:22.746 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:38:22.759 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:38:23.160 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 13.791 seconds (JVM running for 17.182)
+2022-10-04 13:39:38.109 [cluster-ClusterId{value='633bc6c53e2ad2014688a5bc', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:8, serverValue:2}] to localhost:27017
+2022-10-04 13:39:38.118 [cluster-ClusterId{value='633bc6c53e2ad2014688a5bc', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5690400}
+2022-10-04 13:39:59.891 [Thread-32] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:39:59.891 [Thread-29] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:39:59.891 [Thread-29] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:39:59.893 [Thread-32] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:40:00.278 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:40:00.318 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:40:00.319 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:40:00.319 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:40:00.319 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:40:00.321 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:40:00.323 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:40:00.337 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:40:00.693 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:40:00.700 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:40:00.701 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:40:00.701 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'
+2022-10-04 13:40:05.650 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.7.Final
+2022-10-04 13:40:06.411 [main] INFO  c.rongxin.log.LogConsumerApplication - No active profile set, falling back to default profiles: default
+2022-10-04 13:40:06.968 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-10-04 13:40:07.032 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58ms. Found 1 MongoDB repository interfaces.
+2022-10-04 13:40:07.294 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3054e9a3-35b3-3066-84c3-fb543f8e2c05
+2022-10-04 13:40:07.300 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2022-10-04 13:40:07.305 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2022-10-04 13:40:07.309 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2022-10-04 13:40:07.343 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration' of type [com.alibaba.cloud.stream.binder.rocketmq.autoconfigurate.ExtendedBindingHandlerMappingsProviderConfiguration$$EnhancerBySpringCGLIB$$eb5e37de] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.356 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.359 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.365 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.369 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.377 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.378 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-10-04 13:40:07.697 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8003 (http)
+2022-10-04 13:40:07.709 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:40:07.710 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-04 13:40:07.710 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-10-04 13:40:07.851 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-04 13:40:07.851 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1424 ms
+2022-10-04 13:40:08.079 [main] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-10-04 13:40:08.130 [cluster-ClusterId{value='633bc73874fe127f72e88233', description='null'}-localhost:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:3}] to localhost:27017
+2022-10-04 13:40:08.134 [cluster-ClusterId{value='633bc73874fe127f72e88233', description='null'}-localhost:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2948600}
+2022-10-04 13:40:08.386 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:40:08.386 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:40:08.389 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-10-04 13:40:08.389 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-10-04 13:40:08.552 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:40:08.988 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:40:09.676 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2022-10-04 13:40:09.687 [main] INFO  o.s.c.f.c.c.BeanFactoryAwareFunctionRegistry - Looking up function '' with acceptedOutputTypes: []
+2022-10-04 13:40:11.526 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:40:11.526 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:IOLogConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-10-04 13:40:11.649 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2022-10-04 13:40:11.742 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2022-10-04 13:40:11.762 [main] INFO  o.s.i.m.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2022-10-04 13:40:11.798 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:40:11.798 [main] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 1 subscriber(s).
+2022-10-04 13:40:11.798 [main] INFO  o.s.i.endpoint.EventDrivenConsumer - started bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:40:11.862 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2022-10-04 13:40:11.862 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2022-10-04 13:40:14.188 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8003"]
+2022-10-04 13:40:14.205 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8003 (http) with context path ''
+2022-10-04 13:40:14.216 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP logconsumer 192.168.1.100:8003 register finished
+2022-10-04 13:40:14.584 [main] INFO  c.rongxin.log.LogConsumerApplication - Started LogConsumerApplication in 9.828 seconds (JVM running for 12.148)
+2022-10-04 13:42:16.085 [ConsumeMessageThread_consumer_group_1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:5}] to localhost:27017
+2022-10-04 13:42:16.135 [ConsumeMessageThread_consumer_group_1] ERROR c.rongxin.log.consumer.IOLogConsumer - ----------DetectLog(id=633bc7b874fe127f72e88234, logTime=2022-10-04 13:42:15, ip=192.168.253.1, method=GET, url=/test1, contentType=null, args=[], response=log, keyword=, description=)----------
+2022-10-04 13:42:32.657 [Thread-25] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2022-10-04 13:42:32.657 [Thread-22] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2022-10-04 13:42:32.657 [Thread-22] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2022-10-04 13:42:32.658 [Thread-25] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2022-10-04 13:42:32.924 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacos-Watch-Task-Scheduler'
+2022-10-04 13:42:32.928 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2022-10-04 13:42:32.929 [SpringContextShutdownHook] INFO  o.s.i.c.PublishSubscribeChannel - Channel 'application-1.errorChannel' has 0 subscriber(s).
+2022-10-04 13:42:32.929 [SpringContextShutdownHook] INFO  o.s.i.endpoint.EventDrivenConsumer - stopped bean '_org.springframework.integration.errorLogger'
+2022-10-04 13:42:32.929 [SpringContextShutdownHook] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer_group', namespace='', nameServer='127.0.0.1:9876', topic='iolog', consumeMode=ORDERLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING', tlsEnable=false}
+2022-10-04 13:42:32.930 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2022-10-04 13:42:32.931 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-10-04 13:42:32.935 [SpringContextShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2022-10-04 13:42:33.303 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-10-04 13:42:33.312 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:2, serverValue:5}] to localhost:27017 because the pool has been closed.
+2022-10-04 13:42:33.315 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean 'errorChannel'
+2022-10-04 13:42:33.315 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: nullChannel
+2022-10-04 13:42:33.315 [SpringContextShutdownHook] INFO  o.s.i.m.IntegrationMBeanExporter - Summary on shutdown: bean '_org.springframework.integration.errorLogger.handler' for component '_org.springframework.integration.errorLogger'

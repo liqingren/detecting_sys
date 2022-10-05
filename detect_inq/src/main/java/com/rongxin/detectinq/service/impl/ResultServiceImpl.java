@@ -7,6 +7,7 @@ import com.rongxin.detectinq.mapper.ResultMapper;
 import com.rongxin.detectinq.service.ResultService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,10 +25,13 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     @Autowired
     ResultMapper resultMapper;
 
+    @Cacheable(value="getResultByUserId")
     public Result getResultByUserId(int id) {
         return resultMapper.getResultByUserId(id);
     }
 
+    @Override
+    @Cacheable(value="getResultByPage")
     public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id,String keyword) {
         PageHelper.startPage(pageNum,pageSize);
         List<Result> list = resultMapper.getResultByPage(id,keyword);
