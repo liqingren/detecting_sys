@@ -1,0 +1,7 @@
+com\rongxin\detectlog\log\config\IOLogAspect.class
+com\rongxin\detectlog\DetectLogApplication.class
+com\rongxin\detectlog\log\annotation\IOLogRecorder.class
+com\rongxin\detectlog\pojo\DetectLog$DetectLogBuilder.class
+com\rongxin\detectlog\controller\Hello.class
+com\rongxin\detectlog\pojo\DetectLog.class
+com\rongxin\detectlog\log\config\IOLogConfigration.class

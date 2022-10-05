@@ -25,4 +25,18 @@ public interface ResultService extends IService<Result> {
      * @return
      */
     PageInfo<UserResult> getUserResultByPage(Integer pageNum, Integer pageSize, String keyword);
+
+    /**
+     * 根据身份证号模糊查询
+     * @param card
+     * @return
+     */
+    PageInfo<UserResult> getUserResultByCard(Integer pageNum, Integer pageSize,String card);
+
+    /**
+     * 根据性别查询
+     * @param sex
+     * @return
+     */
+    PageInfo<UserResult> getUserResultBySex(Integer pageNum, Integer pageSize,Boolean sex);
 }

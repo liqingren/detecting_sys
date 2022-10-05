@@ -18,10 +18,24 @@ import java.util.List;
 @Mapper
 public interface ResultMapper extends BaseMapper<Result> {
     /**
-     * 两表联查
+     * 两表联查(根据姓名查询)
      * @return
      */
 //    List<UserResult> getUserResult();
 
     List<UserResult> getUserResult(String keyword);
+
+    /**
+     * 根据身份证号模糊查询
+     * @param card
+     * @return
+     */
+    List<UserResult> getUserResultByCard(String card);
+
+    /**
+     * 根据性别查询
+     * @param sex
+     * @return
+     */
+    List<UserResult> getUserResultBySex(Boolean sex);
 }

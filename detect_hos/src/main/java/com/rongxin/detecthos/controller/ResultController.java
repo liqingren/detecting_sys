@@ -44,6 +44,22 @@ public class ResultController {
         return R.ok().data("userresult",userResult);
     }
 
+    @RequestMapping("/getsex")
+    public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                        @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
+                        @RequestParam(value="keyword",required = false) Boolean keyword){
+        PageInfo<UserResult> userResult = resultService.getUserResultBySex(pageNum, pageSize, keyword);
+        return R.ok().data("userresult",userResult);
+    }
+
+    @RequestMapping("/getcard")
+    public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                        @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
+                        @RequestParam(value="keyword",required = false) String keyword){
+        PageInfo<UserResult> userResult = resultService.getUserResultByCard(pageNum, pageSize, keyword);
+        return R.ok().data("userresult",userResult);
+    }
+
     @RequestMapping("/test")
     public R test(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);

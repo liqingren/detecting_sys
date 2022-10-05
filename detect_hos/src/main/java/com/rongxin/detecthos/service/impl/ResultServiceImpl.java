@@ -33,4 +33,20 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
+
+    @Override
+    public PageInfo<UserResult> getUserResultByCard(Integer pageNum, Integer pageSize,String card) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserResult> list = resultMapper.getUserResultByCard(card);
+        PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<UserResult> getUserResultBySex(Integer pageNum, Integer pageSize,Boolean sex) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<UserResult> list = resultMapper.getUserResultBySex(sex);
+        PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
+        return pageInfo;
+    }
 }
