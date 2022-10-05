@@ -39,7 +39,7 @@
                 type: "get",
                 success: function (data) {
                     var roles = data.data.roles;
-                    for (let i = 0; i < roles.length; i++) {
+                    for (var i = 0; i < roles.length; i++) {
                         $("#roleShow").append("<span><input type='radio' name='role'/>" +
                             "<span name='roleName'>" + roles[i].roleName + "</span>" +
                             "<span name='roleId' style='display: none'>" + roles[i].id + "</span>"
@@ -52,7 +52,7 @@
                 type: "get",
                 success: function (data) {
                     var permissions = data.data.permissions;
-                    for (let i = 0; i < permissions.length; i++) {
+                    for (var i = 0; i < permissions.length; i++) {
                         $("#perShow").append("<span><input type='checkbox' name='permission'/>" +
                             "<span name='perName'>" + permissions[i].preName + "</span>" +
                             "<span name='perId' style='display: none'>" + permissions[i].id + "</span>"
@@ -77,7 +77,7 @@
                         $("input[name=permission]").each(function () {
                             var idNode=$(this).parent().find("span[name=perId]");
                             var myFunId=parseInt(idNode.text());
-                            for(let i=0;i<data.data.rolePer.length;i++){
+                            for(var i=0;i<data.data.rolePer.length;i++){
                                 var id=data.data.rolePer[i].preId;
                                 if(myFunId==id){
                                     $(this).prop("checked",true);
