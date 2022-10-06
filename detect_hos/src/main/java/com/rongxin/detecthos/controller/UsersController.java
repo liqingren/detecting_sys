@@ -2,16 +2,12 @@ package com.rongxin.detecthos.controller;
 
 
 import com.rongxin.common.R;
-import com.rongxin.detecthos.pojo.vo.UserResult;
 import com.rongxin.detecthos.service.UsersService;
-import com.rongxin.detecthos.service.impl.ResultServiceImpl;
-import com.rongxin.detecthos.service.impl.UsersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * <p>
@@ -24,5 +20,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/detecthos/users")
 public class UsersController {
+    @Autowired
+    UsersService usersService;
+    @RequestMapping("/getuser")
+    public R getUser(@RequestParam("code") String code){
+        return usersService.getUserByCard(code);
+    }
+
 }
 

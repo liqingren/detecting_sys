@@ -42,7 +42,7 @@
             left: 15%;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         var deleteRole=new Array();
         $(document).ready(function(){

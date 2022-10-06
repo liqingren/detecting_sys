@@ -60,7 +60,7 @@
                     $("#msg1").hide();
                     //验证身份证号唯一性
                     $.ajax({
-                        url: "http://localhost:8001/detectinq/users/judge",
+                        url: "http://127.0.0.1:8001/detectinq/users/judge",
                         type: "post",
                         data: {
                             "card": card

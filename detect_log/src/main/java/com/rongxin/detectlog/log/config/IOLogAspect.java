@@ -14,6 +14,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Aspect
+@Component
 public class IOLogAspect {
 
     @Autowired
@@ -67,7 +69,7 @@ public class IOLogAspect {
                 .method(method)
                 .args(inArgs)
                 .response(response).build();
-        rocketMQTemplate.sendOneWay("iolog", MessageBuilder.withPayload(detectLog).build());
+        rocketMQTemplate.syncSend("iolog", MessageBuilder.withPayload(detectLog).build());
         return response;
     }
 

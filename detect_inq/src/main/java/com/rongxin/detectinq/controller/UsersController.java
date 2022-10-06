@@ -13,7 +13,6 @@ import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -168,6 +167,7 @@ public class UsersController {
      * @param card
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/judge")
     public R judgeSingleUser(@RequestParam("card") String card){
         Users user = usersService.getByCard(card);
@@ -184,6 +184,7 @@ public class UsersController {
      * @param code
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getuser")
     public R getUser(@RequestParam("code") String code){
         Users user = usersService.getByCard(code);
@@ -195,6 +196,7 @@ public class UsersController {
      * @param id
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getuserresult")
     public R GetUserResult(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                            @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,

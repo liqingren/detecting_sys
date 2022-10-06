@@ -12,5 +12,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-10-04
  */
 public interface MedicineService extends IService<Medicine> {
-
+    /**
+     * 根据药品编号获取药品信息
+     * @param medicineCode
+     * @return
+     */
+    Medicine getByMedicineCode(String medicineCode);
 }

@@ -93,7 +93,7 @@ function read(code){
     console.log("qrcode info:"+code);//输出扫描后的信息
     if(code.length==18){
         $.ajax({
-            url:"http://127.0.0.1:8001/detectinq/users/getuser",
+            url:"http://127.0.0.1:8006/detecthos/users/getuser",
             type:"post",
             data:{
                 "code":code
@@ -119,7 +119,7 @@ function read(code){
     else{
         medicineCode=code;
         $.ajax({
-            url:"http://127.0.0.1:8001/detectinq/medicine/getmedicine",
+            url:"http://127.0.0.1:8006/detecthos/medicine/getmedicine",
             type:"post",
             data:{
                 "code":code

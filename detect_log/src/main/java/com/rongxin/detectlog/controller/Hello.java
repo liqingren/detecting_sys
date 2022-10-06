@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Hello {
-    @Autowired
-    RocketMQTemplate rocketMQTemplate;
 
     @IOLogRecorder
     @RequestMapping("/test1")

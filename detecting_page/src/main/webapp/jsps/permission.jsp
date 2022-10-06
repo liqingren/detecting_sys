@@ -29,7 +29,7 @@
             background-color: skyblue;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         var addFun=new Array();
         var deleteFun=new Array();

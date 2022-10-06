@@ -65,7 +65,7 @@
                 var exp = $("[name='exp']").val();
                 var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"exp":exp};
                 $.ajax({
-                    url:"http://localhost:8001/detectinq/medicine/insert",
+                    url:"http://127.0.0.1:8006/detecthos/medicine/insert",
                     type:"post",
                     data:JSON.stringify(medicine),
                     success:function(data){
@@ -101,12 +101,6 @@
                     <input type="text" name="conpanyName">
                 </td>
             </tr>
-<%--            <tr>--%>
-<%--                <td>生产日期：</td>--%>
-<%--                <td>--%>
-<%--                    <input type="datetime-local" name="createTime">--%>
-<%--                </td>--%>
-<%--            </tr>--%>
             <tr>
                 <td>保质期：</td>
                 <td>

@@ -104,13 +104,13 @@
             }
         }
         .result{
-            width:520px;
+            width:550px;
             height:310px;
             margin:0 auto;
             background-color: #ececec;
             position: absolute;
             top:80px;
-            left:300px;
+            left:260px;
             z-index: 10;
             display: none;
         }
@@ -121,6 +121,7 @@
         tr{
             line-height: 60px;
             font-size: 24px;
+            padding-left:20px;
         }
         input{
             border:none;
@@ -165,7 +166,7 @@
             //当前选择label字体颜色变蓝
             $("label:eq(1)").css("color","steelblue");
 
-            $(".infor").bind("click",function(){
+            $("#infoscan").bind("click",function(){
                 $(".double-bounce1").show();
                 $(".double-bounce2").show();
                 load();
@@ -206,7 +207,7 @@
         </div>
         <div class="bt">
             <button class="infor" id="sub">提交数据</button>
-            <button class="infor">扫一扫</button>
+            <button class="infor" id="infoscan">扫一扫</button>
         </div>
 
         <!-- 展示扫码结果 -->
@@ -237,7 +238,7 @@
                 </tr>
             </table>
         </div>
-        <div class="result" id="user">
+        <div class="result" id="user" >
             <table>
                 <tr>
                     <td>姓名：</td>

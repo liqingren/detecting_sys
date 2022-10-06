@@ -53,8 +53,8 @@
                 var card=$("[name='card']").val();
                 var password=$("[name='password']").val();
                 $.ajax({
-                    url:"http://localhost:8001/detectinq/users/login",
-                    type:"POST",
+                    url:"http://127.0.0.1:8001/detectinq/users/login",
+                    type:"post",
                     xhrFields: {
                         withCredentials: true
                     },

@@ -57,7 +57,7 @@
             color: coral;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         var deleteOrAddRole=new Array();
         var roleUserId=-1;
@@ -67,7 +67,7 @@
                 type: "get",
                 success: function (data) {
                     var roles = data.data.roles;
-                    for (let i = 0; i < roles.length; i++) {
+                    for (var i = 0; i < roles.length; i++) {
                         $("#roleShow").append("<span><input type='radio' name='role'/>" +
                             "<span name='roleName'>" + roles[i].roleName + "</span>" +
                             "<span name='roleId' style='display: none'>" + roles[i].id + "</span>"
