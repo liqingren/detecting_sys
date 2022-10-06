@@ -21,12 +21,12 @@ public class DetectLog implements Serializable {
     private String contentType;
     private String args;
     private Object response;
-    private String keyword;
-    private String description;
+//    private String keyword;
+//    private String description;
 
     public DetectLog() {
     }
-    public DetectLog(String id, String logTime, String ip, String method, String url, String contentType, String args, Object response, String keyword, String description) {
+    public DetectLog(String id, String logTime, String ip, String method, String url, String contentType, String args, Object response) {
         this.id = id;
         this.logTime = logTime;
         this.ip = ip;
@@ -35,8 +35,6 @@ public class DetectLog implements Serializable {
         this.contentType = contentType;
         this.args = args;
         this.response = response;
-        this.keyword = keyword;
-        this.description = description;
     }
 
 }

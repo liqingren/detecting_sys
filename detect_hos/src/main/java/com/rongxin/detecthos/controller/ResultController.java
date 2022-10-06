@@ -7,6 +7,7 @@ import com.rongxin.detecthos.pojo.Medicine;
 import com.rongxin.detecthos.pojo.Result;
 import com.rongxin.detecthos.pojo.vo.UserResult;
 import com.rongxin.detecthos.service.impl.ResultServiceImpl;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,6 +38,7 @@ public class ResultController {
      * @param cardArray
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/insert")
     public R insertResult(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);
@@ -62,6 +64,7 @@ public class ResultController {
      * 获取未出结果的核酸记录（根据姓名查询）
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getresults")
     public R getResults(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -77,6 +80,7 @@ public class ResultController {
      * @param keyword
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getsex")
     public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -92,6 +96,7 @@ public class ResultController {
      * @param keyword
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getcard")
     public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -106,6 +111,7 @@ public class ResultController {
      * @param resultstate
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/modify")
     public R mpdifyResultByOne(@RequestParam(value="id",required = false) Integer id,
                                @RequestParam(value="resultstate",required = false) String resultstate){
@@ -129,6 +135,7 @@ public class ResultController {
      * @param resultstate
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/modifyAll")
     public R mpdifyResult(@RequestParam(value="idArray",required = false) String idArray,
                           @RequestParam(value="resultstate",required = false) String resultstate){

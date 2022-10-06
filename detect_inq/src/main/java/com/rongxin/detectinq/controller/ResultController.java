@@ -18,11 +18,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/detectinq/result")
 public class ResultController {
 
-    @RequestMapping("/test")
-    public void test(@RequestParam("medicineCode") String medicineCode,@RequestParam("cardArray") String cardArray){
-        System.out.println(medicineCode);
-        String[] split = cardArray.split(",");
-        System.out.println(split[0]);
-    }
 }
 

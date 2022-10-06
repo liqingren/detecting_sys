@@ -5,6 +5,7 @@ import com.rongxin.common.R;
 import com.rongxin.detecthos.pojo.Medicine;
 import com.rongxin.detecthos.service.impl.MedicineServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class MedicineController {
      * @param code
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getmedicine")
     public R test(@RequestParam("code") String code){
         Medicine medicine=new Medicine();
@@ -48,6 +50,7 @@ public class MedicineController {
      * @param medicine
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/insert")
     public R insert(@RequestBody Medicine medicine){
         //随机生成药品编号
