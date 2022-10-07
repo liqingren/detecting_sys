@@ -17,7 +17,7 @@
     </resultMap>
     <select id="getUserResult" resultType="com.rongxin.detecthos.pojo.vo.UserResult">
         select card,name,sex,email,address,result.id,medicineCode,userId,resultstate,result.createTime,resultTime,isDelete from users
-        inner join result on users.id=result.userId where resultTime is null
+        inner join result on users.id=result.userId where resultTime is null and isDelete=1
         <if test="keyword != null and keyword != ''">
             and name like "%"#{keyword}"%"
         </if>

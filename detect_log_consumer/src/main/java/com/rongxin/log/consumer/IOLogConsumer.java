@@ -20,6 +20,6 @@ public class IOLogConsumer implements RocketMQListener<String> {
         System.out.println(s);
         DetectLog detectLog = JSONUtil.toBean(s,DetectLog.class);
         detectLogMapper.save(detectLog);
-        log.error("============{}============",detectLog);
+        log.info("====日志打印====，========{}========",detectLog);
     }
 }

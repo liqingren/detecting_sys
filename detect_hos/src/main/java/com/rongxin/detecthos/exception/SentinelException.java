@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 public class SentinelException implements UsersService {
     @Override
     public R getUserByCard(String code) {
-        return R.error();
+        throw new BaseException(403,"服务熔断");
     }
 }
