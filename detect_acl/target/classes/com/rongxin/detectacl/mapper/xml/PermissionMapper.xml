@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rongxin.detectacl.mapper.PermissionMapper">
+    <update id="updateDelete" >
+        update permission set isdeleted=0 where id=#{id}
+    </update>
+    <select id="selectAll" resultType="com.rongxin.detectacl.entity.Permission">
+        select * from permission where isdeleted=1
+    </select>
+</mapper>
