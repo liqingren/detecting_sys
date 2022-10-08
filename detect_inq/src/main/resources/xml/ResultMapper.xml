@@ -15,4 +15,39 @@
         select count(*) from result where userId=#{userId}
     </select>
 
+
+    <!--  查询所有结果  -->
+    <select id="selectAllResult" resultType="com.rongxin.detectinq.entity.vo.UserResult">
+        select r.medicineCode,r.resultstate,r.createTime,r.resultTime,u.card,u.name,u.sex,u.address,u.email,u.state from result r,users u where u.id=r.userId and r.isDelete != 0 ORDER BY r.createTime desc
+    </select>
+
+    <!--  条件查询  -->
+    <select id="selectResultByCondition" resultType="com.rongxin.detectinq.entity.vo.UserResult" parameterType="java.util.Map">
+        select r.medicineCode,r.resultstate,r.createTime,r.resultTime,u.card,u.name,u.sex,u.address,u.email,u.state from result r,users u
+        where u.id=r.userId
+        <if test="condition !='' ">and  (u.name like #{condition} or u.card like #{condition})</if>
+        <if test="resultState !='' ">and  r.resultstate=#{resultState}</if>
+        <if test="startTime !='' ">and  (r.createTime>#{startTime})</if>
+        <if test="endTime !='' ">and  (#{endTime}>r.createTime)</if>
+        and r.isDelete != 0
+        ORDER BY r.createTime desc
+    </select>
+    <!--  查询一段时间没有做核酸的用户  -->
+    <select id="selectOverDueUser" parameterType="java.util.Map" resultType="com.rongxin.detectinq.entity.vo.UserResult">
+        select r.medicineCode,r.resultstate,r.createTime,r.resultTime,u.card,u.name,u.sex,u.address,u.email,u.state
+        from (select r.userId,r.medicineCode,r.resultstate,r.createTime,r.resultTime
+        from (select u.id,max(r.resultTime) nearlyTime from users u,result r where u.id=r.userId GROUP BY u.id) near,result r where r.userid=near.id and r.resultTime=near.nearlyTime) r,users u
+        where r.userid=u.id
+        and #{done}>r.resultTime
+        and r.resultTime>#{preDone}
+        ORDER BY r.createTime desc
+    </select>
+
+    <!--  更新状态isDelete  -->
+    <update id="updateIsDelete" parameterType="java.util.Map">
+        update result set isDelete=0 where userId=(select id from users where card=#{deleteResultCard}) and resultTime=#{deleteResultTime}
+    </update>
+
+
+
 </mapper>

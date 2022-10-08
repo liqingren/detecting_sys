@@ -2,10 +2,12 @@ package com.rongxin.detectinq.mapper;
 
 import com.rongxin.detectinq.entity.Result;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.rongxin.detectinq.entity.vo.UserResult;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,5 +39,32 @@ public interface ResultMapper extends BaseMapper<Result> {
      * @return
      */
     int getCountByUserId(Integer userId);
+
+    /**
+     * 管理员查询所有记录
+     * @return
+     */
+    List<UserResult> selectAllResult();
+
+    /**
+     * 条件查询
+     * @param
+     * @return
+     */
+    List<UserResult> selectResultByCondition(Map map);
+
+    /**
+     * 查询未做核酸的用户
+     * @param overDue
+     * @return
+     */
+    List<UserResult> selectOverDueUser(Map overDue);
+
+    /**
+     * 更新isDelete状态
+     * @param delMsg
+     * @return
+     */
+    Integer updateIsDelete(Map delMsg);
 
 }
