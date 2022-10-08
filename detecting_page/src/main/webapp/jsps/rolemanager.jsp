@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>角色管理</title>
     <style>
         .per{
             width:70%;
@@ -43,11 +43,15 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie-1.4.1.min.js"></script>
     <script type="text/javascript">
         var deleteRole=new Array();
         $(document).ready(function(){
+            if(!$.cookie('token')){
+                window.location.href="loginTest.jsp";
+            }
             $.ajax({
-                url:"http://localhost:8004/detectacl/roles/getAllRole",
+                url:"http://localhost:8222/detectacl/roles/getAllRole",
                 type:"post",
                 success:function(data){
                     var roles=data.data.roles;
@@ -82,7 +86,7 @@
         $(document).ready(function (){
             $(".delete").bind("click",function (){
                 $.ajax({
-                    url:"http://localhost:8004/detectacl/roles/remove",
+                    url:"http://localhost:8222/detectacl/roles/remove",
                     type:"post",
                     data:{
                         "deleteRoles":deleteRole.toString()

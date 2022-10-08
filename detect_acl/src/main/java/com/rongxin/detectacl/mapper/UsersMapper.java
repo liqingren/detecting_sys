@@ -21,4 +21,10 @@ public interface UsersMapper extends BaseMapper<Users> {
     List<Users> selectByCondition(@Param("pageNum") Integer pageNum, @Param("condition") String condition);
 
     Integer selectCountPage(@Param("condition") String condition);
+
+    Users selectUser(String card);
+
+    Users getUserByCard(String card);
+
+    String selectRoleCode(String card);
 }

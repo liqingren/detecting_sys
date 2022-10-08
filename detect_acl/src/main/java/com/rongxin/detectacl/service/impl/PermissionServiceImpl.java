@@ -4,6 +4,7 @@ import com.rongxin.detectacl.entity.Permission;
 import com.rongxin.detectacl.mapper.PermissionMapper;
 import com.rongxin.detectacl.service.PermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +25,15 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         return baseMapper.updateDelete(id);
     }
 
+    @Cacheable(key="'permissionList'",value = "permissionList")
     @Override
     public List<Permission> getAllPermission() {
         return baseMapper.selectAll();
     }
+
+    @Override
+    public List<Permission> getByIds(List<Integer> ids) {
+        return baseMapper.selectBatchIds(ids);
+    }
+
 }

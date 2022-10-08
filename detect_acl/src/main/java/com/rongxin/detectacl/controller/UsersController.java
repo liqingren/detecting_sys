@@ -2,14 +2,15 @@ package com.rongxin.detectacl.controller;
 
 
 import com.rongxin.common.R;
-import com.rongxin.detectacl.entity.PreRole;
-import com.rongxin.detectacl.entity.RoleUser;
-import com.rongxin.detectacl.entity.Roles;
-import com.rongxin.detectacl.entity.Users;
+import com.rongxin.detectacl.entity.*;
+import com.rongxin.detectacl.entity.vo.LoginVo;
+import com.rongxin.detectacl.entity.vo.RegisterVo;
 import com.rongxin.detectacl.entity.vo.UserVo;
 import com.rongxin.detectacl.service.RoleUserService;
 import com.rongxin.detectacl.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import java.util.List;
 @RequestMapping("/detectacl/users")
 @CrossOrigin
 public class UsersController {
+    @Qualifier("redisTemplate")
+    @Autowired
+    RedisTemplate redisTemplate;
     @Autowired
     private UsersService service;
     @Autowired
@@ -39,18 +43,18 @@ public class UsersController {
         if (users != null && !users.equals("")) {
             String[] split = users.split(",");
             for (String s : split) {
-                Users role = new Users();
-                role.setId(Integer.valueOf(s));
-                role.setIsDeleted(false);
-                role.setUpdateTime(new Date());
+                Users user = new Users();
+                user.setId(Integer.valueOf(s));
+                user.setIsDeleted(false);
+                user.setUpdateTime(new Date());
 
                 RoleUser roleUser = new RoleUser();
-                roleUser.setRoleId(role.getId());
+                roleUser.setUserId(user.getId());
                 roleUser.setUpdateTime(new Date());
                 roleUser.setIsDelete(false);
                 roleUserService.updateByUId(roleUser);
 
-                deRoles.add(role);
+                deRoles.add(user);
             }
         }
         boolean flag = service.updateBatchById(deRoles);
@@ -63,5 +67,24 @@ public class UsersController {
         Integer count=service.selectCount(condition);
         return R.ok().data("userList",userList).data("pageNum",pageNum).data("count",count).data("totalPage",count/8+1);
     }
+    //登录
+    @PostMapping("/login")
+    public R login(@RequestBody LoginVo loginVo){
+        //返回token，使用jwt生成
+        String token = service.login(loginVo);
+        List<String> list=service.getAllPermission(loginVo);
+        if(list!=null) {
+            redisTemplate.opsForValue().set("permissions", list);
+        }
+        String code=service.getRoleCodeByCard(loginVo.getCard());
+        System.out.println(list);
+        return R.ok().data("token",token).data("roleCode",code);
+    }
+//    //注册
+//    @PostMapping("/register")
+//    public R register(@RequestBody RegisterVo registerVo){
+//        service.register(registerVo);
+//        return R.ok();
+//    }
 }
 

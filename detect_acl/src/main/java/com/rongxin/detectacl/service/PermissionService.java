@@ -18,4 +18,6 @@ public interface PermissionService extends IService<Permission> {
     boolean updateDelete(Integer id);
 
     List<Permission> getAllPermission();
+
+    List<Permission> getByIds(List<Integer> ids);
 }

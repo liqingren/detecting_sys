@@ -8,9 +8,6 @@ function init(){
     $("label:eq(2)").bind("click",function(){
         window.location.href="income.jsp";
     });
-    $("label:eq(3)").bind("click",function(){
-        window.location.href="permission.jsp";
-    });
     $("label:eq(4)").bind("click",function(){
         window.location.href="admin.jsp";
     });

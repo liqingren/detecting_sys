@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>用户管理</title>
     <style>
         .per{
             width:70%;
@@ -63,7 +63,7 @@
         var roleUserId=-1;
         $(document).ready(function () {
             $.ajax({
-                url: "http://localhost:8004/detectacl/roles/getAllRole",
+                url: "http://localhost:8222/detectacl/roles/getAllRole",
                 type: "get",
                 success: function (data) {
                     var roles = data.data.roles;
@@ -76,7 +76,7 @@
                 }
             });
             $.ajax({
-                url: "http://localhost:8004/detectacl/users/getUserVoPage",
+                url: "http://localhost:8222/detectacl/users/getUserVoPage",
                 type: "post",
                 success: function (data) {
                     var users=data.data.userList;
@@ -155,7 +155,7 @@
         $(document).ready(function (){
             $(".delete").bind("click",function (){
                 $.ajax({
-                    url:"http://localhost:8004/detectacl/roleuser/removeRoleUsers",
+                    url:"http://localhost:8222/detectacl/users/remove",
                     type:"post",
                     data:{
                         "deleteUsers":deleteOrAddRole.toString()
@@ -180,7 +180,7 @@
                         alert("请选中用户")
                     }else{
                         $.ajax({
-                            url:"http://localhost:8004/detectacl/roleuser/saveRoleUser",
+                            url:"http://localhost:8222/detectacl/roleuser/saveRoleUser",
                             type:"post",
                             data:{
                                 "addUsers":deleteOrAddRole.toString(),
@@ -214,7 +214,7 @@
                 }
                 var condition=$("input[name=keyword]").val();
                 $.ajax({
-                    url: "http://localhost:8004/detectacl/users/getUserVoPage",
+                    url: "http://localhost:8222/detectacl/users/getUserVoPage",
                     type: "post",
                     data:{
                       "pageNum":page,
@@ -291,7 +291,7 @@
                 var page=1;
                 var condition=$("input[name=keyword]").val();
                 $.ajax({
-                    url: "http://localhost:8004/detectacl/users/getUserVoPage",
+                    url: "http://localhost:8222/detectacl/users/getUserVoPage",
                     type: "post",
                     data:{
                       "pageNum":page,
@@ -407,9 +407,6 @@
             <span  id="hiden4" name="pageShow"></span>
             <span  id="hiden5" >...</span>
             <span  id="next" name="pageShow">下一页</span>
-            <form action="http://localhost:8004/detectacl/users/getUserVoPage" method="post">
-                转到：<input name="pageNum" type="text" style="width: 30px"/>页
-            </form>
             总共<span id="count"></span>条,&nbsp;&nbsp;
             <span id="pages"></span>页,&nbsp;&nbsp;
             当前第<span id="pageNum"></span>页&nbsp;&nbsp;

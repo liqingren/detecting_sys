@@ -14,4 +14,16 @@
         and name like concat("%",#{condition},"%") or card like concat("%",#{condition},"%")
         </if>
     </select>
+    <select id="selectUser" resultType="com.rongxin.detectacl.entity.Users">
+        select * from users where card=#{card}
+    </select>
+    <select id="getUserByCard" resultType="com.rongxin.detectacl.entity.Users">
+        select * from users where card=#{card}
+    </select>
+    <select id="selectRoleCode" resultType="java.lang.String">
+        select roles.roleCode from
+            roles join role_user on roles.id=role_user.roleId
+                  join users on role_user.userId=users.id
+        where role_user.isDelete=1 and users.card=#{card}
+    </select>
 </mapper>

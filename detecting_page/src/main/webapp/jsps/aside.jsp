@@ -15,6 +15,10 @@
             width:100%;
             height:120px;
         }
+        a{
+            text-decoration:none;
+            color: white;
+        }
         h2{
             font-size: 100px;
             font-family: 华文彩云;
@@ -60,14 +64,24 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie-1.4.1.min.js"></script>
     <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             init();
             //用户登录之后获取用户名和身份证号
-            var user=JSON.parse(sessionStorage.getItem("user"));
-            $("#username").text(user.name);
-            $("#card").text(user.card);
+            if(!$.cookie('token')){
+                window.location.href="loginTest.jsp";
+            }else {
+                var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
+                if(roleCode=="admin"){
+                    $("#permission").removeAttr("hidden");
+                }else if(roleCode=="resultor"){
+                    $("#result").removeAttr("hidden");
+                }else if(roleCode=="scaner"){
+                    $("#sacn").removeAttr("hidden");
+                }
+            }
         })
         $(document).ready(function (){
             $("#perClick").bind("click",function (){
@@ -89,24 +103,24 @@
         <div class="list">
             <label>健康码</label>
         </div>
-        <div class="list">
+        <div class="list" id="scan" hidden="hidden">
             <label>扫描核酸</label>
         </div>
-        <div class="list">
+        <div class="list" id="result" hidden="hidden">
             <label>录入结果</label>
         </div>
-        <div class="list">
+        <div class="list" id="permission" hidden="hidden">
             <label id="perClick">权限管理</label>
             <div hidden="hidden" id="showList">
-                <li>用户管理</li>
-                <li>角色管理</li>
-                <li>权限分配</li>
+                <li><a href="usermanager.jsp">用户管理</a></li>
+                <li><a href="rolemanager.jsp">角色管理</a></li>
+                <li><a href="permission.jsp">权限分配</a></li>
             </div>
         </div>
         <div class="list">
             <label>核酸记录</label>
         </div>
-        <div class="list">
+        <div class="list" id="medicine" hidden="hidden">
             <label>生产药品</label>
         </div>
     </div>
