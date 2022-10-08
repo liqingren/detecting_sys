@@ -122,11 +122,11 @@
     <script type="text/javascript">
         var websocket = null;
         if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://localhost:8001/websocket/server");
+            websocket = new WebSocket("ws://127.0.0.1:8001/websocket/server");
         } else if ('MozWebSocket' in window) {
-            websocket = new MozWebSocket("ws://localhost:8001/websocket/server");
+            websocket = new MozWebSocket("ws://127.0.0.1:8001/websocket/server");
         } else {
-            websocket = new SockJS("http://localhost:8001/sockjs/server");
+            websocket = new SockJS("http://127.0.0.1:8001/sockjs/server");
         }
         websocket.onopen = onOpen;
         websocket.onmessage = onMessage;
