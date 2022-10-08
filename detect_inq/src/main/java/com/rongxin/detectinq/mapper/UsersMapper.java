@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rongxin.detectinq.entity.Users;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -35,4 +37,11 @@ public interface UsersMapper extends BaseMapper<Users> {
      */
     int getOnlyUser(String card);
 
+    Users selectUser(String card);
+
+    Users getUserByCard(String card);
+
+    String selectRoleCode(String card);
+
+    List<String> getPermissionUrl(String roleCode);
 }

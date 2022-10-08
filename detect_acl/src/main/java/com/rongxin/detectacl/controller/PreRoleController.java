@@ -4,6 +4,7 @@ package com.rongxin.detectacl.controller;
 import com.rongxin.common.R;
 import com.rongxin.detectacl.entity.PreRole;
 import com.rongxin.detectacl.service.PreRoleService;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,17 +22,19 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/detectacl/prerole")
-@CrossOrigin
+//@CrossOrigin
 public class PreRoleController {
     @Autowired
     private PreRoleService service;
 
     @RequestMapping("/addRolePer")
+    @IOLogRecorder
     public R addRoleForPer(@RequestBody PreRole preRole){
         boolean save = service.save(preRole);
         return save==true?R.ok():R.error();
     }
     @RequestMapping("/remove")
+    @IOLogRecorder
     public R updatePreRole(@RequestBody PreRole preRole){
         preRole.setUpdateTime(new Date());
         boolean flag = service.updateById(preRole);
@@ -48,6 +51,7 @@ public class PreRoleController {
         return R.ok().data("rolePer",perRole);
     }
     @RequestMapping("/saveRolePer")
+    @IOLogRecorder
     public R saveRolePer(@RequestParam("addFun")String addFun,
                          @RequestParam("deleteFun")String deleteFun,@RequestParam("roleId")Integer roleId){
         List<PreRole> addId=new ArrayList<>();
@@ -81,11 +85,13 @@ public class PreRoleController {
         if(flag){
             if(deleteId!=null) {
                 List<PreRole> preRoles = service.selectIds(deleteId, roleId);
-                for (PreRole preRole : preRoles) {
-                    preRole.setIsDeleted(false);
-                    preRole.setUpdateTime(new Date());
+                if(preRoles!=null) {
+                    for (PreRole preRole : preRoles) {
+                        preRole.setIsDeleted(false);
+                        preRole.setUpdateTime(new Date());
+                    }
+                    service.updateBatchById(preRoles);
                 }
-                service.updateBatchById(preRoles);
             }
         }
         return flag==true?R.ok():R.error();

@@ -123,7 +123,7 @@
         //修改单个用户的核酸结果
         function modifyOneResult(id,resultstate){
             $.ajax({
-                url:"http://127.0.0.1:8006/detecthos/result/modify",
+                url:"http://127.0.0.1:8222/detecthos/result/meresult/modify",
                 type:"post",
                 data:{
                     "id":id,
@@ -138,7 +138,7 @@
         //修改全部用户的核酸结果
         function modifyAllResult(idArray,resultstate){
             $.ajax({
-                url:"http://127.0.0.1:8006/detecthos/result/modifyAll",
+                url:"http://127.0.0.1:8222/detecthos/result/meresult/modifyAll",
                 type:"post",
                 data:{
                     "idArray":idArray.toString(),
@@ -295,7 +295,7 @@
         });
         $(document).ready(function(){
             $.ajax({
-                url:"http://127.0.0.1:8006/detecthos/result/getresults",
+                url:"http://127.0.0.1:8222/detecthos/result/meresult    ./getresults",
                 type:"post",
                 data:{
                     "pageNum":pageNum,

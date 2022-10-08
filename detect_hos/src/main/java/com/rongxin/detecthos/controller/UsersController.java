@@ -5,6 +5,7 @@ import com.rongxin.common.R;
 import com.rongxin.detecthos.service.UsersService;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,11 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/detecthos/users")
+//@CrossOrigin
 public class UsersController {
     @Autowired
     UsersService usersService;
     @IOLogRecorder
-    @RequestMapping("/getuser")
+    @RequestMapping("/meuser/getuser")
     public R getUser(@RequestParam("code") String code) {
         return usersService.getUserByCard(code);
     }

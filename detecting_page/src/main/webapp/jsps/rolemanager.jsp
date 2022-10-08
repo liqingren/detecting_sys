@@ -51,7 +51,7 @@
                 window.location.href="loginTest.jsp";
             }
             $.ajax({
-                url:"http://localhost:8222/detectacl/roles/getAllRole",
+                url:"http://127.0.0.1:8222/detectacl/roles/getAllRole",
                 type:"post",
                 success:function(data){
                     var roles=data.data.roles;
@@ -86,7 +86,7 @@
         $(document).ready(function (){
             $(".delete").bind("click",function (){
                 $.ajax({
-                    url:"http://localhost:8222/detectacl/roles/remove",
+                    url:"http://127.0.0.1:8222/detectacl/roles/remove",
                     type:"post",
                     data:{
                         "deleteRoles":deleteRole.toString()

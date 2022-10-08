@@ -1,7 +1,10 @@
 package com.rongxin.detectinq.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.rongxin.detectinq.entity.LoginVo;
 import com.rongxin.detectinq.entity.Users;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,11 +17,13 @@ import com.rongxin.detectinq.entity.Users;
 public interface UsersService extends IService<Users> {
     /**
      * 登录
-     * @param user
      * @return
      */
-    int login(Users user);
+    String login(LoginVo loginVo);
 
+    List<String> getAllPermission(LoginVo loginVo);
+
+    String getRoleCodeByCard(String card);
     /**
      * 根据card获取用户信息
      * @param card

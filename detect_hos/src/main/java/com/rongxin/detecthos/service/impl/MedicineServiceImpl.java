@@ -21,7 +21,7 @@ public class MedicineServiceImpl extends ServiceImpl<MedicineMapper, Medicine> i
     @Autowired
     MedicineMapper medicineMapper;
 
-    @Cacheable(value="getByMedicineCode")
+//    @Cacheable(value="getByMedicineCode")
     public Medicine getByMedicineCode(String medicineCode) {
         return medicineMapper.getByMedicineCode(medicineCode);
     }

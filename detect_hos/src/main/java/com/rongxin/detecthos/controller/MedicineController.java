@@ -7,11 +7,7 @@ import com.rongxin.detecthos.service.impl.MedicineServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -26,6 +22,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/detecthos/medicine")
+//@CrossOrigin
 public class MedicineController {
     @Autowired
     MedicineServiceImpl medicineService;
@@ -36,7 +33,7 @@ public class MedicineController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/getmedicine")
+    @RequestMapping("/meuser/getmedicine")
     public R test(@RequestParam("code") String code){
         Medicine medicine=new Medicine();
         if(code!=null){
@@ -51,7 +48,7 @@ public class MedicineController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/insert")
+    @RequestMapping("/medic/insert")
     public R insert(@RequestBody Medicine medicine){
         //随机生成药品编号
         String str = UUID.randomUUID().toString();

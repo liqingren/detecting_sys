@@ -8,6 +8,7 @@ import com.rongxin.detectacl.entity.Roles;
 import com.rongxin.detectacl.service.PreRoleService;
 import com.rongxin.detectacl.service.RoleUserService;
 import com.rongxin.detectacl.service.RolesService;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/detectacl/roles")
-@CrossOrigin
+//@CrossOrigin
 public class RolesController {
     @Autowired
     private RolesService service;
@@ -35,6 +36,7 @@ public class RolesController {
     @Autowired
     private RoleUserService roleUserService;
     @RequestMapping("/addRole")
+    @IOLogRecorder
     public R addRoleForPer(@RequestBody Roles role){
         role.setCreateTime(new Date());
         role.setUpdateTime(new Date());
@@ -42,6 +44,7 @@ public class RolesController {
         return save==true?R.ok():R.error();
     }
     @RequestMapping("/remove")
+    @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteRoles") String roles){
         List<Roles> deRoles = new ArrayList<>();
         //处理前端传过来的数字组成的字符串
@@ -69,7 +72,7 @@ public class RolesController {
             }
         }
         boolean flag=service.updateBatchById(deRoles);
-        return flag==true?R.ok():R.error();
+        return R.ok();
     }
     @RequestMapping("/getAllRole")
     public R getAllPermissionRole(){

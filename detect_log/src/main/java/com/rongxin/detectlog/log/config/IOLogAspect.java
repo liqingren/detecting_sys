@@ -44,7 +44,7 @@ public class IOLogAspect {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String logtime = sdf.format(date);
         //获取访问ip
-        String ip = getIpAddress();
+        String ip = getIpAddress(request);
         //获取访问的uri
         String url = request.getRequestURI();
         //获取请求头中的content-type
@@ -72,9 +72,7 @@ public class IOLogAspect {
 
 
     //获取客户端IP地址
-    private String getIpAddress() {
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = servletRequestAttributes.getRequest();
+    private String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknow".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -83,7 +81,8 @@ public class IOLogAspect {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
+            String IP = request.getRemoteAddr();
+            ip = IP.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":IP;
             if (ip.equals("127.0.0.1")) {
                 //根据网卡取本机配置的IP
                 InetAddress inet = null;

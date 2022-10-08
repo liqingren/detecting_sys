@@ -69,7 +69,6 @@
     <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            init();
             //用户登录之后获取用户名和身份证号
             if(!$.cookie('token')){
                 window.location.href="loginTest.jsp";
@@ -77,10 +76,13 @@
                 var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
                 if(roleCode=="admin"){
                     $("#permission").removeAttr("hidden");
-                }else if(roleCode=="resultor"){
+                    $("#results").removeAttr("hidden");
+                }
+                if(roleCode=="resultor"){
                     $("#result").removeAttr("hidden");
-                }else if(roleCode=="scaner"){
-                    $("#sacn").removeAttr("hidden");
+                }
+                if(roleCode=="scaner"){
+                    $("#scan").removeAttr("hidden");
                 }
             }
         })
@@ -109,13 +111,13 @@
             <span id="card"></span>
         </div>
         <div class="list">
-            <label>健康码</label>
+            <a href="user.jsp">健康码</a>
         </div>
         <div class="list" id="scan" hidden="hidden">
-            <label>扫描核酸</label>
+            <a href="scan.jsp">扫描核酸</a>
         </div>
         <div class="list" id="result" hidden="hidden">
-            <label>录入结果</label>
+            <a href="income.jsp">录入结果</a>
         </div>
         <div class="list" id="permission" hidden="hidden">
             <label id="perClick">权限管理</label>
@@ -125,11 +127,11 @@
                 <li><a href="permission.jsp">权限分配</a></li>
             </div>
         </div>
-        <div class="list">
-            <label>核酸记录</label>
+        <div class="list" id="results">
+            <a href="admin.jsp">核酸记录</a>
         </div>
-        <div class="list" id="medicine" hidden="hidden">
-            <label>生产药品</label>
+        <div class="list" id="medicine" >
+            <a href="factory.jsp">生产药品</a>
         </div>
     </div>
 </body>

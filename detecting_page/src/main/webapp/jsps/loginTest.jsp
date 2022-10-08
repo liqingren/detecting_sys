@@ -55,14 +55,14 @@
                 var password=$("[name='password']").val();
                 var login={"card":card, "password":password};
                 $.ajax({
-                    url:"http://localhost:8004/detectacl/users/login",
+                    url:"http://127.0.0.1:8222/detectacl/users/login",
                     type:"POST",
                     data:JSON.stringify(login),
                     success:function(data){
                         if(data.success){
                             sessionStorage.setItem("user",JSON.stringify(data.data.user));
                             sessionStorage.setItem("roleCode",JSON.stringify(data.data.roleCode));
-                            $.cookie('token',data.data.token,{expires:5,path:'/'});
+                            $.cookie('token',data.data.token,{expires:3,path:'/'});
                             window.location.href="/jsps/user.jsp";
                         }else{
                             alert("用户名或密码错误");

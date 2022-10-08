@@ -10,4 +10,21 @@
     <select id="getOnlyUser" resultType="java.lang.Integer">
         select count(*) from users where card=#{card}
     </select>
+    <select id="selectUser" resultType="com.rongxin.detectinq.entity.Users">
+        select * from users where card=#{card}
+    </select>
+    <select id="getUserByCard" resultType="com.rongxin.detectinq.entity.Users">
+        select * from users where card=#{card}
+    </select>
+    <select id="selectRoleCode" resultType="java.lang.String">
+        select roles.roleCode from
+            roles join role_user on roles.id=role_user.roleId
+                  join users on role_user.userId=users.id
+        where role_user.isDelete=1 and users.card=#{card}
+    </select>
+    <select id="getPermissionUrl" resultType="java.lang.String">
+        select p.preUrl from roles r join pre_role pr on pr.roleId=r.id
+        join permission p on p.id=pr.preId
+        where roleCode=#{roleCode} and pr.isDeleted=1
+    </select>
 </mapper>

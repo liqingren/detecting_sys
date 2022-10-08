@@ -5,6 +5,7 @@ import com.rongxin.common.R;
 import com.rongxin.detectacl.entity.RoleUser;
 import com.rongxin.detectacl.entity.Roles;
 import com.rongxin.detectacl.service.RoleUserService;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +23,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/detectacl/roleuser")
-@CrossOrigin
+//@CrossOrigin
 public class RoleUserController {
     @Autowired
     private RoleUserService service;
     @RequestMapping("/addRoleUser")
+    @IOLogRecorder
     public R addRoleForPer(@RequestBody RoleUser roleUser){
         roleUser.setCreateTime(new Date());
         roleUser.setUpdateTime(new Date());
@@ -34,6 +36,7 @@ public class RoleUserController {
         return save==true?R.ok():R.error();
     }
     @RequestMapping("/remove")
+    @IOLogRecorder
     public R updatePreRole(@RequestBody RoleUser role){
         role.setUpdateTime(new Date());
         boolean flag = service.updateById(role);
@@ -50,6 +53,7 @@ public class RoleUserController {
         return R.ok().data("role",role);
     }
     @RequestMapping("/removeRoleUsers")
+    @IOLogRecorder
     public R removeRoleUsers(@RequestParam("deleteUsers")String userStr){
         if(userStr==null||userStr.equals("")){
             return R.error();
@@ -63,6 +67,7 @@ public class RoleUserController {
         return flag==true?R.ok():R.error();
     }
     @RequestMapping("/saveRoleUser")
+    @IOLogRecorder
     public R saveRoleUser(@RequestParam("addUsers")String addStr,@RequestParam("roleId")Integer roleId){
         if(roleId==null||roleId<=0||addStr==null||addStr.equals("")){
             return R.error();

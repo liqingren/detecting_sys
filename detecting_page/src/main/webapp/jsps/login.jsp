@@ -47,66 +47,66 @@
         }
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie-1.4.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#bt").bind("click",function(){
                 var card=$("[name='card']").val();
                 var password=$("[name='password']").val();
+                var login={"card":card, "password":password};
                 $.ajax({
-                    url:"http://127.0.0.1:8001/detectinq/users/login",
-                    type:"post",
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    data:{
-                        "card":card,
-                        "password":password
-                    },
+                    url:"http://127.0.0.1:8222/detectinq/users/login",
+                    type:"POST",
+                    data:JSON.stringify(login),
+                    // jsonp: "callback",
+                    // jsonpCallback: "f",
                     success:function(data){
                         if(data.success){
                             sessionStorage.setItem("user",JSON.stringify(data.data.user));
+                            sessionStorage.setItem("roleCode",JSON.stringify(data.data.roleCode));
+                            $.cookie('token',data.data.token,{expires:3,path:'/'});
                             window.location.href="/jsps/user.jsp";
                         }else{
                             alert("用户名或密码错误");
                         }
-                    }
+                    },
+                    contentType:"application/json"
                 })
             })
         })
     </script>
 </head>
 <body bgcolor="#f5f5f5">
-    <div class="login">
-        <h2>核酸检测系统</h2>
-        <table>
-            <tr>
-                <td>
-                    <p style="margin-left:20px;font-size: 28px;font-weight: bold;color:skyblue">登录</p>
-                </td>
-                <td  align="right">
-                    <a href="/jsps/register.jsp" style="font-size: 20px;font-weight: bold;color:cornflowerblue">没有账户？请先注册</a>
-                </td>
-            </tr>
+<div class="login">
+    <h2>核酸检测系统</h2>
+    <table>
+        <tr>
+            <td>
+                <p style="margin-left:20px;font-size: 28px;font-weight: bold;color:skyblue">登录</p>
+            </td>
+            <td  align="right">
+                <a href="/jsps/register.jsp" style="font-size: 20px;font-weight: bold;color:cornflowerblue">没有账户？请先注册</a>
+            </td>
+        </tr>
 
-            <tr>
-                <td align="right">用户名：</td>
-                <td>
-                    <input type="text" name="card" placeholder="用户名为身份证号">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
-                <td>
-                    <input type="password" name="password">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <button id="bt">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+        <tr>
+            <td align="right">用户名：</td>
+            <td>
+                <input type="text" name="card" placeholder="用户名为身份证号">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+            <td>
+                <input type="password" name="password">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="bt">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

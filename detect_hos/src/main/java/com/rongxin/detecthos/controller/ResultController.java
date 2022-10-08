@@ -9,6 +9,7 @@ import com.rongxin.detecthos.pojo.vo.UserResult;
 import com.rongxin.detecthos.service.impl.ResultServiceImpl;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/detecthos/result")
+//@CrossOrigin
 public class ResultController {
 
     @Autowired
@@ -39,7 +41,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/insert")
+    @RequestMapping("/meuser/insert")
     public R insertResult(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);
         String[] userIds = cardArray.split(",");
@@ -65,7 +67,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/getresults")
+    @RequestMapping("/meresult/getresults")
     public R getResults(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
                         @RequestParam(value="keyword",required = false) String keyword){
@@ -81,7 +83,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/getsex")
+    @RequestMapping("/meresult/getsex")
     public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
                         @RequestParam(value="keyword",required = false) Boolean keyword){
@@ -97,7 +99,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/getcard")
+    @RequestMapping("/meresult/getcard")
     public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
                         @RequestParam(value="keyword",required = false) String keyword){
@@ -112,7 +114,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/modify")
+    @RequestMapping("/meresult/modify")
     public R mpdifyResultByOne(@RequestParam(value="id",required = false) Integer id,
                                @RequestParam(value="resultstate",required = false) String resultstate){
         //根据id获取result对象
@@ -136,7 +138,7 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @RequestMapping("/modifyAll")
+    @RequestMapping("/meresult/modifyAll")
     public R mpdifyResult(@RequestParam(value="idArray",required = false) String idArray,
                           @RequestParam(value="resultstate",required = false) String resultstate){
         //将id放进list集合中

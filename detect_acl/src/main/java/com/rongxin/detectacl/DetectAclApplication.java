@@ -8,10 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.rongxin")
-@MapperScan("com.roongxin.detectacl.mapper")
+//@ComponentScan("com.rongxin.detectacl")
+@MapperScan("com.roongxin.detectacl.mappe0ar")
 @EnableDiscoveryClient
-@EnableCaching
 public class DetectAclApplication {
         public static void main(String[] args) {
             SpringApplication.run(DetectAclApplication.class, args);

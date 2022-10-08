@@ -3,6 +3,7 @@ package com.rongxin.detectinq.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.rongxin.common.R;
+import com.rongxin.detectinq.entity.LoginVo;
 import com.rongxin.detectinq.entity.Result;
 import com.rongxin.detectinq.entity.Users;
 import com.rongxin.detectinq.service.impl.ResultServiceImpl;
@@ -11,9 +12,14 @@ import com.rongxin.detectinq.utils.QRCodeUtils;
 import com.rongxin.detectinq.utils.finalClass;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+
+import static org.bouncycastle.cms.RecipientId.password;
 
 /**
  * <p>
@@ -24,14 +30,16 @@ import java.util.Date;
  * @since 2022-09-28
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/detectinq/users")
 public class UsersController {
     @Autowired
     UsersServiceImpl usersService;
     @Autowired
     ResultServiceImpl resultService;
-
+    @Qualifier("redisTemplate")
+    @Autowired
+    RedisTemplate redisTemplate;
     /**
      * 注册
      * @param user
@@ -70,26 +78,25 @@ public class UsersController {
         }
         return R.error();
     }
-
     /**
      * 登录
-     * @param card
-     * @param password
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/login")
-    public R login(@RequestParam("card") String card, @RequestParam("password") String password) {
-        Users user = new Users();
-        if(card!=null&&password!=null){
-            user.setCard(card);
-            user.setPassword(password);
+    public R login(@RequestBody LoginVo loginVo) {
+        //返回token，使用jwt生成
+        String token = usersService.login(loginVo);
+        List<String> list=usersService.getAllPermission(loginVo);
+        if(list!=null) {
+            redisTemplate.opsForValue().set("permissions", list);
         }
-        //登录
-        int count = usersService.login(user);
-        if(count>0) {
+        String code=usersService.getRoleCodeByCard(loginVo.getCard());
+        System.out.println(list);
+        Users user = new Users();
+        if(token!=null) {
             //根据身份证号查询用户信息
-            Users userCard = usersService.getByCard(card);
+            Users userCard = usersService.getByCard(loginVo.getCard());
             //判断是否是第一次登录
             int reCount = resultService.getCountByUserId(userCard.getId());
             if(reCount!=0){
@@ -121,7 +128,8 @@ public class UsersController {
                     e.printStackTrace();
                 }
             }
-            return R.ok().data("user",userCard);
+            System.out.println("???????????????"+userCard+"!!!!!!!!!!!!!!");
+            return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
         }
         return R.error();
     }

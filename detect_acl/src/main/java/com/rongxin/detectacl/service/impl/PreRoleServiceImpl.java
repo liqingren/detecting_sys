@@ -51,6 +51,9 @@ public class PreRoleServiceImpl extends ServiceImpl<PreRoleMapper, PreRole> impl
 
     @Override
     public List<PreRole> selectIds(List<Integer> deleteId, Integer roleId) {
+        if(deleteId==null||deleteId.size()<=0||roleId==null){
+            return null;
+        }
         Map<String,Object> map=new HashMap<>();
         map.put("perIds",deleteId);
         map.put("roleId",roleId);

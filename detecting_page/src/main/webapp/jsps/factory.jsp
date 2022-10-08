@@ -65,7 +65,7 @@
                 var exp = $("[name='exp']").val();
                 var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"exp":exp};
                 $.ajax({
-                    url:"http://127.0.0.1:8006/detecthos/medicine/insert",
+                    url:"http://127.0.0.1:8006/detecthos/medicine/medic/insert",
                     type:"post",
                     data:JSON.stringify(medicine),
                     success:function(data){

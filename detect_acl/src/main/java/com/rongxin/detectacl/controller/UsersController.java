@@ -8,6 +8,7 @@ import com.rongxin.detectacl.entity.vo.RegisterVo;
 import com.rongxin.detectacl.entity.vo.UserVo;
 import com.rongxin.detectacl.service.RoleUserService;
 import com.rongxin.detectacl.service.UsersService;
+import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/detectacl/users")
-@CrossOrigin
+//@CrossOrigin
 public class UsersController {
     @Qualifier("redisTemplate")
     @Autowired
@@ -37,8 +38,9 @@ public class UsersController {
     @Autowired
     private RoleUserService roleUserService;
     @RequestMapping("/remove")
+    @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteUsers") String users) {
-        List<Users> deRoles = new ArrayList<>();
+         List<Users> deRoles = new ArrayList<>();
         //处理前端传过来的数字组成的字符串
         if (users != null && !users.equals("")) {
             String[] split = users.split(",");
@@ -69,6 +71,7 @@ public class UsersController {
     }
     //登录
     @PostMapping("/login")
+    @IOLogRecorder
     public R login(@RequestBody LoginVo loginVo){
         //返回token，使用jwt生成
         String token = service.login(loginVo);
