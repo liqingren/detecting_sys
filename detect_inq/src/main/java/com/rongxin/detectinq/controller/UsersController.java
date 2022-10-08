@@ -78,11 +78,14 @@ public class UsersController {
         }
         return R.error();
     }
+
     /**
      * 登录
+     * @param card
+     * @param password
      * @return
      */
-//    @IOLogRecorder
+    @IOLogRecorder
     @RequestMapping("/login")
     public R login(@RequestBody LoginVo loginVo) {
         //返回token，使用jwt生成
@@ -128,7 +131,6 @@ public class UsersController {
                     e.printStackTrace();
                 }
             }
-            System.out.println("???????????????"+userCard+"!!!!!!!!!!!!!!");
             return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
         }
         return R.error();
@@ -234,6 +236,51 @@ public class UsersController {
         PageInfo<Result> result = resultService.getResultByPage(pageNum,pageSize,id,keyword);
         return R.ok().data("result",result);
     }
+
+
+    /**
+     *
+     * 指定发送
+     * http://localhost:8001/detectinq/users/websocket/sendToUser
+     * @param
+     * @param info
+     * @return
+     */
+    @SneakyThrows
+    @ResponseBody
+    @RequestMapping(value = "/websocket/sendToUser", method = {RequestMethod.POST, RequestMethod.GET})
+    public String send(@RequestParam(value = "card") String card, @RequestParam(value = "info") String info) {
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+        helper.setSubject("这是一封测试邮件");
+        helper.setFrom("2794975447@qq.com");
+        helper.setTo("3343087896@qq.com");
+        helper.setSentDate(new Date());
+        helper.setText(info);
+        javaMailSender.send(mimeMessage);
+
+        springWebSocketHandler.sendMessageToUser(card, new TextMessage(info));
+        System.out.println("发送至：" + card);
+        return "success";
+    }
+
+
+    /**
+     * 发送到全部用户
+     * http://localhost:8001/detectinq/users/websocket/broadcast
+     * @param info
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/websocket/broadcast", method = {RequestMethod.POST, RequestMethod.GET})
+    public String broadcast(@RequestParam(value = "info") String info) {
+        springWebSocketHandler.sendMessageToUsers(new TextMessage("广播消息：" + info));
+        System.out.println("广播成功");
+        return "success";
+    }
+
+
 
 
 }
