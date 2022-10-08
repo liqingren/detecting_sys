@@ -1,8 +1,7 @@
 package com.rongxin.detectinq.service;
 
-import com.rongxin.detectinq.entity.Result;
-import com.rongxin.detectinq.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.rongxin.detectinq.entity.Users;
 
 /**
  * <p>
@@ -26,5 +25,10 @@ public interface UsersService extends IService<Users> {
      * @return
      */
     Users getByCard(String card);
-
+    /**
+     * 验证身份证号唯一性
+     * @param card
+     * @return
+     */
+    int getOnlyUser(String card);
 }

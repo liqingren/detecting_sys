@@ -14,6 +14,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Aspect
+@Component
 public class IOLogAspect {
 
     @Autowired
@@ -34,7 +36,7 @@ public class IOLogAspect {
 
     @Around("pointCut()")
     public Object record(ProceedingJoinPoint joinPoint) throws Throwable {
-
+        //获取request
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         //获取时间
@@ -49,25 +51,22 @@ public class IOLogAspect {
         String contentType= request.getHeader("content-type");
         //获取请求方法
         String method = request.getMethod();
-
-        Signature signature = joinPoint.getSignature();
-        MethodSignature methodSignature = (MethodSignature) signature;
-        IOLogRecorder ioLogRecorder = methodSignature.getMethod().getAnnotation(IOLogRecorder.class);
-        System.out.println(methodSignature.getMethod().getName());
+        //获取参数
         Object[] args = joinPoint.getArgs();
         String inArgs = JSONUtil.toJsonStr(args);
+        //获取返回值
         Object response =  joinPoint.proceed();
+        //创建对象并将属性赋值
         DetectLog detectLog = DetectLog.builder()
                 .logTime(logtime)
                 .ip(ip)
-                .keyword(ioLogRecorder.keyword())
-                .description(ioLogRecorder.descrition())
                 .url(url)
                 .contentType(contentType)
                 .method(method)
                 .args(inArgs)
                 .response(response).build();
-        rocketMQTemplate.sendOneWay("iolog", MessageBuilder.withPayload(detectLog).build());
+        //发送消息
+        rocketMQTemplate.syncSend("iolog", MessageBuilder.withPayload(detectLog).build());
         return response;
     }
 

@@ -14,5 +14,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MedicineMapper extends BaseMapper<Medicine> {
-
+    /**
+     * 根据药品编号获取药品信息
+     * @param medicineCode
+     * @return
+     */
+    Medicine getByMedicineCode(String medicineCode);
 }

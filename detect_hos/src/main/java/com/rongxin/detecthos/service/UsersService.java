@@ -1,13 +1,11 @@
 package com.rongxin.detecthos.service;
 
 import com.rongxin.common.R;
-import com.rongxin.detecthos.pojo.Users;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.rongxin.detecthos.pojo.vo.UserResult;
+import com.rongxin.detecthos.exception.SentinelException;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 /**
  * <p>
@@ -17,6 +15,8 @@ import java.util.List;
  * @author rlq
  * @since 2022-10-04
  */
-public interface UsersService extends IService<Users> {
-
+@FeignClient(value="service-inq",path="/detectinq/users",fallback = SentinelException.class)
+public interface UsersService {
+    @RequestMapping("/getuser")
+    R getUserByCard(@RequestParam("code") String code);
 }

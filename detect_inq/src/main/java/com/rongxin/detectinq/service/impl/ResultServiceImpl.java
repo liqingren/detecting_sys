@@ -39,4 +39,9 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
         return pageInfo;
     }
 
+    @Override
+    public int getCountByUserId(Integer userId) {
+        return resultMapper.getCountByUserId(userId);
+    }
+
 }

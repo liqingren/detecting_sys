@@ -31,4 +31,11 @@ public interface ResultService extends IService<Result> {
      * @return
      */
     PageInfo<Result> getResultByPage(Integer pageNum,Integer pageSize,Integer id,String keyword);
+
+    /**
+     * 查询用户核酸次数
+     * @param userId
+     * @return
+     */
+    int getCountByUserId(Integer userId);
 }

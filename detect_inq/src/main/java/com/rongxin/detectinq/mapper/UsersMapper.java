@@ -1,8 +1,7 @@
 package com.rongxin.detectinq.mapper;
 
-import com.rongxin.detectinq.entity.Result;
-import com.rongxin.detectinq.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.rongxin.detectinq.entity.Users;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -28,5 +27,12 @@ public interface UsersMapper extends BaseMapper<Users> {
      * @return
      */
     Users getByCard(String card);
+
+    /**
+     * 验证身份证号唯一性
+     * @param card
+     * @return
+     */
+    int getOnlyUser(String card);
 
 }

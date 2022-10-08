@@ -13,7 +13,6 @@ import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -41,6 +40,12 @@ public class UsersController {
     @IOLogRecorder
     @RequestMapping("/register")
     public R register(@RequestBody Users user){
+        //判断身份证号唯一性
+        String card = user.getCard();
+        Integer count = usersService.getOnlyUser(card);
+        if(count>0){
+            return R.error();
+        }
         Date date = new Date();
         user.setCreateTime(date);
         boolean flag = usersService.save(user);
@@ -66,7 +71,6 @@ public class UsersController {
         return R.error();
     }
 
-
     /**
      * 登录
      * @param card
@@ -86,77 +90,36 @@ public class UsersController {
         if(count>0) {
             //根据身份证号查询用户信息
             Users userCard = usersService.getByCard(card);
-            //获取用户最近一次核酸结果信息
-            Result result = resultService.getResultByUserId(userCard.getId());
-            if(result.getResultstate().equals(finalClass.RESULT_ERROR)){
-                //如果最近一次核酸结果是阳性，健康码状态变为2，健康码变红
-                if(userCard.getState()!=finalClass.STATE_RED) {
-                    userCard.setState(finalClass.STATE_RED);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
-                }
-            }else if(result.getResultstate().equals(finalClass.RESULT_OK)){
-                //获取最近一次核酸的检测时间(单位毫秒)
-                long resultTime=result.getResultTime().getTime();
-                //获取当前时间(单位毫秒)
-                long nowTime=System.currentTimeMillis();
-                //计算两者时间差
-                long timeDiff=(nowTime-resultTime)%(1000*60*60*24)/(1000*60*60)+(nowTime-resultTime)/(1000*60*60*24)*24;
-                if(timeDiff<finalClass.DATE_YELLOW){
-                    //如果小于48小时没做核酸，健康码状态变为0，健康码变绿
-                    if(userCard.getState()!=finalClass.STATE_GREEN) {
-                        userCard.setState(finalClass.STATE_GREEN);
-                        //最后修改时间
-                        Date updatedTime = new Date();
-                        userCard.setUpdateTime(updatedTime);
-                        usersService.updateById(userCard);
+            //判断是否是第一次登录
+            int reCount = resultService.getCountByUserId(userCard.getId());
+            if(reCount!=0){
+                //获取用户最近一次核酸结果信息
+                Result result = resultService.getResultByUserId(userCard.getId());
+                //判断健康码状态
+                judgeCodeColor(userCard,result);
+                try {
+                    //如果状态为0，健康码是绿色，状态为1，健康码变黄，状态为2，健康码变红
+                    if(userCard.getState()== finalClass.STATE_GREEN){
+                        //生成绿色二维码
+                        Integer color = 0xFF215E21;
+                        //将健康码存入文件
+                        QRCodeUtils.encode(user.getCard(), color);
                     }
-                }
-                else if(timeDiff>finalClass.DATE_YELLOW&&timeDiff<finalClass.DATE_RED){
-                    //如果48~72小时没做核酸，健康码状态变为1，健康码变黄
-                    if(userCard.getState()!=finalClass.STATE_YELLOW) {
-                        userCard.setState(finalClass.STATE_YELLOW);
-                        //最后修改时间
-                        Date updatedTime = new Date();
-                        userCard.setUpdateTime(updatedTime);
-                        usersService.updateById(userCard);
+                    else if(userCard.getState()== finalClass.STATE_YELLOW) {
+                        //生成黄色二维码
+                        Integer color = 0xFFFFFF00;
+                        //将健康码存入文件
+                        QRCodeUtils.encode(user.getCard(), color);
                     }
-                }
-                else if(timeDiff>finalClass.DATE_RED){
-                    //如果72小时以上没做核酸，健康码状态变为2，健康码变红
-                    if(userCard.getState()!=finalClass.STATE_RED) {
-                        userCard.setState(finalClass.STATE_RED);
-                        //最后修改时间
-                        Date updatedTime = new Date();
-                        userCard.setUpdateTime(updatedTime);
-                        usersService.updateById(userCard);
+                    else if(userCard.getState()== finalClass.STATE_RED){
+                        //生成红色二维码
+                        Integer color = 0xFFFF0000;
+                        //将健康码存入文件
+                        QRCodeUtils.encode(user.getCard(), color);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }
-            try {
-                //如果状态为0，健康码是绿色，状态为1，健康码变黄，状态为2，健康码变红
-                if(userCard.getState()== finalClass.STATE_GREEN){
-                    //生成绿色二维码
-                    Integer color = 0xFF215E21;
-                    //将健康码存入文件
-                    QRCodeUtils.encode(user.getCard(), color);
-                }
-                else if(userCard.getState()== finalClass.STATE_YELLOW) {
-                    //生成黄色二维码
-                    Integer color = 0xFFFFFF00;
-                    //将健康码存入文件
-                    QRCodeUtils.encode(user.getCard(), color);
-                }
-                else if(userCard.getState()== finalClass.STATE_RED){
-                    //生成红色二维码
-                    Integer color = 0xFFFF0000;
-                    //将健康码存入文件
-                    QRCodeUtils.encode(user.getCard(), color);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
             return R.ok().data("user",userCard);
         }
@@ -164,19 +127,76 @@ public class UsersController {
     }
 
     /**
-     * 判断身份证号是否唯一
-     * @param card
-     * @return
+     * 判断健康码状态值
+     * @param userCard
+     * @param result
      */
-    @RequestMapping("/judge")
-    public R judgeSingleUser(@RequestParam("card") String card){
-        Users user = usersService.getByCard(card);
-        if(user!=null){
-            return R.error();
+    public void judgeCodeColor(Users userCard,Result result){
+        if(result.getResultstate().equals(finalClass.RESULT_ERROR)){
+            //如果最近一次核酸结果是阳性，健康码状态变为2，健康码变红
+            if(userCard.getState()!=finalClass.STATE_RED) {
+                userCard.setState(finalClass.STATE_RED);
+                //最后修改时间
+                Date updatedTime = new Date();
+                userCard.setUpdateTime(updatedTime);
+                usersService.updateById(userCard);
+            }
+        }else if(result.getResultstate().equals(finalClass.RESULT_OK)) {
+            //获取最近一次核酸的检测时间(单位毫秒)
+            long resultTime = result.getResultTime().getTime();
+            //获取当前时间(单位毫秒)
+            long nowTime = System.currentTimeMillis();
+            //计算两者时间差
+            long timeDiff = (nowTime - resultTime) % (1000 * 60 * 60 * 24) / (1000 * 60 * 60) + (nowTime - resultTime) / (1000 * 60 * 60 * 24) * 24;
+            if (timeDiff < finalClass.DATE_YELLOW) {
+                //如果小于48小时没做核酸，健康码状态变为0，健康码变绿
+                if (userCard.getState() != finalClass.STATE_GREEN) {
+                    userCard.setState(finalClass.STATE_GREEN);
+                    //最后修改时间
+                    Date updatedTime = new Date();
+                    userCard.setUpdateTime(updatedTime);
+                    usersService.updateById(userCard);
+                }
+            } else if (timeDiff > finalClass.DATE_YELLOW && timeDiff < finalClass.DATE_RED) {
+                //如果48~72小时没做核酸，健康码状态变为1，健康码变黄
+                if (userCard.getState() != finalClass.STATE_YELLOW) {
+                    userCard.setState(finalClass.STATE_YELLOW);
+                    //最后修改时间
+                    Date updatedTime = new Date();
+                    userCard.setUpdateTime(updatedTime);
+                    usersService.updateById(userCard);
+                }
+            } else if (timeDiff > finalClass.DATE_RED) {
+                //如果72小时以上没做核酸，健康码状态变为2，健康码变红
+                if (userCard.getState() != finalClass.STATE_RED) {
+                    userCard.setState(finalClass.STATE_RED);
+                    //最后修改时间
+                    Date updatedTime = new Date();
+                    userCard.setUpdateTime(updatedTime);
+                    usersService.updateById(userCard);
+                }
+            }
         }
-        return R.ok();
+
     }
 
+
+
+//    /**
+//     * 判断身份证号是否唯一
+//     * @param card
+//     * @return
+//     */
+//    @IOLogRecorder
+//    @RequestMapping("/judge")
+//    public R judgeSingleUser(@RequestParam("card") String card){
+//        Users user = usersService.getByCard(card);
+//        if(user!=null){
+//            return R.error();
+//        }
+//        return R.ok();
+//    }
+//
 
 
     /**
@@ -184,6 +204,7 @@ public class UsersController {
      * @param code
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getuser")
     public R getUser(@RequestParam("code") String code){
         Users user = usersService.getByCard(code);
@@ -195,6 +216,7 @@ public class UsersController {
      * @param id
      * @return
      */
+    @IOLogRecorder
     @RequestMapping("/getuserresult")
     public R GetUserResult(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                            @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,

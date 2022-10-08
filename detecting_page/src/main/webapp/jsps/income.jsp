@@ -23,6 +23,10 @@
             float: right;
             margin:30px 5% 0 0;
         }
+        .all{
+            float: left;
+            margin:30px 0 0 5%;
+        }
         table{
             width:90%;
             /*height:500px;*/
@@ -116,6 +120,88 @@
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+        //修改单个用户的核酸结果
+        function modifyOneResult(id,resultstate){
+            $.ajax({
+                url:"http://127.0.0.1:8006/detecthos/result/modify",
+                type:"post",
+                data:{
+                    "id":id,
+                    "resultstate":resultstate
+                },
+                success:function(data){
+                    console.log(data);
+                    window.location.href="income.jsp";
+                }
+            });
+        }
+        //修改全部用户的核酸结果
+        function modifyAllResult(idArray,resultstate){
+            $.ajax({
+                url:"http://127.0.0.1:8006/detecthos/result/modifyAll",
+                type:"post",
+                data:{
+                    "idArray":idArray.toString(),
+                    "resultstate":resultstate
+                },
+                success:function(data){
+                    console.log(data);
+                    window.location.href="income.jsp";
+                }
+            });
+        }
+        //选中多选框
+        function getCheckbox(){
+            //单选
+            $(".choice").bind("change",function(){
+                var flag = $(".choice").is(":checked");
+                if(flag){
+                    //获取被选中的id
+                    var id = $(this).val();
+                    var resultstate = null;
+                    //通过
+                    $(".bt_enter").bind("click",function(){
+                        resultstate = '阴性';
+                        console.log(resultstate);
+                        modifyOneResult(id,resultstate);
+                    });
+                    //不通过
+                    $(".bt_failed").bind("click",function(){
+                        resultstate = '阳性';
+                        modifyOneResult(id,resultstate);
+                    });
+                }
+            });
+            //多选
+            $("[name='all']").bind("change",function(){
+                var flag = $("[name='all']").is(":checked");
+                //全选
+                if(flag) {
+                    $(".choice").prop("checked",flag);
+                    var idArray =new Array();//定义一个数组
+                    $(".choice:checked").each(function(){//遍历每一个名字为nodes的复选框，其中选中的执行函数
+                        idArray.push($(this).val());//将选中的值添加到数组chk_value中
+                    });
+                    console.log(idArray);
+                    var resultstate = null;
+                    //通过
+                    $(".bt_enter").bind("click",function(){
+                        resultstate = '阴性';
+                        modifyAllResult(idArray,resultstate);
+                    });
+                    //不通过
+                    $(".bt_failed").bind("click",function(){
+                        resultstate = '阳性';
+                        modifyAllResult(idArray,resultstate);
+                    });
+                }
+                //取消全选
+                else if(!flag){
+                    $(".choice").prop("checked",flag);
+                }
+            })
+        }
+        //将用户基本信息和结果信息写入表格，并做分页处理
         function getPage(list,result){
             for(var i=0;i<list.length;i++){
                 var sex=null;
@@ -124,12 +210,11 @@
                 }else{
                     sex='女';
                 }
-                var str = "<tr><td><input type='checkbox' class='choice'></td><td>"+list[i].name+"</td><td>"
-                    +list[i].card+"</td><td>"+sex+"</td><td>"+list[i].createTime+"</td><td>"
-                    +"<button class='bt_enter'>通过</button><button class='bt_failed'>不通过</button>";
+                var str = "<tr><td><input type='checkbox' class='choice' value='"+list[i].id+"'></td><td>"+
+                    list[i].name+"</td><td>" +list[i].card+"</td><td>"+sex+"</td><td class='ctime'>"+list[i].createTime+
+                    "</td><td><button class='bt_enter'>通过</button><button class='bt_failed'>不通过</button>";
                 $("#tbody").append(str);
             }
-
             //当前页数
             var pageNum=result.pageNum;
             //总页数
@@ -178,6 +263,8 @@
             if(pageNums.length<=1){
                 $("#page_ul").hide();
             }
+            //选中多选框修改核酸结果
+            getCheckbox();
 
         }
 
@@ -224,70 +311,88 @@
         });
         //搜索
         $(document).ready(function(){
-            $(".sel").bind("change",function(){
-                var choice = $(".sel option:selected").val();
-                $("#bt").bind("click",function(){
-                    if(choice==1) {
-                        var name = $("[name='keyword']").val();
-                        //转编码跳转页面
-                        window.location.href = encodeURI("income.jsp?keyword=" + name);
-                    }
-                    else if(choice==2){
-                        var sex = $("[name='keyword']").val();
-                        var keyword=null;
-                        if(sex=="男"){
-                            keyword=true;
-                        }else{
-                            keyword=false;
-                        }
-                        $.ajax({
-                            url:"http://127.0.0.1:8006/detecthos/result/getsex",
-                            type:"post",
-                            data:{
-                                "pageNum":pageNum,
-                                "keyword":keyword
-                            },
-                            success:function(data){
-                                var result = data.data.userresult;
-                                var list = result.list;
-                                getPage(list,result);
-                            }
-                        });
-                    }
-                    else if(choice==3){
-                        var keyword = $("[name='keyword']").val();
-                        $.ajax({
-                            url:"http://127.0.0.1:8006/detecthos/result/getcard",
-                            type:"post",
-                            data:{
-                                "pageNum":pageNum,
-                                "keyword":keyword
-                            },
-                            success:function(data){
-                                var result = data.data.userresult;
-                                var list = result.list;
-                                getPage(list,result);
-                            }
-                        });
-                    }
-                });
-
-            })
+            $("#bt").bind("click",function() {
+                var name = $("[name='keyword']").val();
+                //转编码跳转页面
+                window.location.href = encodeURI("income.jsp?keyword=" + name);
+            });
         });
+                // $(".sel").bind("change",function(){
+                // var choice = $(".sel option:selected").val();
+                // $("#bt").bind("click",function(){
+                //     if(choice==1) {
+                //         var name = $("[name='keyword']").val();
+                //         //转编码跳转页面
+                //         window.location.href = encodeURI("income.jsp?keyword=" + name);
+                //     }
+                //     else if(choice==2){
+                //         var sex = $("[name='keyword']").val();
+                //         var keyword=null;
+                //         if(sex=="男"){
+                //             keyword=true;
+                //         }else{
+                //             keyword=false;
+                //         }
+                //         $.ajax({
+                //             url:"http://127.0.0.1:8006/detecthos/result/getsex",
+                //             type:"post",
+                //             data:{
+                //                 "pageNum":pageNum,
+                //                 "keyword":keyword
+                //             },
+                //             success:function(data){
+                //                 var result = data.data.sexResults;
+                //                 var list = result.list;
+                //                 getPage(list,result);
+                //             }
+                //         });
+                //     }
+                //     else if(choice==3){
+                //         var keyword = $("[name='keyword']").val();
+                //         $.ajax({
+                //             url:"http://127.0.0.1:8006/detecthos/result/getcard",
+                //             type:"post",
+                //             data:{
+                //                 "pageNum":pageNum,
+                //                 "keyword":keyword
+                //             },
+                //             success:function(data){
+                //                 var result = data.data.cardResults;
+                //                 console.log(result);
+                //                 var list = result.list;
+                //                 getPage(list,result);
+                //             }
+                //         });
+                //     }
+                // });
+            // })
+        // });
+        // $(document).ready(function(){
+        //     $(".choice").bind("click",function(){
+        //         alert(1);
+        //         var flag = $(".choice").is(":checked");
+        //         alert(flag);
+        //     })
+        // })
     </script>
 </head>
 <body bgcolor="#f5f5f5">
     <jsp:include page="aside.jsp"></jsp:include>
     <div class="income">
         <div class="search">
-            <select class="sel" style="width:150px;height:30px;text-align: center;font-size: 14px;">
-                <option>--请选择--</option>
-                <option value="1">根据姓名查询</option>
-                <option value="2">根据性别查询</option>
-                <option value="3">根据身份证号查询</option>
-            </select>
-            <input type="text" name="keyword" id="search">
+<%--            <select class="sel" style="width:150px;height:30px;text-align: center;font-size: 14px;">--%>
+<%--                <option>--请选择--</option>--%>
+<%--                <option value="1">根据姓名查询</option>--%>
+<%--                <option value="2">根据性别查询</option>--%>
+<%--                <option value="3">根据身份证号查询</option>--%>
+<%--            </select>--%>
+            <input type="text" name="keyword" id="search" placeholder="根据姓名查询">
             <button id="bt">查询</button>
+        </div>
+        <div class="all">
+            <input type="checkbox" name="all">全选
+            <button class="bt_enter" style="margin:0 20px 0 20px ">通过</button>
+            <button class="bt_failed">不通过</button>
         </div>
         <table border="1" cellpadding="0" cellspacing="0">
             <thead>
@@ -314,7 +419,7 @@
             </div>
             <ul class="page current" id="page_ul" style="list-style: none">
                 <li class="previous"}><!--hasPreviousPage默认值为false， 如果有上一页，则不显示首页-->
-                    <a class="first" href="userresult.jsp?pageNum=1">首页</a>
+                    <a class="first" href="income.jsp?pageNum=1">首页</a>
                 </li>
                 <li class="previous"><!--hasPreviousPage默认值为false， 如果有上一页，则不显示-->
                     <a class="prePage">上一页</a>

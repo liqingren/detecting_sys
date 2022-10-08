@@ -45,85 +45,48 @@
     <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            //判断身份证号是否合法
-            $("[name='card']").bind("blur",function(){
+            //保存数据
+            $("#bt").bind("click",function() {
                 var card = $("[name='card']").val();
-                if(card==null){
-                    $("#msg1").text("身份证号不能为空");
-                    $("#msg1").show();
-                }
-                else if(card.length!=18){
-                    $("#msg1").text("身份证号不足18位");
-                    $("#msg1").show();
-                }
-                else {
-                    $("#msg1").hide();
-                    //验证身份证号唯一性
+                var password = $("[name='password']").val();
+                var name = $("[name='name']").val();
+                var sex = $("[name='sex']").prop("checked");
+                var email = $("[name='email']").val();
+                var address = $("[name='address']").val();
+                var user = {
+                    "card": card,
+                    "password": password,
+                    "name": name,
+                    "sex": sex,
+                    "email": email,
+                    "address": address
+                };
+                if (card == null||card == "") {
+                    alert("身份证号不能为空");
+                } else if (card.length != 18) {
+                    alert("身份证号不足18位");
+                }else if(password ==""||password == null){
+                    alert("密码不能为空");
+                }else if(name==""||name==null){
+                    alert("姓名不能为空");
+                }else{
                     $.ajax({
-                        url: "http://localhost:8001/detectinq/users/judge",
-                        type: "post",
-                        data: {
-                            "card": card
-                        },
-                        success: function (data) {
-                            if (!data.success) {
-                                $("#msg1").text("身份证号已被注册");
-                                $("#msg1").show();
+                        url:"http://localhost:8001/detectinq/users/register",
+                        type:"post",
+                        data:JSON.stringify(user),
+                        success:function(data){
+                            if(data.success){
+                                window.location.href="/jsps/login.jsp";
                             }else{
-                                $("#msg1").hide();
-
+                                alert("注册失败（该身份证号已被注册）");
                             }
-                        }
+                        },
+                        contentType:"application/json"
+
                     });
                 }
             });
-            //判断密码是否为空
-            $("[name='password']").bind("blur",function() {
-                var password=$("[name='password']").val();
-                if(password===""){
-                    $("#msg2").text("密码不能为空");
-                    $("#msg2").show();
-                }else{
-                    $("#msg2").hide();
-                }
-            });
-            //判断姓名是否为空
-            $("[name='name']").bind("blur",function() {
-                var name=$("[name='name']").val();
-                if(name===""){
-                    $("#msg3").text("姓名不能为空");
-                    $("#msg3").show();
-                }else{
-                    $("#msg3").hide();
-                }
-            });
-            //保存数据
-            $("#bt").bind("click",function(){
-                var card=$("[name='card']").val();
-                var password=$("[name='password']").val();
-                var name=$("[name='name']").val();
-                var sex=$("[name='sex']").prop("checked");
-                var email=$("[name='email']").val();
-                var address=$("[name='address']").val();
-                var user={"card":card,"password":password,"name":name,"sex":sex,"email":email,"address":address};
-               $.ajax({
-                    url:"http://localhost:8001/detectinq/users/register",
-                    type:"post",
-                    data:JSON.stringify(user),
-                    success:function(data){
-                        if(data.success){
-                            window.location.href="/jsps/login.jsp";
-                        }else{
-                            alert("注册失败");
-                        }
-                    },
-                    contentType:"application/json"
-
-                })
-            })
-
-
-        })
+        });
     </script>
 </head>
 <body bgcolor="#f5f5f5">

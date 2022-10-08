@@ -31,4 +31,11 @@ public interface ResultMapper extends BaseMapper<Result> {
      */
     Result getResultByUserId(int id);
 
+    /**
+     * 查询用户核酸次数
+     * @param userId
+     * @return
+     */
+    int getCountByUserId(Integer userId);
+
 }

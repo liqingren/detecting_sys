@@ -9,7 +9,4 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface IOLogRecorder {
 
-    String keyword() default "";
-
-    String descrition() default "";
 }

@@ -7,4 +7,7 @@
     <select id="getByCard" resultType="com.rongxin.detectinq.entity.Users">
         select * from users where card=#{card}
     </select>
+    <select id="getOnlyUser" resultType="java.lang.Integer">
+        select count(*) from users where card=#{card}
+    </select>
 </mapper>
