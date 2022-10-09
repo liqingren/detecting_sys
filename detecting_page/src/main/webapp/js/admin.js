@@ -71,7 +71,7 @@ function deleteResult(val){
     var deleteResultCard=value.eq(2).text();//得到第三列的数据身份证号
     var deleteResultTime=value.eq(5).text();//第五列结果时间
     $.ajax({
-        url:"http://127.0.0.1:8001/detectinq/result/adminModifyIsDelete",
+        url:"http://127.0.0.1:8222/detectinq/result/adminModifyIsDelete",
         type:"POST",
         xhrFields: {
             withCredentials: true
@@ -102,7 +102,7 @@ function delResults(){
                 return false;
             }
             $.ajax({
-                url:"http://127.0.0.1:8001/detectinq/result/adminModifyIsDelete",
+                url:"http://127.0.0.1:8222/detectinq/result/adminModifyIsDelete",
                 type:"POST",
                 xhrFields: {
                     withCredentials: true
