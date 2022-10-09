@@ -93,7 +93,7 @@ function read(code){
     console.log("qrcode info:"+code);//输出扫描后的信息
     if(code.length==18){
         $.ajax({
-            url:"http://127.0.0.1:8222/detecthos/users/meuser/getuser",
+            url:"http://192.168.190.111:8222/detecthos/users/meuser/getuser",
             type:"post",
             data:{
                 "code":code
@@ -119,7 +119,7 @@ function read(code){
     else{
         medicineCode=code;
         $.ajax({
-            url:"http://127.0.0.1:8222/detecthos/medicine/meuser/getmedicine",
+            url:"http://192.168.190.111:8222/detecthos/medicine/meuser/getmedicine",
             type:"post",
             data:{
                 "code":code
@@ -136,7 +136,7 @@ function read(code){
 }
 function insert() {
     $.ajax({
-        url:"http://127.0.0.1:8222/detecthos/result/meuser/insert",
+        url:"http://192.168.190.111:8222/detecthos/result/meuser/insert",
         type:"post",
         data:{
             "medicineCode":medicineCode,

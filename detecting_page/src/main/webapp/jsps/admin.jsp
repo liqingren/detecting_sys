@@ -250,7 +250,7 @@
             $("#resultState").val(resultStateMsg_u);
             $("#done").val(oldDone_u);
             $.ajax({
-                url:"http://127.0.0.1:8222/detectinq/result/adminConditionSearch",
+                url:"http://192.168.190.111:8222/detectinq/result/adminConditionSearch",
                 type:"POST",
                 xhrFields: {
                     withCredentials: true
@@ -445,7 +445,7 @@
             }
             for (var infoCard in uniqueCards){
                 $.ajax({
-                    url: " http://127.0.0.1:8222/detectinq/users/websocket/sendToUser",
+                    url: " http://192.168.190.111/detectinq/users/websocket/sendToUser",
                     type: "POST",
                     xhrFields: {
                         withCredentials: true

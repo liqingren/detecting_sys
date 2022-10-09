@@ -176,7 +176,7 @@
             $("#card").text(user.card);
             var id=user.id;
             $.ajax({
-                url: "http://127.0.0.1:8222/detectinq/users/getuserresult",
+                url: "http://192.168.190.111:8222/detectinq/users/getuserresult",
                 type: "post",
                 data: {
                     "id": id,

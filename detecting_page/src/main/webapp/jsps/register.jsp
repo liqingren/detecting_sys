@@ -71,7 +71,7 @@
                     alert("姓名不能为空");
                 }else{
                     $.ajax({
-                        url:"http://127.0.0.1:8222/detectinq/users/register",
+                        url:"http://192.168.190.111:8222/detectinq/users/register",
                         type:"post",
                         data:JSON.stringify(user),
                         success:function(data){
