@@ -11,11 +11,15 @@ import com.rongxin.detectinq.service.impl.UsersServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
 import com.rongxin.detectinq.utils.finalClass;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.socket.TextMessage;
 
+import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.List;
 
@@ -81,8 +85,6 @@ public class UsersController {
 
     /**
      * 登录
-     * @param card
-     * @param password
      * @return
      */
     @IOLogRecorder
@@ -238,47 +240,47 @@ public class UsersController {
     }
 
 
-    /**
-     *
-     * 指定发送
-     * http://localhost:8001/detectinq/users/websocket/sendToUser
-     * @param
-     * @param info
-     * @return
-     */
-    @SneakyThrows
-    @ResponseBody
-    @RequestMapping(value = "/websocket/sendToUser", method = {RequestMethod.POST, RequestMethod.GET})
-    public String send(@RequestParam(value = "card") String card, @RequestParam(value = "info") String info) {
-
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
-        helper.setSubject("这是一封测试邮件");
-        helper.setFrom("2794975447@qq.com");
-        helper.setTo("3343087896@qq.com");
-        helper.setSentDate(new Date());
-        helper.setText(info);
-        javaMailSender.send(mimeMessage);
-
-        springWebSocketHandler.sendMessageToUser(card, new TextMessage(info));
-        System.out.println("发送至：" + card);
-        return "success";
-    }
-
-
-    /**
-     * 发送到全部用户
-     * http://localhost:8001/detectinq/users/websocket/broadcast
-     * @param info
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/websocket/broadcast", method = {RequestMethod.POST, RequestMethod.GET})
-    public String broadcast(@RequestParam(value = "info") String info) {
-        springWebSocketHandler.sendMessageToUsers(new TextMessage("广播消息：" + info));
-        System.out.println("广播成功");
-        return "success";
-    }
+//    /**
+//     *
+//     * 指定发送
+//     * http://localhost:8001/detectinq/users/websocket/sendToUser
+//     * @param
+//     * @param info
+//     * @return
+//     */
+//    @SneakyThrows
+//    @ResponseBody
+//    @RequestMapping(value = "/websocket/sendToUser", method = {RequestMethod.POST, RequestMethod.GET})
+//    public String send(@RequestParam(value = "card") String card, @RequestParam(value = "info") String info) {
+//
+//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+//        helper.setSubject("这是一封测试邮件");
+//        helper.setFrom("2794975447@qq.com");
+//        helper.setTo("3343087896@qq.com");
+//        helper.setSentDate(new Date());
+//        helper.setText(info);
+//        javaMailSender.send(mimeMessage);
+//
+//        springWebSocketHandler.sendMessageToUser(card, new TextMessage(info));
+//        System.out.println("发送至：" + card);
+//        return "success";
+//    }
+//
+//
+//    /**
+//     * 发送到全部用户
+//     * http://localhost:8001/detectinq/users/websocket/broadcast
+//     * @param info
+//     * @return
+//     */
+//    @ResponseBody
+//    @RequestMapping(value = "/websocket/broadcast", method = {RequestMethod.POST, RequestMethod.GET})
+//    public String broadcast(@RequestParam(value = "info") String info) {
+//        springWebSocketHandler.sendMessageToUsers(new TextMessage("广播消息：" + info));
+//        System.out.println("广播成功");
+//        return "success";
+//    }
 
 
 

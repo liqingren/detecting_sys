@@ -84,6 +84,9 @@
                 if(roleCode=="scaner"){
                     $("#scan").removeAttr("hidden");
                 }
+                if(roleCode=="medicine"){
+                    $("#medicine").removeAttr("hidden");
+                }
             }
         })
         $(document).ready(function (){
@@ -127,10 +130,10 @@
                 <li><a href="permission.jsp">权限分配</a></li>
             </div>
         </div>
-        <div class="list" id="results">
+        <div class="list" id="results" hidden="hidden">
             <a href="admin.jsp">核酸记录</a>
         </div>
-        <div class="list" id="medicine" >
+        <div class="list" id="medicine" hidden="hidden">
             <a href="factory.jsp">生产药品</a>
         </div>
     </div>

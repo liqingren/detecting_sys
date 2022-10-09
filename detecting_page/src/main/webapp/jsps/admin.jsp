@@ -250,12 +250,8 @@
             $("#resultState").val(resultStateMsg_u);
             $("#done").val(oldDone_u);
             $.ajax({
-                url:"http://127.0.0.1:8001/detectinq/result/adminConditionSearch",
+                url:"http://127.0.0.1:8222/detectinq/result/adminConditionSearch",
                 type:"POST",
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
                 data:{
                     "condition":condition_u,
                     "startTime":startTime_u,
@@ -275,7 +271,7 @@
                         var str = "<tr id=\"hiddenResult"+i+"\"\><td><input type=\"checkbox\" name=\"modify_del\" value='12' onclick='checkOne()'>"+
                             "</td><td>" + list[i].name +
                             "</td><td>" + list[i].card +
-                            "</td><td>" + list[i].sex +
+                            "</td><td>" + (list[i].sex?"男":"女") +
                             "</td><td>" + list[i].createTime +
                             "</td><td>" + list[i].resultTime +
                             "</td><td>" + list[i].resultstate +
@@ -446,7 +442,7 @@
 
             for (var infoCard in uniqueCards){
                 $.ajax({
-                    url: " http://127.0.0.1:8001/detectinq/users/websocket/sendToUser",
+                    url: "http://127.0.0.1:8222/detectinq/users/websocket/sendToUser",
                     type: "POST",
                     xhrFields: {
                         withCredentials: true

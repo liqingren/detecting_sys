@@ -43,6 +43,12 @@ public class RolesController {
         boolean save = service.save(role);
         return save==true?R.ok():R.error();
     }
+
+    /**
+     * 软删除角色
+     * @param roles
+     * @return
+     */
     @RequestMapping("/remove")
     @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteRoles") String roles){
@@ -60,20 +66,25 @@ public class RolesController {
                 preRole.setIsDeleted(false);
                 preRole.setRoleId(Integer.valueOf(s));
                 preRole.setUpdateTime(new Date());
-                preRoleService.updateByRId(preRole);
+                preRoleService.updateByRId(preRole);//删除权限-角色关系中的数据
 
                 RoleUser roleUser=new RoleUser();
                 roleUser.setRoleId(role.getId());
                 roleUser.setUpdateTime(new Date());
                 roleUser.setIsDelete(false);
-                roleUserService.updateByRId(roleUser);
+                roleUserService.updateByRId(roleUser);//删除角色-用户中的数据
 
                 deRoles.add(role);
             }
         }
-        boolean flag=service.updateBatchById(deRoles);
+        boolean flag=service.updateBatchById(deRoles);//删除角色
         return R.ok();
     }
+
+    /**
+     * 获取所有角色
+     * @return
+     */
     @RequestMapping("/getAllRole")
     public R getAllPermissionRole(){
         List<Roles> roles=service.getAllRole();

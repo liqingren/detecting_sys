@@ -33,7 +33,7 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     }
 
     @Override
-    @Cacheable(value="getResultByPage")
+//    @Cacheable(value="getResultByPage")
     public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id,String keyword) {
         PageHelper.startPage(pageNum,pageSize);
         List<Result> list = resultMapper.getResultByPage(id,keyword);

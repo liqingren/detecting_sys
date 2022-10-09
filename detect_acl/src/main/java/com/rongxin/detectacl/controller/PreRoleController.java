@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ *  权限与角色
  * </p>
  *
  * @author yuezhik
@@ -33,6 +33,7 @@ public class PreRoleController {
         boolean save = service.save(preRole);
         return save==true?R.ok():R.error();
     }
+
     @RequestMapping("/remove")
     @IOLogRecorder
     public R updatePreRole(@RequestBody PreRole preRole){
@@ -40,16 +41,35 @@ public class PreRoleController {
         boolean flag = service.updateById(preRole);
         return flag==true?R.ok():R.error();
     }
+
+    /**
+     * 获取所有关系
+     * @return
+     */
     @RequestMapping("/getAllPerRole")
     public R getAllPermissionRole(){
         List<PreRole> perRole=service.getAllPerRole();
         return R.ok().data("perRole",perRole);
     }
+
+    /**
+     * 获取某角色对应的所有权限
+     * @param rId
+     * @return
+     */
     @RequestMapping("/getAllPerRoleByRId")
     public R getAllPermissionRoleByRId(@RequestParam("roleId") Integer rId){
         List<PreRole> perRole=service.getAllPerRoleByRId(rId);
         return R.ok().data("rolePer",perRole);
     }
+
+    /**
+     * 软删除或者增加权限
+     * @param addFun
+     * @param deleteFun
+     * @param roleId
+     * @return
+     */
     @RequestMapping("/saveRolePer")
     @IOLogRecorder
     public R saveRolePer(@RequestParam("addFun")String addFun,
@@ -60,7 +80,7 @@ public class PreRoleController {
         if(addFun!=null&&!addFun.equals("")) {
             String[] split = addFun.split(",");
             for (String s : split) {
-                PreRole addPre=new PreRole();
+                PreRole addPre=new PreRole();//将要添加的封装到类中
                 addPre.setPreId(Integer.parseInt(s));
                 addPre.setCreateTime(new Date());
                 addPre.setUpdateTime(new Date());
@@ -80,11 +100,11 @@ public class PreRoleController {
         }
         boolean flag =true;
         if(addId!=null){
-            flag = service.saveBatch(addId);
+            flag = service.saveBatch(addId);//调用方法添加
         }
         if(flag){
             if(deleteId!=null) {
-                List<PreRole> preRoles = service.selectIds(deleteId, roleId);
+                List<PreRole> preRoles = service.selectIds(deleteId, roleId);//查询出要进行软删除的数据
                 if(preRoles!=null) {
                     for (PreRole preRole : preRoles) {
                         preRole.setIsDeleted(false);
