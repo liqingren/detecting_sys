@@ -98,7 +98,6 @@ public class UsersController {
         }
         String code=usersService.getRoleCodeByCard(loginVo.getCard());
         System.out.println(list);
-        Users user = new Users();
         if(token!=null) {
             //根据身份证号查询用户信息
             Users userCard = usersService.getByCard(loginVo.getCard());
@@ -115,19 +114,19 @@ public class UsersController {
                         //生成绿色二维码
                         Integer color = 0xFF215E21;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                     else if(userCard.getState()== finalClass.STATE_YELLOW) {
                         //生成黄色二维码
                         Integer color = 0xFFFFFF00;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                     else if(userCard.getState()== finalClass.STATE_RED){
                         //生成红色二维码
                         Integer color = 0xFFFF0000;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
