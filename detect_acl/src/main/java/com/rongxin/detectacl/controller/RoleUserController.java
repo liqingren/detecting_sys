@@ -34,7 +34,7 @@ public class RoleUserController {
      * @return
      */
     @RequestMapping("/addRoleUser")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R addRoleForPer(@RequestBody RoleUser roleUser){
         roleUser.setCreateTime(new Date());
         roleUser.setUpdateTime(new Date());
@@ -48,7 +48,7 @@ public class RoleUserController {
      * @return
      */
     @RequestMapping("/remove")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R updatePreRole(@RequestBody RoleUser role){
         role.setUpdateTime(new Date());
         boolean flag = service.updateById(role);
@@ -82,7 +82,7 @@ public class RoleUserController {
      * @return
      */
     @RequestMapping("/removeRoleUsers")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R removeRoleUsers(@RequestParam("deleteUsers")String userStr){
         //处理传过来的字符串
         if(userStr==null||userStr.equals("")){
@@ -105,7 +105,7 @@ public class RoleUserController {
      * @return
      */
     @RequestMapping("/saveRoleUser")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R saveRoleUser(@RequestParam("addUsers")String addStr,@RequestParam("roleId")Integer roleId){
         if(roleId==null||roleId<=0||addStr==null||addStr.equals("")){
             return R.error();

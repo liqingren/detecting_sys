@@ -32,7 +32,7 @@ public class MedicineController {
      * @param code
      * @return
      */
-//    @IOLogRecorder
+    @IOLogRecorder
     @RequestMapping("/meuser/getmedicine")
     public R test(@RequestParam("code") String code){
         Medicine medicine=new Medicine();
@@ -47,7 +47,7 @@ public class MedicineController {
      * @param medicine
      * @return
      */
-//    @IOLogRecorder
+    @IOLogRecorder
     @RequestMapping("/medic/insert")
     public R insert(@RequestBody Medicine medicine){
         //随机生成药品编号

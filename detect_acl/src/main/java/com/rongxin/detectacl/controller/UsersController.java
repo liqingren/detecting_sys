@@ -44,7 +44,7 @@ public class UsersController {
      * @return
      */
     @RequestMapping("/remove")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteUsers") String users) {
          List<Users> deRoles = new ArrayList<>();
         //处理前端传过来的数字组成的字符串
@@ -82,26 +82,6 @@ public class UsersController {
         Integer count=service.selectCount(condition);
         return R.ok().data("userList",userList).data("pageNum",pageNum).data("count",count).data("totalPage",count/8+1);
     }
-    //登录
-//    @PostMapping("/login")
-//    @IOLogRecorder
-//    public R login(@RequestBody LoginVo loginVo){
-//        //返回token，使用jwt生成
-//        String token = service.login(loginVo);
-//        List<String> list=service.getAllPermission(loginVo);
-//        if(list!=null) {
-//            redisTemplate.opsForValue().set("permissions", list);
-//        }
-//        String code=service.getRoleCodeByCard(loginVo.getCard());
-//        System.out.println(list);
-//        return R.ok().data("token",token).data("roleCode",code);
-//    }
-//    //注册
-//    @PostMapping("/register")
-//    public R register(@RequestBody RegisterVo registerVo){
-//        service.register(registerVo);
-//        return R.ok();
-//    }
 
 }
 

@@ -119,54 +119,7 @@
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
     <script src="http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var websocket = null;
-        if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://127.0.0.1:8001/websocket/server");
-        } else if ('MozWebSocket' in window) {
-            websocket = new MozWebSocket("ws://127.0.0.1:8001/websocket/server");
-        } else {
-            websocket = new SockJS("http://127.0.0.1:8001/sockjs/server");
-        }
-        websocket.onopen = onOpen;
-        websocket.onmessage = onMessage;
-        websocket.onerror = onError;
-        websocket.onclose = onClose;
 
-        function onOpen(event) {
-            //  alert(event.type);
-        }
-
-        function onMessage(messageEvent) {
-            alert(messageEvent.data);
-        }
-
-        function onError(event) {
-        }
-
-        function onClose(closeEvent) {
-            // alert(closeEvent.reason);
-        }
-
-        function doSendUser() {
-            if (websocket.readyState === websocket.OPEN) {
-                var msg = document.getElementById("inputMsg").value;
-                websocket.send(msg);//发送消息
-                alert("发送成功!");
-            } else {
-                alert("连接失败!");
-            }
-        }
-
-        window.close = function () {
-            websocket.onclose();
-        };
-
-        function websocketClose() {
-            websocket.close();
-            alert("连接关闭");
-        }
-    </script>
     <script type="text/javascript">
         function initDate(){
             var date = new Date();

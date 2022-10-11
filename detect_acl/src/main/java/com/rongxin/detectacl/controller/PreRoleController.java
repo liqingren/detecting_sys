@@ -28,14 +28,14 @@ public class PreRoleController {
     private PreRoleService service;
 
     @RequestMapping("/addRolePer")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R addRoleForPer(@RequestBody PreRole preRole){
         boolean save = service.save(preRole);
         return save==true?R.ok():R.error();
     }
 
     @RequestMapping("/remove")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R updatePreRole(@RequestBody PreRole preRole){
         preRole.setUpdateTime(new Date());
         boolean flag = service.updateById(preRole);
@@ -71,7 +71,7 @@ public class PreRoleController {
      * @return
      */
     @RequestMapping("/saveRolePer")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R saveRolePer(@RequestParam("addFun")String addFun,
                          @RequestParam("deleteFun")String deleteFun,@RequestParam("roleId")Integer roleId){
         List<PreRole> addId=new ArrayList<>();

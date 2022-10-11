@@ -50,7 +50,7 @@ public class RolesController {
      * @return
      */
     @RequestMapping("/remove")
-//    @IOLogRecorder
+    @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteRoles") String roles){
         List<Roles> deRoles = new ArrayList<>();
         //处理前端传过来的数字组成的字符串

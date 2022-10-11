@@ -55,7 +55,7 @@
                 var password=$("[name='password']").val();
                 var login={"card":card, "password":password};
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detectacl/users/adminLogin",
+                    url:"http://192.168.190.111:8222/detectinq/users/adminLogin",
                     type:"POST",
                     data:JSON.stringify(login),
                     success:function(data){
