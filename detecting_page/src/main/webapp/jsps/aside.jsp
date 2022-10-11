@@ -73,8 +73,12 @@
             $("#username").text(user.name);
             $("#card").text(user.card);
             //用户登录之后获取用户名和身份证号
+            var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
+            if(roleCode==null||roleCode==""){
+                window.location.href="/nopermission.jsp";
+            }
             if(!$.cookie('token')){
-                window.location.href="loginTest.jsp";
+                window.location.href="adminlogin.jsp";
             }else {
                 var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
                 if(roleCode=="admin"){
@@ -106,7 +110,7 @@
 </head>
 <body bgcolor="#f5f5f5">
     <div class="header">
-        <h2>核酸检测系统</h2>
+        <h2>核酸检测后台系统</h2>
     </div>
     <div class="aside">
         <div class="list-user">
@@ -115,9 +119,6 @@
             <br/>
             <span>身份证号：</span>
             <span id="card"></span>
-        </div>
-        <div class="list">
-            <a href="user.jsp">健康码</a>
         </div>
         <div class="list" id="scan" hidden="hidden">
             <a href="scan.jsp">扫描核酸</a>

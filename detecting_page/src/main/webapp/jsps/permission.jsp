@@ -35,7 +35,7 @@
         var deleteFun=new Array();
         $(document).ready(function () {
             $.ajax({
-                url: "http://127.0.0.1:8222/detectacl/roles/getAllRole",
+                url: "http://192.168.190.111:8222/detectacl/roles/getAllRole",
                 type: "get",
                 success: function (data) {
                     var roles = data.data.roles;
@@ -69,7 +69,7 @@
                 var id = node.text();
                 var roleId=parseInt(id);
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detectacl/prerole/getAllPerRoleByRId",
+                    url:"http://192.168.190.111:8222/detectacl/prerole/getAllPerRoleByRId",
                     type:"post",
                     data:{"roleId":roleId},
                     success:function (data){
@@ -134,7 +134,7 @@
                     }
                 });
                 $.ajax({
-                    url: "http://127.0.0.1:8222/detectacl/prerole/saveRolePer",
+                    url: "http://192.168.190.111:8222/detectacl/prerole/saveRolePer",
                     type: "post",
                     data: {
                         "addFun": addFun.toString(),

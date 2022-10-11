@@ -63,7 +63,7 @@
         var roleUserId=-1;
         $(document).ready(function () {
             $.ajax({
-                url: "http://127.0.0.1:8222/detectacl/roles/getAllRole",
+                url: "http://192.168.190.111:8222/detectacl/roles/getAllRole",
                 type: "get",
                 success: function (data) {
                     var roles = data.data.roles;
@@ -76,7 +76,7 @@
                 }
             });
             $.ajax({
-                url: "http://127.0.0.1:8222/detectacl/users/getUserVoPage",
+                url: "http://192.168.190.111:8222/detectacl/users/getUserVoPage",
                 type: "post",
                 success: function (data) {
                     var users=data.data.userList;
@@ -155,7 +155,7 @@
         $(document).ready(function (){
             $(".delete").bind("click",function (){
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detectacl/users/remove",
+                    url:"http://192.168.190.111:8222/detectacl/users/remove",
                     type:"post",
                     data:{
                         "deleteUsers":deleteOrAddRole.toString()
@@ -179,7 +179,7 @@
                         alert("请选中用户")
                     }else{
                         $.ajax({
-                            url:"http://127.0.0.1:8222/detectacl/roleuser/saveRoleUser",
+                            url:"http://192.168.190.111:8222/detectacl/roleuser/saveRoleUser",
                             type:"post",
                             data:{
                                 "addUsers":deleteOrAddRole.toString(),
@@ -213,7 +213,7 @@
                 }
                 var condition=$("input[name=keyword]").val();
                 $.ajax({
-                    url: "http://127.0.0.1:8222/detectacl/users/getUserVoPage",
+                    url: "http://192.168.190.111:8222/detectacl/users/getUserVoPage",
                     type: "post",
                     data:{
                       "pageNum":page,
@@ -290,7 +290,7 @@
                 var page=1;
                 var condition=$("input[name=keyword]").val();
                 $.ajax({
-                    url: "http://127.0.0.1:8222/detectacl/users/getUserVoPage",
+                    url: "http://192.168.190.111:8222/detectacl/users/getUserVoPage",
                     type: "post",
                     data:{
                       "pageNum":page,

@@ -123,7 +123,7 @@
         //修改单个试剂的核酸结果
         function modifyOneResult(code,resultstate){
             $.ajax({
-                url:"http://127.0.0.1:8222/detecthos/result/meresult/modify",
+                url:"http://192.168.190.111:8222/detecthos/result/meresult/modify",
                 type:"post",
                 data:{
                     "code":code,
@@ -140,7 +140,7 @@
         //修改全部试剂的核酸结果
         function modifyAllResult(codeArray,resultstate){
             $.ajax({
-                url:"http://127.0.0.1:8222/detecthos/result/meresult/modifyAll",
+                url:"http://192.168.190.111:8222/detecthos/result/meresult/modifyAll",
                 type:"post",
                 data:{
                     "codeArray":codeArray.toString(),
@@ -172,7 +172,7 @@
                     //不通过
                     $(".bt_failed").bind("click",function(){
                         resultstate = '阳性';
-                        modifyOneResult(code,resultstate);
+                        modifyOneResult(id,resultstate);
                     });
                 }
             });
@@ -293,7 +293,7 @@
         });
         $(document).ready(function(){
             $.ajax({
-                url:"http://127.0.0.1:8222/detecthos/result/meresult/getresults",
+                url:"http://192.168.190.111:8222/detecthos/result/meresult/getresults",
                 type:"post",
                 data:{
                     "pageNum":pageNum,
@@ -339,8 +339,9 @@
             <thead>
             <tr>
                 <th style="width:50px;"></th>
-                <th>药品编号</th>
-                <th>采样人数</th>
+                <th>姓名</th>
+                <th>身份证号</th>
+                <th>性别</th>
                 <th>采集时间</th>
                 <th>状态</th>
             </tr>

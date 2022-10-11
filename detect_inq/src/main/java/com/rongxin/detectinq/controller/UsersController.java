@@ -83,7 +83,6 @@ public class UsersController {
         return R.error();
     }
 
-
     /**
      * 登录
      * @param loginVo
@@ -95,12 +94,12 @@ public class UsersController {
         //返回token，使用jwt生成
         String token = usersService.login(loginVo);
         List<String> list=usersService.getAllPermission(loginVo);
+        String code="";
         if(list!=null) {
             redisTemplate.opsForValue().set("permissions", list);
+            code=usersService.getRoleCodeByCard(loginVo.getCard());
         }
-        String code=usersService.getRoleCodeByCard(loginVo.getCard());
         System.out.println(list);
-        Users user = new Users();
         if(token!=null) {
             //根据身份证号查询用户信息
             Users userCard = usersService.getByCard(loginVo.getCard());
@@ -135,6 +134,25 @@ public class UsersController {
                     e.printStackTrace();
                 }
             }
+            return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
+        }
+        return R.error();
+    }
+    @IOLogRecorder
+    @RequestMapping("/adminLogin")
+    public R adminlogin(@RequestBody LoginVo loginVo) {
+        //返回token，使用jwt生成
+        String token = usersService.login(loginVo);
+        List<String> list=usersService.getAllPermission(loginVo);
+        if(list!=null) {
+            redisTemplate.opsForValue().set("permissions", list);
+        }
+        String code=usersService.getRoleCodeByCard(loginVo.getCard());
+        System.out.println(list);
+        if(token!=null) {
+            //根据身份证号查询用户信息
+            Users userCard = usersService.getByCard(loginVo.getCard());
+            //判断是否是第一次登录
             return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
         }
         return R.error();
@@ -193,6 +211,7 @@ public class UsersController {
                 }
             }
         }
+
     }
 
 

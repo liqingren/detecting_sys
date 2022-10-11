@@ -5,6 +5,7 @@ import com.rongxin.common.R;
 import com.rongxin.detecthos.service.UsersService;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 

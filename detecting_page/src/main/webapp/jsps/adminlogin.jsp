@@ -55,7 +55,7 @@
                 var password=$("[name='password']").val();
                 var login={"card":card, "password":password};
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detectacl/users/login",
+                    url:"http://192.168.190.111:8222/detectinq/users/adminLogin",
                     type:"POST",
                     data:JSON.stringify(login),
                     success:function(data){
@@ -63,7 +63,7 @@
                             sessionStorage.setItem("user",JSON.stringify(data.data.user));
                             sessionStorage.setItem("roleCode",JSON.stringify(data.data.roleCode));
                             $.cookie('token',data.data.token,{expires:3,path:'/'});
-                            window.location.href="/jsps/user.jsp";
+                            window.location.href="/jsps/aside.jsp";
                         }else{
                             alert("用户名或密码错误");
                         }
@@ -76,14 +76,11 @@
 </head>
 <body bgcolor="#f5f5f5">
     <div class="login">
-        <h2>核酸检测系统</h2>
+        <h2>核酸检测后台系统</h2>
         <table>
             <tr>
                 <td>
                     <p style="margin-left:20px;font-size: 28px;font-weight: bold;color:skyblue">登录</p>
-                </td>
-                <td  align="right">
-                    <a href="/jsps/register.jsp" style="font-size: 20px;font-weight: bold;color:cornflowerblue">没有账户？请先注册</a>
                 </td>
             </tr>
 

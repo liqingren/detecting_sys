@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ *  权限管理
  * </p>
  *
  * @author yuezhik
@@ -33,6 +33,11 @@ public class PermissionController {
     @Qualifier("preRoleServiceImpl")
     private PreRoleService preRoleService;
 
+    /**
+     * 增加权限
+     * @param pre
+     * @return
+     */
     @RequestMapping("/addPermission")
     @IOLogRecorder
     public R addRoleForPer(@RequestBody Permission pre){
@@ -41,6 +46,12 @@ public class PermissionController {
         boolean save = service.save(pre);
         return save==true?R.ok():R.error();
     }
+
+    /**
+     * 软删除权限
+     * @param pre
+     * @return
+     */
     @RequestMapping("/updatePreRole")
     @IOLogRecorder
     public R updatePreRole(@RequestBody Permission pre){
@@ -48,6 +59,12 @@ public class PermissionController {
         boolean flag = service.updateById(pre);
         return flag==true?R.ok():R.error();
     }
+
+    /**
+     * 软删除权限
+     * @param pre
+     * @return
+     */
     @RequestMapping("/remove")
     @IOLogRecorder
     public R removePreRole(@RequestBody Permission pre){
@@ -65,6 +82,10 @@ public class PermissionController {
         return flag==true?R.ok():R.error();
     }
 
+    /**
+     * 获取所有权限
+     * @return
+     */
     @RequestMapping("/getAllPermission")
     public R getAllPermissionRole(){
         List<Permission> perRole=service.getAllPermission();

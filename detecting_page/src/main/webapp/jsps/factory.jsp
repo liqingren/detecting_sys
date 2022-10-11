@@ -57,23 +57,23 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //当前选择label字体颜色变蓝
-            // $("label:last").css("color","steelblue");
+            $("label:last").css("color","steelblue");
             //保存
             $(".save").bind("click",function(){
                 var medicineName = $("[name='medicineName']").val();
                 var conpanyName = $("[name='conpanyName']").val();
-                var num = $("[name='num']").val();
-                var meConpany={"medicineName":medicineName,"conpanyName":conpanyName,"num":num};
+                var exp = $("[name='exp']").val();
+                var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"exp":exp};
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detecthos/medicine/medic/insert",
+                    url:"http://192.168.190.111/detecthos/medicine/medic/insert",
                     type:"post",
-                    data:JSON.stringify(meConpany),
+                    data:JSON.stringify(medicine),
                     success:function(data){
                         if(data.success){
                             alert("药品生产成功");
                             $("[name='medicineName']").val("");
                             $("[name='conpanyName']").val("");
-                            $("[name='num']").val("");
+                            $("[name='exp']").val("");
 
                         }else{
                             alert("药品生产失败");

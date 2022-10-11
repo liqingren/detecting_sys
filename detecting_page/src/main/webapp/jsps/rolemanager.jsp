@@ -48,10 +48,10 @@
         var deleteRole=new Array();
         $(document).ready(function(){
             if(!$.cookie('token')){
-                window.location.href="loginTest.jsp";
+                window.location.href="adminlogin.jsp";
             }
             $.ajax({
-                url:"http://127.0.0.1:8222/detectacl/roles/getAllRole",
+                url:"http://192.168.190.111:8222/detectacl/roles/getAllRole",
                 type:"post",
                 success:function(data){
                     var roles=data.data.roles;
@@ -86,7 +86,7 @@
         $(document).ready(function (){
             $(".delete").bind("click",function (){
                 $.ajax({
-                    url:"http://127.0.0.1:8222/detectacl/roles/remove",
+                    url:"http://192.168.190.111:8222/detectacl/roles/remove",
                     type:"post",
                     data:{
                         "deleteRoles":deleteRole.toString()

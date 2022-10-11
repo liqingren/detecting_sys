@@ -37,6 +37,12 @@ public class UsersController {
     private UsersService service;
     @Autowired
     private RoleUserService roleUserService;
+
+    /**
+     * 软删除用户
+     * @param users
+     * @return
+     */
     @RequestMapping("/remove")
     @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteUsers") String users) {
@@ -62,6 +68,13 @@ public class UsersController {
         boolean flag = service.updateBatchById(deRoles);
         return flag == true ? R.ok() : R.error();
     }
+
+    /**
+     * 条件查询，并且分页获取数据
+     * @param pageNum
+     * @param condition
+     * @return
+     */
     @RequestMapping("/getUserVoPage")
     public R getUserVoPage(@RequestParam(required = false,defaultValue = "1") Integer pageNum,
                     @RequestParam(required = false,defaultValue = "")String condition){
@@ -69,25 +82,6 @@ public class UsersController {
         Integer count=service.selectCount(condition);
         return R.ok().data("userList",userList).data("pageNum",pageNum).data("count",count).data("totalPage",count/8+1);
     }
-    //登录
-    @PostMapping("/login")
-    @IOLogRecorder
-    public R login(@RequestBody LoginVo loginVo){
-        //返回token，使用jwt生成
-        String token = service.login(loginVo);
-        List<String> list=service.getAllPermission(loginVo);
-        if(list!=null) {
-            redisTemplate.opsForValue().set("permissions", list);
-        }
-        String code=service.getRoleCodeByCard(loginVo.getCard());
-        System.out.println(list);
-        return R.ok().data("token",token).data("roleCode",code);
-    }
-//    //注册
-//    @PostMapping("/register")
-//    public R register(@RequestBody RegisterVo registerVo){
-//        service.register(registerVo);
-//        return R.ok();
-//    }
+
 }
 

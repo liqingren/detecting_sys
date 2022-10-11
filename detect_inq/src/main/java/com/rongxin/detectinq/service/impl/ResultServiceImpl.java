@@ -33,7 +33,7 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     }
 
     @Override
-    @Cacheable(value="getResultByPage")
+//    @Cacheable(value="getResultByPage")
     public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id,String keyword) {
         PageHelper.startPage(pageNum,pageSize);
         List<Result> list = resultMapper.getResultByPage(id,keyword);
@@ -47,7 +47,6 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     }
 
     @Override
-    @Cacheable(value="selectAllResult")
     public PageInfo<UserResult> selectAllResult(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<UserResult> list = resultMapper.selectAllResult();
@@ -56,7 +55,6 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     }
 
     @Override
-    @Cacheable(value="selectResultByCondition")
     public PageInfo<UserResult> selectResultByCondition(Map conditions, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<UserResult> list = resultMapper.selectResultByCondition(conditions);
@@ -65,7 +63,6 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     }
 
     @Override
-    @Cacheable(value="selectOverDueUser")
     public PageInfo<UserResult> selectOverDueUser(Map overDue,Integer pageNum,Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<UserResult> list = resultMapper.selectOverDueUser(overDue);
@@ -75,7 +72,6 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
 
 
     @Override
-    @Cacheable(value="updateIsDelete")
     public Integer updateIsDelete(Map delMsg) {
         return resultMapper.updateIsDelete(delMsg);
     }
