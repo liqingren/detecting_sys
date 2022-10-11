@@ -44,7 +44,7 @@ public class UsersController {
      * @return
      */
     @RequestMapping("/remove")
-    @IOLogRecorder
+//    @IOLogRecorder
     public R updatePreRole(@RequestParam("deleteUsers") String users) {
          List<Users> deRoles = new ArrayList<>();
         //处理前端传过来的数字组成的字符串

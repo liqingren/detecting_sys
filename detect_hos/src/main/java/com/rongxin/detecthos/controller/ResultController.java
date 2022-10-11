@@ -40,7 +40,7 @@ public class ResultController {
      * @param cardArray
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meuser/insert")
     public R insertResult(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);
@@ -66,7 +66,7 @@ public class ResultController {
      * 获取未出结果的核酸记录（根据姓名查询）
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meresult/getresults")
     public R getResults(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -82,7 +82,7 @@ public class ResultController {
      * @param keyword
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meresult/getsex")
     public R getResultsBySex(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -98,7 +98,7 @@ public class ResultController {
      * @param keyword
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meresult/getcard")
     public R getResultsByCard(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                         @RequestParam(value="pageSize",required = false,defaultValue = "5") Integer pageSize,
@@ -113,7 +113,7 @@ public class ResultController {
      * @param resultstate
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meresult/modify")
     public R mpdifyResultByOne(@RequestParam(value="id",required = false) Integer id,
                                @RequestParam(value="resultstate",required = false) String resultstate){
@@ -137,7 +137,7 @@ public class ResultController {
      * @param resultstate
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meresult/modifyAll")
     public R mpdifyResult(@RequestParam(value="idArray",required = false) String idArray,
                           @RequestParam(value="resultstate",required = false) String resultstate){

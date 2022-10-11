@@ -49,7 +49,7 @@ public class UsersController {
      * @param user
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/register")
     public R register(@RequestBody Users user){
         //判断身份证号唯一性
@@ -93,10 +93,11 @@ public class UsersController {
         //返回token，使用jwt生成
         String token = usersService.login(loginVo);
         List<String> list=usersService.getAllPermission(loginVo);
+        String code="";
         if(list!=null) {
             redisTemplate.opsForValue().set("permissions", list);
+            code=usersService.getRoleCodeByCard(loginVo.getCard());
         }
-        String code=usersService.getRoleCodeByCard(loginVo.getCard());
         System.out.println(list);
         if(token!=null) {
             //根据身份证号查询用户信息
@@ -132,6 +133,25 @@ public class UsersController {
                     e.printStackTrace();
                 }
             }
+            return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
+        }
+        return R.error();
+    }
+    @IOLogRecorder
+    @RequestMapping("/adminLogin")
+    public R adminlogin(@RequestBody LoginVo loginVo) {
+        //返回token，使用jwt生成
+        String token = usersService.login(loginVo);
+        List<String> list=usersService.getAllPermission(loginVo);
+        if(list!=null) {
+            redisTemplate.opsForValue().set("permissions", list);
+        }
+        String code=usersService.getRoleCodeByCard(loginVo.getCard());
+        System.out.println(list);
+        if(token!=null) {
+            //根据身份证号查询用户信息
+            Users userCard = usersService.getByCard(loginVo.getCard());
+            //判断是否是第一次登录
             return R.ok().data("user",userCard).data("token",token).data("roleCode",code);
         }
         return R.error();
@@ -215,7 +235,7 @@ public class UsersController {
      * @param code
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/getuser")
     public R getUser(@RequestParam("code") String code){
         Users user = usersService.getByCard(code);
@@ -227,7 +247,7 @@ public class UsersController {
      * @param id
      * @return
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/getuserresult")
     public R GetUserResult(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                            @RequestParam(value="pageSize",required = false,defaultValue = "10") Integer pageSize,
@@ -280,9 +300,5 @@ public class UsersController {
 //        System.out.println("广播成功");
 //        return "success";
 //    }
-
-
-
-
 }
 

@@ -48,7 +48,7 @@
         var deleteRole=new Array();
         $(document).ready(function(){
             if(!$.cookie('token')){
-                window.location.href="loginTest.jsp";
+                window.location.href="adminlogin.jsp";
             }
             $.ajax({
                 url:"http://192.168.190.111:8222/detectacl/roles/getAllRole",

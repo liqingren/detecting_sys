@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
     @Autowired
     UsersService usersService;
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/meuser/getuser")
     public R getUser(@RequestParam("code") String code) {
         return usersService.getUserByCard(code);

@@ -104,7 +104,7 @@
             background-color:#f5f5f5 ;
         }
         #datediv{
-            width:300px;
+            width:350px;
            position: relative;
             top:20px;
             margin:0 auto;
@@ -188,6 +188,15 @@
                 window.location.href="/jsps/userresult.jsp";
             });
         });
+        $(document).ready(function (){
+            var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
+            if(roleCode!=null&&roleCode!=""){
+                $("#admin").removeAttr("hidden");
+            }
+            $("#admin").bind("click",function (){
+                window.location.href="adminlogin.jsp";
+            })
+        })
         // $(document).ready(function(){
         //     var user=JSON.parse(sessionStorage.getItem("user"));
         //     var id = user.id;
@@ -214,8 +223,8 @@
     </script>
 </head>
 <body bgcolor="#f5f5f5">
-    <jsp:include page="aside.jsp"></jsp:include>
-    <div class="user">
+<div class="user">
+    <div>
         <div id="datediv">
 
         </div>
@@ -224,5 +233,9 @@
         </div>
         <button id="result">核酸结果</button>
     </div>
+    <div>
+        <button hidden="hidden" id="admin" style="top: 90px;left: 365px">后台系统</button>
+    </div>
+</div>
 </body>
 </html>

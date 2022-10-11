@@ -39,7 +39,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/addPermission")
-    @IOLogRecorder
+//    @IOLogRecorder
     public R addRoleForPer(@RequestBody Permission pre){
         pre.setCreateTime(new Date());
         pre.setUpdateTime(new Date());
@@ -53,7 +53,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/updatePreRole")
-    @IOLogRecorder
+//    @IOLogRecorder
     public R updatePreRole(@RequestBody Permission pre){
         pre.setUpdateTime(new Date());
         boolean flag = service.updateById(pre);
@@ -66,7 +66,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("/remove")
-    @IOLogRecorder
+//    @IOLogRecorder
     public R removePreRole(@RequestBody Permission pre){
         pre.setUpdateTime(new Date());
         PreRole preRole=new PreRole();

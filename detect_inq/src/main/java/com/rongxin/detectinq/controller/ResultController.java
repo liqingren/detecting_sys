@@ -29,7 +29,7 @@ public class ResultController {
     @Autowired
     ResultServiceImpl resultService;
 
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/test")
     public String test(@RequestParam("medicineCode") String medicineCode,@RequestParam("cardArray") String cardArray){
         System.out.println(medicineCode);
@@ -42,7 +42,7 @@ public class ResultController {
      * @return
      * http://localhost:8001/detectinq/result/adminSearchResult
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/adminSearchResult")
     public R adminSearchResult(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                                @RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize,
@@ -64,7 +64,7 @@ public class ResultController {
      * http://localhost:8001/detectinq/result/adminConditionSearch
      */
     @RequestMapping("/adminConditionSearch")
-    @IOLogRecorder
+//    @IOLogRecorder
     public R adminConditionSearch(@RequestParam("condition")String condition,
                                   @RequestParam("startTime")String startTime,
                                   @RequestParam("endTime")String endTime,
@@ -108,7 +108,7 @@ public class ResultController {
      * @return
      * http://localhost:8001/detectinq/result/adminModifyIsDelete
      */
-    @IOLogRecorder
+//    @IOLogRecorder
     @RequestMapping("/adminModifyIsDelete")
     public R adminModifyIsDelete(@RequestParam("deleteResultCard")String deleteResultCard,
                                  @RequestParam("deleteResultTime")String deleteResultTime,
