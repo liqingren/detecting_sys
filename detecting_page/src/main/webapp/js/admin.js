@@ -28,14 +28,14 @@ function formatTime(date) {
 //全选按钮的点击事件
 function checkAll(){
     //获取id的dom元素
-    let Id = document.getElementById('all');
+    var Id = document.getElementById('all');
     //获取类名为chBox的dom元素
-    let chBox = document.getElementsByName('modify_del');
-    let len = chBox.length;
+    var chBox = document.getElementsByName('modify_del');
+    var len = chBox.length;
     //输出观察
     console.log(Id.checked);
     console.log(chBox);
-    for(let i=0;i<len;i++){
+    for(var i=0;i<len;i++){
         //当全选按钮为true时，全部按钮都为true，否则相反
         if(Id.checked){
             chBox[i].checked=true;
@@ -47,10 +47,10 @@ function checkAll(){
 }
 //单个按钮的点击事件
 function checkOne(){
-    let count=0;
-    let chBox = document.getElementsByName('modify_del');
-    let len = chBox.length;
-    for(let i=0;i<len;i++){
+    var count=0;
+    var chBox = document.getElementsByName('modify_del');
+    var len = chBox.length;
+    for(var i=0;i<len;i++){
         //记录单选按钮为true的数量
         if(chBox[i].checked){
             count++;
@@ -71,7 +71,7 @@ function deleteResult(val){
     var deleteResultCard=value.eq(2).text();//得到第三列的数据身份证号
     var deleteResultTime=value.eq(5).text();//第五列结果时间
     $.ajax({
-        url:"http://127.0.0.1:8001/detectinq/result/adminModifyIsDelete",
+        url:"http://127.0.0.1:8222/detectinq/result/adminModifyIsDelete",
         type:"POST",
         xhrFields: {
             withCredentials: true
@@ -102,7 +102,7 @@ function delResults(){
                 return false;
             }
             $.ajax({
-                url:"http://127.0.0.1:8001/detectinq/result/adminModifyIsDelete",
+                url:"http://127.0.0.1:8222/detectinq/result/adminModifyIsDelete",
                 type:"POST",
                 xhrFields: {
                     withCredentials: true

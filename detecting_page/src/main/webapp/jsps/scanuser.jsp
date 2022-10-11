@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: 86158
-  Date: 2022/9/29
-  Time: 16:06
+  Date: 2022/10/10
+  Time: 10:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>扫描药品二维码</title>
+    <title>扫码用户二维码</title>
     <meta charset="utf-8">
     <style type="text/css">
         .scan{
@@ -50,7 +50,7 @@
             background-color: white;
         }
         .infor{
-            width:15rem;
+            width:12rem;
             height: 4rem;
             text-align: center;
             line-height: 4rem;
@@ -61,7 +61,7 @@
             border:none;
             position: relative;
             top:-130px;
-            left:38%;
+            left:32%;
             cursor: pointer;
             margin-right:10px;
         }
@@ -165,7 +165,7 @@
     <script type="text/javascript" src="../js/scan/findpat.js"></script>
     <script type="text/javascript" src="../js/scan/alignpat.js"></script>
     <script type="text/javascript" src="../js/scan/databr.js"></script>
-    <script type="text/javascript" src="../js/scan/webcam.js"></script>
+    <script type="text/javascript" src="../js/scan/webcamuser.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //当前选择label字体颜色变蓝
@@ -176,6 +176,13 @@
                 $(".double-bounce2").show();
                 load();
             });
+            // $(".close").bind("click",function(){
+            //     $(".result").hide();
+            // });
+            $("#sub").bind("click",function(){
+                insert()
+            })
+
         });
     </script>
 </head>
@@ -183,7 +190,7 @@
     <jsp:include page="aside.jsp"></jsp:include>
     <div class="scan">
         <div class="header">
-            <h3 style="color:steelblue;font-family: 华文彩云;font-size: 30px;">扫码药品二维码</h3>
+            <h3 style="color:steelblue;font-family: 华文彩云;font-size: 30px;">扫码用户健康码</h3>
         </div>
         <!-- 扫码区域 -->
         <div  id="scandiv"  class="scanning_frame">
@@ -198,29 +205,29 @@
             </div>
         </div>
         <div class="bt">
-<%--            <button class="infor" id="sub" hidden="hidden">提交数据</button>--%>
+            <button class="infor" id="sub">提交数据</button>
             <button class="infor" id="infoscan">扫一扫</button>
         </div>
 
         <!-- 展示扫码结果 -->
-        <div class="result" id="re-medic">
+        <div class="result" id="user" >
             <table>
                 <tr>
-                    <td>药品名称：</td>
+                    <td>姓名：</td>
                     <td>
-                        <input type="text" name="me_name" id="me_name">
+                        <input type="text" name="user_name" id="user_name">
                     </td>
                 </tr>
                 <tr>
-                    <td>药品编号：</td>
+                    <td>性别：</td>
                     <td>
-                        <input type="text" name="me_code" id="me_code" size="40" style="font-size:18px">
+                        <input type="text" name="user_sex" id="user_sex">
                     </td>
                 </tr>
                 <tr>
-                    <td>生产厂商：</td>
+                    <td>身份证号：</td>
                     <td>
-                        <input type="text" name="me_conpany" id="me_conpany">
+                        <input type="text" name="user_card" id="user_card">
                     </td>
                 </tr>
                 <tr>
@@ -230,7 +237,6 @@
                 </tr>
             </table>
         </div>
-
     </div>
 </body>
 </html>

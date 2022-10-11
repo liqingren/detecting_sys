@@ -20,34 +20,27 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Medicine implements Serializable {
+public class Meconpany implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 厂商id
-     */
-    @TableField("conpanyId")
-    private Integer conpanyId;
+    @TableField("code")
+    private String code;
 
-    /**
-     * 药品编号
-     */
-    @TableField("medicineCode")
-    private String medicineCode;
+    @TableField("medicineName")
+    private String medicineName;
 
-    /**
-     * 药品生产日期
-     */
+    @TableField("conpanyName")
+    private String conpanyName;
+
+    private Integer num;
+
     @TableField("createTime")
     private Date createTime;
 
-    /**
-     * 是否删除，0表示删除，1表示未删除
-     */
     @TableField("isDeleted")
     private Boolean isDeleted;
 

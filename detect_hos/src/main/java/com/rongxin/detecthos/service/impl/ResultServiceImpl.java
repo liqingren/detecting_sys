@@ -28,50 +28,23 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     @Autowired
     ResultMapper resultMapper;
 
+
     /**
-     * 分页查询所有或者根据姓名查询
+     * 分页查询未出结果的核酸记录
      * @param pageNum
      * @param pageSize
-     * @param keyword
      * @return
      */
     @Override
-//    @Cacheable(value="getUserResultByPage")
-    public PageInfo<UserResult> getUserResultByPage(Integer pageNum, Integer pageSize, String keyword) {
+    public PageInfo<UserResult> getResultByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.getUserResult(keyword);
+        List<UserResult> list = resultMapper.getResultByPage();
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
 
-    /**
-     * 根据card查询
-     * @param pageNum
-     * @param pageSize
-     * @param card
-     * @return
-     */
     @Override
-    public PageInfo<UserResult> getUserResultByCard(Integer pageNum, Integer pageSize,String card) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.getUserResultByCard(card);
-        PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
-        return pageInfo;
+    public List<Result> getResultByCode(String medicineCode) {
+        return resultMapper.getResultByCode(medicineCode);
     }
-
-    /**
-     * 根据性别查询
-     * @param pageNum
-     * @param pageSize
-     * @param sex
-     * @return
-     */
-    @Override
-    public PageInfo<UserResult> getUserResultBySex(Integer pageNum, Integer pageSize,Boolean sex) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.getUserResultBySex(sex);
-        PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
-        return pageInfo;
-    }
-
 }

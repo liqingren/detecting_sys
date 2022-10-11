@@ -20,46 +20,14 @@ import java.util.List;
 public class UserResult implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 身份证号
-     */
-    private String card;
-
-    /**
-     * 姓名
-     */
-    private String name;
-
-    /**
-     * 性别，1表示男，0表示女
-     */
-    private Boolean sex;
-
-    /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
-     * 地址
-     */
-    private String address;
-
-
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 药品编号
+     * 试剂编号
      */
     @TableField("medicineCode")
     private String medicineCode;
-
-    /**
-     * 用户id
-     */
-    @TableField("userId")
-    private Integer userId;
 
     /**
      * 检测结果
@@ -84,7 +52,7 @@ public class UserResult implements Serializable {
     @TableField("isDelete")
     private Boolean isDelete;
 
-//    private List<Users> users;
+    private Integer count;
 
 
 

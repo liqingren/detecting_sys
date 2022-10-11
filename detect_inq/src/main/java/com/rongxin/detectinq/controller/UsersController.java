@@ -11,11 +11,15 @@ import com.rongxin.detectinq.service.impl.UsersServiceImpl;
 import com.rongxin.detectinq.utils.QRCodeUtils;
 import com.rongxin.detectinq.utils.finalClass;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.socket.TextMessage;
 
+import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.List;
 
@@ -79,10 +83,10 @@ public class UsersController {
         return R.error();
     }
 
+
     /**
      * 登录
-     * @param card
-     * @param password
+     * @param loginVo
      * @return
      */
     @IOLogRecorder
@@ -113,19 +117,19 @@ public class UsersController {
                         //生成绿色二维码
                         Integer color = 0xFF215E21;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                     else if(userCard.getState()== finalClass.STATE_YELLOW) {
                         //生成黄色二维码
                         Integer color = 0xFFFFFF00;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                     else if(userCard.getState()== finalClass.STATE_RED){
                         //生成红色二维码
                         Integer color = 0xFFFF0000;
                         //将健康码存入文件
-                        QRCodeUtils.encode(user.getCard(), color);
+                        QRCodeUtils.encode(userCard.getCard(), color);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -142,42 +146,9 @@ public class UsersController {
      * @param result
      */
     public void judgeCodeColor(Users userCard,Result result){
-        if(result.getResultstate().equals(finalClass.RESULT_ERROR)){
-            //如果最近一次核酸结果是阳性，健康码状态变为2，健康码变红
-            if(userCard.getState()!=finalClass.STATE_RED) {
-                userCard.setState(finalClass.STATE_RED);
-                //最后修改时间
-                Date updatedTime = new Date();
-                userCard.setUpdateTime(updatedTime);
-                usersService.updateById(userCard);
-            }
-        }else if(result.getResultstate().equals(finalClass.RESULT_OK)) {
-            //获取最近一次核酸的检测时间(单位毫秒)
-            long resultTime = result.getResultTime().getTime();
-            //获取当前时间(单位毫秒)
-            long nowTime = System.currentTimeMillis();
-            //计算两者时间差
-            long timeDiff = (nowTime - resultTime) % (1000 * 60 * 60 * 24) / (1000 * 60 * 60) + (nowTime - resultTime) / (1000 * 60 * 60 * 24) * 24;
-            if (timeDiff < finalClass.DATE_YELLOW) {
-                //如果小于48小时没做核酸，健康码状态变为0，健康码变绿
-                if (userCard.getState() != finalClass.STATE_GREEN) {
-                    userCard.setState(finalClass.STATE_GREEN);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
-                }
-            } else if (timeDiff > finalClass.DATE_YELLOW && timeDiff < finalClass.DATE_RED) {
-                //如果48~72小时没做核酸，健康码状态变为1，健康码变黄
-                if (userCard.getState() != finalClass.STATE_YELLOW) {
-                    userCard.setState(finalClass.STATE_YELLOW);
-                    //最后修改时间
-                    Date updatedTime = new Date();
-                    userCard.setUpdateTime(updatedTime);
-                    usersService.updateById(userCard);
-                }
-            } else if (timeDiff > finalClass.DATE_RED) {
-                //如果72小时以上没做核酸，健康码状态变为2，健康码变红
+        if(result.getResultstate()!=null) {
+            if (result.getResultstate().equals(finalClass.RESULT_ERROR)) {
+                //如果最近一次核酸结果是阳性，健康码状态变为2，健康码变红
                 if (userCard.getState() != finalClass.STATE_RED) {
                     userCard.setState(finalClass.STATE_RED);
                     //最后修改时间
@@ -185,28 +156,46 @@ public class UsersController {
                     userCard.setUpdateTime(updatedTime);
                     usersService.updateById(userCard);
                 }
+            } else if (result.getResultstate().equals(finalClass.RESULT_OK)) {
+                //获取最近一次核酸的检测时间(单位毫秒)
+                long resultTime = result.getResultTime().getTime();
+                //获取当前时间(单位毫秒)
+                long nowTime = System.currentTimeMillis();
+                //计算两者时间差
+                long timeDiff = (nowTime - resultTime) % (1000 * 60 * 60 * 24) / (1000 * 60 * 60) + (nowTime - resultTime) / (1000 * 60 * 60 * 24) * 24;
+                if (timeDiff < finalClass.DATE_YELLOW) {
+                    //如果小于48小时没做核酸，健康码状态变为0，健康码变绿
+                    if (userCard.getState() != finalClass.STATE_GREEN) {
+                        userCard.setState(finalClass.STATE_GREEN);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
+                } else if (timeDiff > finalClass.DATE_YELLOW && timeDiff < finalClass.DATE_RED) {
+                    //如果48~72小时没做核酸，健康码状态变为1，健康码变黄
+                    if (userCard.getState() != finalClass.STATE_YELLOW) {
+                        userCard.setState(finalClass.STATE_YELLOW);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
+                } else if (timeDiff > finalClass.DATE_RED) {
+                    //如果72小时以上没做核酸，健康码状态变为2，健康码变红
+                    if (userCard.getState() != finalClass.STATE_RED) {
+                        userCard.setState(finalClass.STATE_RED);
+                        //最后修改时间
+                        Date updatedTime = new Date();
+                        userCard.setUpdateTime(updatedTime);
+                        usersService.updateById(userCard);
+                    }
+                }
             }
         }
-
     }
 
 
-
-//    /**
-//     * 判断身份证号是否唯一
-//     * @param card
-//     * @return
-//     */
-//    @IOLogRecorder
-//    @RequestMapping("/judge")
-//    public R judgeSingleUser(@RequestParam("card") String card){
-//        Users user = usersService.getByCard(card);
-//        if(user!=null){
-//            return R.error();
-//        }
-//        return R.ok();
-//    }
-//
 
 
     /**
@@ -235,49 +224,6 @@ public class UsersController {
         //根据身份证号分页查询核酸结果
         PageInfo<Result> result = resultService.getResultByPage(pageNum,pageSize,id,keyword);
         return R.ok().data("result",result);
-    }
-
-
-    /**
-     *
-     * 指定发送
-     * http://localhost:8001/detectinq/users/websocket/sendToUser
-     * @param
-     * @param info
-     * @return
-     */
-    @SneakyThrows
-    @ResponseBody
-    @RequestMapping(value = "/websocket/sendToUser", method = {RequestMethod.POST, RequestMethod.GET})
-    public String send(@RequestParam(value = "card") String card, @RequestParam(value = "info") String info) {
-
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
-        helper.setSubject("这是一封测试邮件");
-        helper.setFrom("2794975447@qq.com");
-        helper.setTo("3343087896@qq.com");
-        helper.setSentDate(new Date());
-        helper.setText(info);
-        javaMailSender.send(mimeMessage);
-
-        springWebSocketHandler.sendMessageToUser(card, new TextMessage(info));
-        System.out.println("发送至：" + card);
-        return "success";
-    }
-
-
-    /**
-     * 发送到全部用户
-     * http://localhost:8001/detectinq/users/websocket/broadcast
-     * @param info
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/websocket/broadcast", method = {RequestMethod.POST, RequestMethod.GET})
-    public String broadcast(@RequestParam(value = "info") String info) {
-        springWebSocketHandler.sendMessageToUsers(new TextMessage("广播消息：" + info));
-        System.out.println("广播成功");
-        return "success";
     }
 
 

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author rlq
- * @since 2022-10-04
+ * @since 2022-10-10
  */
 public interface MedicineService extends IService<Medicine> {
     /**

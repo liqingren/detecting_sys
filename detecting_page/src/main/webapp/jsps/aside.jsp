@@ -69,6 +69,9 @@
     <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
             //用户登录之后获取用户名和身份证号
             if(!$.cookie('token')){
                 window.location.href="loginTest.jsp";
@@ -83,6 +86,9 @@
                 }
                 if(roleCode=="scaner"){
                     $("#scan").removeAttr("hidden");
+                }
+                if(roleCode=="medicine"){
+                    $("#medicine").removeAttr("hidden");
                 }
             }
         })
@@ -127,11 +133,14 @@
                 <li><a href="permission.jsp">权限分配</a></li>
             </div>
         </div>
-        <div class="list" id="results">
+        <div class="list" id="results" hidden="hidden">
             <a href="admin.jsp">核酸记录</a>
         </div>
-        <div class="list" id="medicine" >
+        <div class="list" id="medicine" hidden="hidden">
             <a href="factory.jsp">生产药品</a>
+        </div>
+        <div class="list" id="quit">
+            <a href="login.jsp">退出</a>
         </div>
     </div>
 </body>

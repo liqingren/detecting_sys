@@ -120,33 +120,37 @@
     </style>
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        //修改单个用户的核酸结果
-        function modifyOneResult(id,resultstate){
+        //修改单个试剂的核酸结果
+        function modifyOneResult(code,resultstate){
             $.ajax({
                 url:"http://127.0.0.1:8222/detecthos/result/meresult/modify",
                 type:"post",
                 data:{
-                    "id":id,
+                    "code":code,
                     "resultstate":resultstate
                 },
                 success:function(data){
                     console.log(data);
-                    window.location.href="income.jsp";
+                    if(data.success) {
+                        window.location.href = "income.jsp";
+                    }
                 }
             });
         }
-        //修改全部用户的核酸结果
-        function modifyAllResult(idArray,resultstate){
+        //修改全部试剂的核酸结果
+        function modifyAllResult(codeArray,resultstate){
             $.ajax({
                 url:"http://127.0.0.1:8222/detecthos/result/meresult/modifyAll",
                 type:"post",
                 data:{
-                    "idArray":idArray.toString(),
+                    "codeArray":codeArray.toString(),
                     "resultstate":resultstate
                 },
                 success:function(data){
                     console.log(data);
-                    window.location.href="income.jsp";
+                    if(data.success) {
+                        window.location.href = "income.jsp";
+                    }
                 }
             });
         }
@@ -157,18 +161,18 @@
                 var flag = $(".choice").is(":checked");
                 if(flag){
                     //获取被选中的id
-                    var id = $(this).val();
+                    var code = $(this).val();
                     var resultstate = null;
                     //通过
                     $(".bt_enter").bind("click",function(){
                         resultstate = '阴性';
                         console.log(resultstate);
-                        modifyOneResult(id,resultstate);
+                        modifyOneResult(code,resultstate);
                     });
                     //不通过
                     $(".bt_failed").bind("click",function(){
                         resultstate = '阳性';
-                        modifyOneResult(id,resultstate);
+                        modifyOneResult(code,resultstate);
                     });
                 }
             });
@@ -178,21 +182,21 @@
                 //全选
                 if(flag) {
                     $(".choice").prop("checked",flag);
-                    var idArray =new Array();//定义一个数组
+                    var codeArray =new Array();//定义一个数组
                     $(".choice:checked").each(function(){//遍历每一个名字为nodes的复选框，其中选中的执行函数
-                        idArray.push($(this).val());//将选中的值添加到数组chk_value中
+                        codeArray.push($(this).val());//将选中的值添加到数组chk_value中
                     });
-                    console.log(idArray);
+                    console.log(codeArray);
                     var resultstate = null;
                     //通过
                     $(".bt_enter").bind("click",function(){
                         resultstate = '阴性';
-                        modifyAllResult(idArray,resultstate);
+                        modifyAllResult(codeArray,resultstate);
                     });
                     //不通过
                     $(".bt_failed").bind("click",function(){
                         resultstate = '阳性';
-                        modifyAllResult(idArray,resultstate);
+                        modifyAllResult(codeArray,resultstate);
                     });
                 }
                 //取消全选
@@ -204,14 +208,8 @@
         //将用户基本信息和结果信息写入表格，并做分页处理
         function getPage(list,result){
             for(var i=0;i<list.length;i++){
-                var sex=null;
-                if(list[i].sex===true){
-                    sex='男';
-                }else{
-                    sex='女';
-                }
-                var str = "<tr><td><input type='checkbox' class='choice' value='"+list[i].id+"'></td><td>"+
-                    list[i].name+"</td><td>" +list[i].card+"</td><td>"+sex+"</td><td class='ctime'>"+list[i].createTime+
+                var str = "<tr><td><input type='checkbox' class='choice' value='"+list[i].medicineCode+"'></td><td>"+
+                    list[i].medicineCode+"</td><td>"+list[i].count+"</td><td class='ctime'>"+list[i].createTime+
                     "</td><td><button class='bt_enter'>通过</button><button class='bt_failed'>不通过</button>";
                 $("#tbody").append(str);
             }
@@ -295,7 +293,7 @@
         });
         $(document).ready(function(){
             $.ajax({
-                url:"http://127.0.0.1:8222/detecthos/result/meresult    ./getresults",
+                url:"http://127.0.0.1:8222/detecthos/result/meresult/getresults",
                 type:"post",
                 data:{
                     "pageNum":pageNum,
@@ -317,63 +315,6 @@
                 window.location.href = encodeURI("income.jsp?keyword=" + name);
             });
         });
-                // $(".sel").bind("change",function(){
-                // var choice = $(".sel option:selected").val();
-                // $("#bt").bind("click",function(){
-                //     if(choice==1) {
-                //         var name = $("[name='keyword']").val();
-                //         //转编码跳转页面
-                //         window.location.href = encodeURI("income.jsp?keyword=" + name);
-                //     }
-                //     else if(choice==2){
-                //         var sex = $("[name='keyword']").val();
-                //         var keyword=null;
-                //         if(sex=="男"){
-                //             keyword=true;
-                //         }else{
-                //             keyword=false;
-                //         }
-                //         $.ajax({
-                //             url:"http://127.0.0.1:8006/detecthos/result/getsex",
-                //             type:"post",
-                //             data:{
-                //                 "pageNum":pageNum,
-                //                 "keyword":keyword
-                //             },
-                //             success:function(data){
-                //                 var result = data.data.sexResults;
-                //                 var list = result.list;
-                //                 getPage(list,result);
-                //             }
-                //         });
-                //     }
-                //     else if(choice==3){
-                //         var keyword = $("[name='keyword']").val();
-                //         $.ajax({
-                //             url:"http://127.0.0.1:8006/detecthos/result/getcard",
-                //             type:"post",
-                //             data:{
-                //                 "pageNum":pageNum,
-                //                 "keyword":keyword
-                //             },
-                //             success:function(data){
-                //                 var result = data.data.cardResults;
-                //                 console.log(result);
-                //                 var list = result.list;
-                //                 getPage(list,result);
-                //             }
-                //         });
-                //     }
-                // });
-            // })
-        // });
-        // $(document).ready(function(){
-        //     $(".choice").bind("click",function(){
-        //         alert(1);
-        //         var flag = $(".choice").is(":checked");
-        //         alert(flag);
-        //     })
-        // })
     </script>
 </head>
 <body bgcolor="#f5f5f5">
@@ -398,9 +339,8 @@
             <thead>
             <tr>
                 <th style="width:50px;"></th>
-                <th>姓名</th>
-                <th>身份证号</th>
-                <th>性别</th>
+                <th>药品编号</th>
+                <th>采样人数</th>
                 <th>采集时间</th>
                 <th>状态</th>
             </tr>

@@ -89,26 +89,64 @@ function load(){
     qrcode.callback = read;
     setwebcam();
 }
+
+//获取地址栏参数
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r!=null) {
+        return unescape(r[2]);
+    }
+    return null; //返回参数值
+}
+
 function read(code){
     console.log("qrcode info:"+code);//输出扫描后的信息
     $.ajax({
-        url:"http://127.0.0.1:8222/detecthos/medicine/meuser/getmedicine",
+        url:"http://127.0.0.1:8222/detecthos/users/meuser/getuser",
         type:"post",
         data:{
             "code":code
         },
         success:function(data){
-            console.log(data.data.medicine);
-            console.log(data.data.conpany);
-            $("#me_code").val(data.data.medicine.medicineCode);
-            $("#me_name").val(data.data.conpany.medicineName);
-            $("#me_conpany").val(data.data.conpany.conpanyName);
-            $("#re-medic").css("display","block");
+            console.log(data.data.userCard);
+            $("#user_name").val(data.data.userCard.name);
+            if(data.data.userCard.sex){
+                $("#user_sex").val("男性");
+            }else{
+                $("#user_sex").val("女性");
+            }
+            $("#user_card").val(data.data.userCard.card);
+            $("#user").css("display","block");
             $(".close").bind("click",function(){
                 $(".result").hide();
-                window.location.href="scanuser.jsp?medicineCode="+code;
             });
+            cardArray.push(data.data.userCard.id);
+            console.log(cardArray);
+            if(cardArray.length>2){
+                $(".close").bind("click",function(){
+                    $(".result").hide();
+                    alert("检测人数已满");
+                });
+            }
+        }
+
+    })
+}
+function insert() {
+    var medicineCode = getUrlParam("medicineCode");
+    $.ajax({
+        url:"http://127.0.0.1:8222/detecthos/result/meuser/insert",
+        type:"post",
+        data:{
+            "medicineCode":medicineCode,
+            "cardArray":cardArray.toString()
+        },
+        success:function (data) {
+            if(data.success){
+                alert("核酸信息录入成功");
+                window.location.href="scan.jsp";
+            }
         }
     })
 }
-

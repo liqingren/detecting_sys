@@ -57,23 +57,23 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //当前选择label字体颜色变蓝
-            $("label:last").css("color","steelblue");
+            // $("label:last").css("color","steelblue");
             //保存
             $(".save").bind("click",function(){
                 var medicineName = $("[name='medicineName']").val();
                 var conpanyName = $("[name='conpanyName']").val();
-                var exp = $("[name='exp']").val();
-                var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"exp":exp};
+                var num = $("[name='num']").val();
+                var meConpany={"medicineName":medicineName,"conpanyName":conpanyName,"num":num};
                 $.ajax({
-                    url:"http://127.0.0.1:8006/detecthos/medicine/medic/insert",
+                    url:"http://127.0.0.1:8222/detecthos/medicine/medic/insert",
                     type:"post",
-                    data:JSON.stringify(medicine),
+                    data:JSON.stringify(meConpany),
                     success:function(data){
                         if(data.success){
                             alert("药品生产成功");
                             $("[name='medicineName']").val("");
                             $("[name='conpanyName']").val("");
-                            $("[name='exp']").val("");
+                            $("[name='num']").val("");
 
                         }else{
                             alert("药品生产失败");
@@ -102,9 +102,9 @@
                 </td>
             </tr>
             <tr>
-                <td>保质期：</td>
+                <td>数量：</td>
                 <td>
-                    <input type="text" name="exp">
+                    <input type="text" name="num">
                 </td>
             </tr>
             <tr>

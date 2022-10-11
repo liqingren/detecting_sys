@@ -104,9 +104,10 @@
             background-color:#f5f5f5 ;
         }
         #datediv{
-            width:300px;
+            width:350px;
            position: relative;
             top:20px;
+            left:40px;
             margin:0 auto;
         }
         .date{

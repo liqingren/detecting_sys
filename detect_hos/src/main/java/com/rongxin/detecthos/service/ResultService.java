@@ -20,24 +20,17 @@ public interface ResultService extends IService<Result> {
 
 
     /**
-     * 两表连查并分页
+     *
      * @param pageNum
      * @param pageSize
      * @return
      */
-    PageInfo<UserResult> getUserResultByPage(Integer pageNum, Integer pageSize, String keyword);
+    PageInfo<UserResult> getResultByPage(Integer pageNum, Integer pageSize);
 
     /**
-     * 根据身份证号模糊查询
-     * @param card
+     * 根据试剂编号查询核酸记录
+     * @param medicineCode
      * @return
      */
-    PageInfo<UserResult> getUserResultByCard(Integer pageNum, Integer pageSize,String card);
-
-    /**
-     * 根据性别查询
-     * @param sex
-     * @return
-     */
-    PageInfo<UserResult> getUserResultBySex(Integer pageNum, Integer pageSize,Boolean sex);
+    List<Result> getResultByCode(String medicineCode);
 }
