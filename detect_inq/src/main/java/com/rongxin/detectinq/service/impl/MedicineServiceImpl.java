@@ -18,11 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MedicineServiceImpl extends ServiceImpl<MedicineMapper, Medicine> implements MedicineService {
-    @Autowired
-    MedicineMapper medicineMapper;
+
 
     @Cacheable(value="getByMedicineCode")
     public Medicine getByMedicineCode(String medicineCode) {
-        return medicineMapper.getByMedicineCode(medicineCode);
+        return baseMapper.getByMedicineCode(medicineCode);
     }
 }

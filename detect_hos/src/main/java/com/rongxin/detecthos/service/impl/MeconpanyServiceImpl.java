@@ -17,11 +17,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MeconpanyServiceImpl extends ServiceImpl<MeconpanyMapper, Meconpany> implements MeconpanyService {
-
-    @Autowired
-    MeconpanyMapper meconpanyMapper;
     @Override
     public Meconpany getMeconpanyByCode(String code) {
-        return meconpanyMapper.getMeconpanyByCode(code);
+        return baseMapper.getMeconpanyByCode(code);
     }
 }

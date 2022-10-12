@@ -24,32 +24,31 @@ import java.util.Map;
  */
 @Service
 public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> implements ResultService {
-    @Autowired
-    ResultMapper resultMapper;
+
 
     @Cacheable(value="getResultByUserId")
     public Result getResultByUserId(int id) {
-        return resultMapper.getResultByUserId(id);
+        return baseMapper.getResultByUserId(id);
     }
 
     @Override
 //    @Cacheable(value="getResultByPage")
     public PageInfo<Result> getResultByPage(Integer pageNum, Integer pageSize, Integer id,String keyword) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Result> list = resultMapper.getResultByPage(id,keyword);
+        List<Result> list = baseMapper.getResultByPage(id,keyword);
         PageInfo<Result> pageInfo = new PageInfo<Result>(list);
         return pageInfo;
     }
 
     @Override
     public int getCountByUserId(Integer userId) {
-        return resultMapper.getCountByUserId(userId);
+        return baseMapper.getCountByUserId(userId);
     }
 
     @Override
     public PageInfo<UserResult> selectAllResult(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.selectAllResult();
+        List<UserResult> list = baseMapper.selectAllResult();
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
@@ -57,7 +56,7 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     @Override
     public PageInfo<UserResult> selectResultByCondition(Map conditions, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.selectResultByCondition(conditions);
+        List<UserResult> list = baseMapper.selectResultByCondition(conditions);
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
@@ -65,7 +64,7 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     @Override
     public PageInfo<UserResult> selectOverDueUser(Map overDue,Integer pageNum,Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.selectOverDueUser(overDue);
+        List<UserResult> list = baseMapper.selectOverDueUser(overDue);
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
@@ -73,7 +72,7 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
 
     @Override
     public Integer updateIsDelete(Map delMsg) {
-        return resultMapper.updateIsDelete(delMsg);
+        return baseMapper.updateIsDelete(delMsg);
     }
 
 }

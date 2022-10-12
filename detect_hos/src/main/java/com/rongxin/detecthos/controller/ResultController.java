@@ -52,10 +52,10 @@ public class ResultController {
      * @return
      */
     @IOLogRecorder
-    @Transactional
+//    @Transactional
     @RequestMapping("/meuser/insert")
     public R insertResult(@RequestParam("medicineCode") String medicineCode, @RequestParam("cardArray") String cardArray){
-        Medicine medicine = null;
+        Medicine medicine = new Medicine();
         //将userId字符串分割成数组
         String[] userIds = cardArray.split(",");
         List<Result> list = new ArrayList<Result>();
@@ -89,21 +89,23 @@ public class ResultController {
             }
             //获取试剂信息
             medicine = medicineService.getByMedicineCode(medicineCode);
-            medicine.setIsDeleted(false);
-            //该试剂已被使用，软删除该试剂
-            medicineService.updateById(medicine);
-            //获取这一批次药品信息
-            Meconpany conpany = meconpanyService.getById(medicine.getConpanyId());
-            Integer num = conpany.getNum();
-            //已被使用掉一罐试剂，药品总数量-1
-            conpany.setNum(num-1);
-            //当药品数量为0时，软删除该药品
-            if(num-1==0){
-                conpany.setIsDeleted(false);
-            }
-            boolean conflag = meconpanyService.updateById(conpany);
-            if(conflag) {
-                return R.ok();
+            if(medicine!=null) {
+                medicine.setIsDeleted(false);
+                //该试剂已被使用，软删除该试剂
+                medicineService.updateById(medicine);
+                //获取这一批次药品信息
+                Meconpany conpany = meconpanyService.getById(medicine.getConpanyId());
+                Integer num = conpany.getNum();
+                //已被使用掉一罐试剂，药品总数量-1
+                conpany.setNum(num - 1);
+                //当药品数量为0时，软删除该药品
+                if (num - 1 == 0) {
+                    conpany.setIsDeleted(false);
+                }
+                boolean conflag = meconpanyService.updateById(conpany);
+                if (conflag) {
+                    return R.ok();
+                }
             }
             return R.ok();
         }

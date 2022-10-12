@@ -31,7 +31,7 @@ public interface ResultMapper extends BaseMapper<Result> {
      * @param medicineCode
      * @return
      */
-    List<Result> getResultByCode(String medicineCode);
+    List<Result> getResultByCode(@Param("medicineCode") String medicineCode);
 
 
 

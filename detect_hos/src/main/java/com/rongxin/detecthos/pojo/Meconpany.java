@@ -36,6 +36,7 @@ public class Meconpany implements Serializable {
     @TableField("conpanyName")
     private String conpanyName;
 
+    @TableField("num")
     private Integer num;
 
     @TableField("createTime")

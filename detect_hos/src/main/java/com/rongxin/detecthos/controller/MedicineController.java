@@ -54,7 +54,6 @@ public class MedicineController {
      * @return
      */
     @IOLogRecorder
-    @Transactional
     @RequestMapping("/medic/insert")
     public R insert(@RequestBody Meconpany meconpany){
         String strUUID = UUID.randomUUID().toString();
@@ -67,7 +66,7 @@ public class MedicineController {
             Integer num = meconpany.getNum();
             List<Medicine> list = new ArrayList<Medicine>();
             //随机生成药品编号
-            Boolean flag = false;
+//            Boolean flag = false;
             for(int i=0;i<num;i++){
                 Medicine medicine = new Medicine();
                 medicine.setConpanyId(conpany.getId());
@@ -75,10 +74,10 @@ public class MedicineController {
                 String medicineCode = str.replace("-","");
                 medicine.setMedicineCode(medicineCode);
                 medicine.setCreateTime(new Date());
-                flag = medicineService.save(medicine);
+//                flag = medicineService.save(medicine);
                 list.add(medicine);
             }
-//            boolean flag = medicineService.saveBatch(list);
+            boolean flag = medicineService.saveBatch(list);
             if(flag){
                 for(Medicine me:list){
                     try {

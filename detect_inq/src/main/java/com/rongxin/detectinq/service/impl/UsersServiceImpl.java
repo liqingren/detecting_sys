@@ -25,8 +25,7 @@ import java.util.List;
  */
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements UsersService {
-    @Autowired
-    UsersMapper usersMapper;
+
 
     @Override
     public String login(LoginVo loginVo) {
@@ -56,11 +55,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Cacheable(value="getByCard")
     public Users getByCard(String card) {
-        return usersMapper.getByCard(card);
+        return baseMapper.getByCard(card);
     }
 
     @Override
     public int getOnlyUser(String card) {
-        return usersMapper.getOnlyUser(card);
+        return baseMapper.getOnlyUser(card);
     }
 }

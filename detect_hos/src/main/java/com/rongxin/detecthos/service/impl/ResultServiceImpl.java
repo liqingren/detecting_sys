@@ -25,8 +25,6 @@ import java.util.List;
 @Service
 public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> implements ResultService {
 
-    @Autowired
-    ResultMapper resultMapper;
 
 
     /**
@@ -38,13 +36,13 @@ public class ResultServiceImpl extends ServiceImpl<ResultMapper, Result> impleme
     @Override
     public PageInfo<UserResult> getResultByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<UserResult> list = resultMapper.getResultByPage();
+        List<UserResult> list = baseMapper.getResultByPage();
         PageInfo<UserResult> pageInfo = new PageInfo<UserResult>(list);
         return pageInfo;
     }
 
     @Override
     public List<Result> getResultByCode(String medicineCode) {
-        return resultMapper.getResultByCode(medicineCode);
+        return baseMapper.getResultByCode(medicineCode);
     }
 }

@@ -62,10 +62,10 @@
             $(".save").bind("click",function(){
                 var medicineName = $("[name='medicineName']").val();
                 var conpanyName = $("[name='conpanyName']").val();
-                var exp = $("[name='exp']").val();
-                var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"exp":exp};
+                var num = $("[name='num']").val();
+                var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"num":num};
                 $.ajax({
-                    url:"http://192.168.190.111/detecthos/medicine/medic/insert",
+                    url:"http://192.168.190.111:8222/detecthos/medicine/medic/insert",
                     type:"post",
                     data:JSON.stringify(medicine),
                     success:function(data){

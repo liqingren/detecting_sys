@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 全局异常控制类
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler {
     private static final int CUSTOM_ERROR_HTTP_STATUS = 403;            // 自定义异常发生时HTTP状态码
     private static final int SERVER_INTERNAL_ERROR_HTTP_STATUS = 500;   // 服务器内部异常

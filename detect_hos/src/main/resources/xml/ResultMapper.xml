@@ -42,7 +42,7 @@
 
     <select id="getResultByPage" resultType="com.rongxin.detecthos.pojo.vo.UserResult">
          select DISTINCT medicineCode,createTime,count(medicineCode) as count from result where
-            resultstate is null and isDelete=1 group by medicineCode
+            resultstate is null and isDelete=1 group by medicineCode,createTime
     </select>
     <select id="getResultByCode" resultType="com.rongxin.detecthos.pojo.Result">
         select * from result where medicineCode=#{medicineCode}

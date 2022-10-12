@@ -17,10 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MedicineServiceImpl extends ServiceImpl<MedicineMapper, Medicine> implements MedicineService {
-    @Autowired
-    MedicineMapper medicineMapper;
     @Override
     public Medicine getByMedicineCode(String medicineCode) {
-        return medicineMapper.getByMedicineCode(medicineCode);
+        if(medicineCode==null||medicineCode.equals("")){
+            return null;
+        }
+        return baseMapper.getByMedicineCode(medicineCode);
     }
 }
