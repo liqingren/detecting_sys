@@ -3,6 +3,7 @@ package com.rongxin.detectinq.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.rongxin.common.R;
+import com.rongxin.detectinq.config.WebSocketServer;
 import com.rongxin.detectinq.entity.LoginVo;
 import com.rongxin.detectinq.entity.Result;
 import com.rongxin.detectinq.entity.Users;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.TextMessage;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -88,6 +92,7 @@ public class UsersController {
      * @param loginVo
      * @return
      */
+    @ResponseBody
     @IOLogRecorder
     @RequestMapping("/login")
     public R login(@RequestBody LoginVo loginVo) {
@@ -211,11 +216,7 @@ public class UsersController {
                 }
             }
         }
-
     }
-
-
-
 
     /**
      * 根据身份证号查询用户信息
@@ -243,6 +244,22 @@ public class UsersController {
         //根据身份证号分页查询核酸结果
         PageInfo<Result> result = resultService.getResultByPage(pageNum,pageSize,id,keyword);
         return R.ok().data("result",result);
+    }
+
+    @RequestMapping("/sendMsg")
+    public String sendMsg(String msg,String token) throws IOException {
+//        根据token找到客户端 给客户端去推送数据
+        WebSocketServer webSocketServer = WebSocketServer.clients.get(token);
+        webSocketServer.getSession().getBasicRemote().sendText(msg);
+        return "发送成功";
+    }
+
+    @RequestMapping("/sendMsgToUser")
+    public String sendMsgToUser(@RequestParam("info")String msg,@RequestParam("card")String token) throws IOException {
+//        根据token找到客户端 给客户端去推送数据
+        WebSocketServer webSocketServer = WebSocketServer.clients.get(token);
+        webSocketServer.getSession().getBasicRemote().sendText(msg);
+        return "发送成功";
     }
 
 
