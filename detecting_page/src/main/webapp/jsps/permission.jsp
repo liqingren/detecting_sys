@@ -48,7 +48,7 @@
                 }
             });
             $.ajax({
-                url: "http://127.0.0.1:8222/detectacl/permission/getAllPermission",
+                url: "http://192.168.190.111:8222/detectacl/permission/getAllPermission",
                 type: "get",
                 success: function (data) {
                     var permissions = data.data.permissions;

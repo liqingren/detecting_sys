@@ -122,7 +122,6 @@
             border:3px solid #f8f8f8;
             visibility: hidden;
             position: absolute;
-            z-index: 999;
             opacity: 1;
             overflow: hidden;
             background-color: white;
@@ -237,11 +236,14 @@
             // $.session.set("SESSION_USERNAME",user.card);
             $(".imgcode").attr("src",str);
             //点击核酸结果按钮跳转页面
-            $("#result ").bind("click",function(){
+            $("#result").bind("click",function(){
                 window.location.href="/jsps/userresult.jsp";
             });
         });
         $(document).ready(function (){
+            var user=JSON.parse(sessionStorage.getItem("user"));
+            $("#username").text(user.name);
+            $("#card").text(user.card);
             var roleCode=JSON.parse(sessionStorage.getItem("roleCode"));
             if(roleCode!=null&&roleCode!=""){
                 $("#admin").removeAttr("hidden");
@@ -280,7 +282,7 @@
             }else{
                 var host = window.location.origin.replace("http:","ws:")
                 //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
-                socket = new WebSocket("ws://localhost:8001/"+token);
+                socket = new WebSocket("ws://192.168.190.111:8001/"+token);
                 //打开事件
                 socket.onopen = function() {
                     console.log("Socket 已打开");
@@ -299,10 +301,6 @@
                 socket.onerror = function() {
                     console.log("Socket发生了错误");
                 }
-                //窗口关闭
-                $(window).unload(function(event){
-                    socket.close();
-                });
             }
             return socket;
         }
@@ -310,6 +308,18 @@
 
 </head>
 <body bgcolor="#f5f5f5">
+<div class="aside">
+    <div class="list-user">
+        <span>用户名：</span>
+        <span id="username"></span>
+        <br/>
+        <span>身份证号：</span>
+        <span id="card"></span>
+    </div>
+    <div class="list" id="quit">
+        <a href="login.jsp">退出</a>
+    </div>
+</div>
 <div class="user">
     <div class="form_1 open" id="form_1 open">
         <form >

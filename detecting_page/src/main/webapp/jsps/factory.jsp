@@ -62,7 +62,8 @@
             $(".save").bind("click",function(){
                 var medicineName = $("[name='medicineName']").val();
                 var conpanyName = $("[name='conpanyName']").val();
-                var num = $("[name='num']").val();
+                var num = $("input[name=num]").val();
+                num=parseInt(num);
                 var medicine={"medicineName":medicineName,"conpanyName":conpanyName,"num":num};
                 $.ajax({
                     url:"http://192.168.190.111:8222/detecthos/medicine/medic/insert",
@@ -73,7 +74,7 @@
                             alert("药品生产成功");
                             $("[name='medicineName']").val("");
                             $("[name='conpanyName']").val("");
-                            $("[name='exp']").val("");
+                            $("[name='num']").val("");
 
                         }else{
                             alert("药品生产失败");

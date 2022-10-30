@@ -172,7 +172,7 @@
                     //不通过
                     $(".bt_failed").bind("click",function(){
                         resultstate = '阳性';
-                        modifyOneResult(id,resultstate);
+                        modifyOneResult(code,resultstate);
                     });
                 }
             });
@@ -339,9 +339,8 @@
             <thead>
             <tr>
                 <th style="width:50px;"></th>
-                <th>姓名</th>
-                <th>身份证号</th>
-                <th>性别</th>
+                <th>药品编号</th>
+                <th>采样人数</th>
                 <th>采集时间</th>
                 <th>状态</th>
             </tr>

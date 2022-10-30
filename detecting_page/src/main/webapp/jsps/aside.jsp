@@ -66,7 +66,6 @@
     </style>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie-1.4.1.min.js"></script>
-    <script type="text/javascript" src="../js/jump.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var user=JSON.parse(sessionStorage.getItem("user"));
@@ -106,7 +105,9 @@
                 }
             })
         })
+
     </script>
+    <script type="text/javascript" src="../js/jump.js"></script>
 </head>
 <body bgcolor="#f5f5f5">
     <div class="header">
@@ -141,7 +142,7 @@
             <a href="factory.jsp">生产药品</a>
         </div>
         <div class="list" id="quit">
-            <a href="login.jsp">退出</a>
+            <a href="adminlogin.jsp">退出</a>
         </div>
     </div>
 </body>

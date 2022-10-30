@@ -5,8 +5,6 @@ import com.rongxin.common.R;
 import com.rongxin.detecthos.service.UsersService;
 import com.rongxin.detectlog.log.annotation.IOLogRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +28,10 @@ public class UsersController {
     @RequestMapping("/meuser/getuser")
     public R getUser(@RequestParam("code") String code) {
         return usersService.getUserByCard(code);
+    }
+    @RequestMapping("/test")
+    public String test(){
+        return "192.168.190.111---------岳志坤";
     }
 
 }

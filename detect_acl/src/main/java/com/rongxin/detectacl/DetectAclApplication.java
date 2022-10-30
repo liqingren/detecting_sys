@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@ComponentScan("com.rongxin.detectacl")
-@MapperScan("com.roongxin.detectacl.mappe0ar")
+@MapperScan("com.rongxin.detectacl.mapper")
 @EnableDiscoveryClient
 public class DetectAclApplication {
         public static void main(String[] args) {

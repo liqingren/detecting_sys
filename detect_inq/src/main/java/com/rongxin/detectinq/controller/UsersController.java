@@ -48,6 +48,7 @@ public class UsersController {
     @Qualifier("redisTemplate")
     @Autowired
     RedisTemplate redisTemplate;
+
     /**
      * 注册
      * @param user
@@ -96,6 +97,7 @@ public class UsersController {
     @IOLogRecorder
     @RequestMapping("/login")
     public R login(@RequestBody LoginVo loginVo) {
+        System.out.println("！！！！！！！！！！！！！192.168.190.111！！！！！！！！！！！！！！！");
         //返回token，使用jwt生成
         String token = usersService.login(loginVo);
         List<String> list=usersService.getAllPermission(loginVo);

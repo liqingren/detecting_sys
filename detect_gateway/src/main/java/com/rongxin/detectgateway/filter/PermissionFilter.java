@@ -28,7 +28,7 @@ public class PermissionFilter implements GlobalFilter, Ordered {
         String reqPath = exchange.getRequest().getURI().getPath();
         List<String> permission = (List<String>) template.opsForValue().get("permissions");
         boolean flag=false;
-        if(reqPath.indexOf("/detectinq")>=0||reqPath.indexOf("/login")>=0){
+        if(reqPath.indexOf("/detectinq")>=0||reqPath.indexOf("/users")>=0){
             flag=true;
         }else {
             if (permission != null) {
